@@ -1,4 +1,52 @@
 {
     "name": "p4-markdown",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "description": "Tiny but fast Markdown to AST parser",
+    "main": "dist/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/onp4/p4-markdown.git"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+        "@types/jest": "^22.2.3",
+        "jest": "^23.0.1",
+        "ts-jest": "^22.4.6",
+        "typescript": "^2.8.3",
+        "ts-node": "^6.0.5",
+        "semantic-release": "^15.5.0",
+        "rimraf": "2.6.2",
+        "mol-conventional-changelog": "^1.4.0"
+    },
+    "scripts": {
+        "clean": "rimraf dist",
+        "build": "echo 'pls add build script'",
+        "test": "jest",
+        "release": "semantic-release"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/mol-conventional-changelog"
+        }
+    },
+    "jest": {
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js",
+            "jsx"
+        ],
+        "transform": {
+            "^.+\\.tsx?$": "ts-jest"
+        },
+        "testRegex": ".*/__tests__/.*\\.(test|spec)\\.(jsx?|tsx?)$"
+    },
+    "keywords": [
+        "markdown",
+        "md",
+        "parser",
+        "ast",
+        "mdast"
+    ]
 }
