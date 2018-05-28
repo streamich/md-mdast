@@ -6,3 +6,4 @@ coverage
 package-lock.json
 /lib/
 /dist/
+yarn-error.log
