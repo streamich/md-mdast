@@ -7,6 +7,13 @@
         "type": "git",
         "url": "https://github.com/onp4/p4-markdown.git"
     },
+    "scripts": {
+        "clean": "rimraf dist",
+        "prebuild": "yarn clean",
+        "build": "tsc",
+        "test": "jest",
+        "release": "semantic-release"
+    },
     "dependencies": {
     },
     "devDependencies": {
@@ -17,13 +24,8 @@
         "ts-node": "^6.0.5",
         "semantic-release": "^15.5.0",
         "rimraf": "2.6.2",
-        "mol-conventional-changelog": "^1.4.0"
-    },
-    "scripts": {
-        "clean": "rimraf dist",
-        "build": "echo 'pls add build script'",
-        "test": "jest",
-        "release": "semantic-release"
+        "mol-conventional-changelog": "^1.4.0",
+        "husky": "^0.14.3"
     },
     "config": {
         "commitizen": {
