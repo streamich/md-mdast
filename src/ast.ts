@@ -1,11 +1,11 @@
-export type TNodeType = 'Parent' | 'Table';
+export type TTokenType = 'Parent' | 'Table' | 'Icon';
 
-export interface TNode {
-    type: TNodeType;
-    children?: TNode | string;
+export interface TToken {
+    type: TTokenType;
+    children?: TToken | string;
     pos?: number;
     len?: number;
     src?: string;
 }
 
-export type TAnyNode = TNode;
+export type TAnyNode = TToken;
