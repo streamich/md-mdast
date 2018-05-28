@@ -5,7 +5,8 @@
         "no-var-requires": false,
         "object-literal-sort-keys": false,
         "interface-name": false,
-        "prefer-template": false
+        "prefer-template": false,
+        "no-any": false
     },
     "linterOptions": {
         "exclude": ["coverage/", "dist/", "node_modules/"]
