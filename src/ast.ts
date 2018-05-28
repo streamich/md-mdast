@@ -1,5 +1,4 @@
-export type TNodeType = 'Parent'
-    | 'Table';
+export type TNodeType = 'Parent' | 'Table';
 
 export interface TNode {
     type: TNodeType;
