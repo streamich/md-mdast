@@ -13,7 +13,10 @@
         "build": "tsc",
         "test": "jest",
         "release": "semantic-release",
-        "precommit": "pretty-quick --staged  && yarn run lint",
+        "preversion": "yarn run lint && yarn run test",
+        "postversion": "git push && git push --tags && npm publish",
+        "precommit": "pretty-quick --staged && yarn run lint",
+        "prepush": "yarn run test",
         "prettier": "prettier --write '**/*.ts'",
         "lint": "tsc --noEmit -p './tsconfig.jest.json' && yarn tslint",
         "tslint": "tslint './src/**/*.{ts,tsx}' -t verbose"
