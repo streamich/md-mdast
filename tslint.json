@@ -1,0 +1,11 @@
+{
+    "extends": "tslint-config-mailonline",
+    "rules": {
+        "no-require-imports": false,
+        "no-var-requires": false,
+        "object-literal-sort-keys": false
+    },
+    "linterOptions": {
+        "exclude": ["coverage/", "dist/", "node_modules/"]
+    }
+}

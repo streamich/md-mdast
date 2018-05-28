@@ -1,0 +1,26 @@
+{
+    "include": ["./src/**/*.ts", "./src/**/*.tsx"],
+    "exclude": ["node_modules", "dist", "./src/**/*.spec.ts", "./src/**/__tests__/**/*.ts"],
+    "files": ["./src/index.ts"],
+    "compilerOptions": {
+        "target": "es2017",
+        "lib": ["es2017", "dom", "es5", "es6", "es7", "es2015", "scripthost", "dom.iterable"],
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "moduleResolution": "Node",
+        "outDir": "./dist",
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmitOnError": true,
+        "noEmitHelpers": false,
+        "noErrorTruncation": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "pretty": true,
+        "strict": true,
+        "sourceMap": true,
+        "types": ["node"]
+    }
+}

@@ -1,4 +1,81 @@
 {
     "name": "p4-markdown",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "description": "Tiny but fast Markdown to AST parser",
+    "main": "dist/index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/onp4/p4-markdown.git"
+    },
+    "scripts": {
+        "clean": "rimraf dist",
+        "prebuild": "yarn clean",
+        "build": "tsc",
+        "test": "jest",
+        "release": "semantic-release",
+        "preversion": "yarn run lint && yarn run test",
+        "postversion": "git push && git push --tags && npm publish",
+        "precommit": "pretty-quick --staged && yarn run lint",
+        "prepush": "yarn run test",
+        "prettier": "prettier --write '**/*.ts'",
+        "lint": "tsc --noEmit -p './tsconfig.jest.json' && yarn tslint",
+        "tslint": "tslint './src/**/*.{ts,tsx}' -t verbose"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@types/node": "^10.1.3",
+        "@types/jest": "^22.2.3",
+        "jest": "^23.0.1",
+        "ts-jest": "^22.4.6",
+        "typescript": "^2.8.3",
+        "ts-node": "^6.0.5",
+        "semantic-release": "^15.5.0",
+        "rimraf": "2.6.2",
+        "mol-conventional-changelog": "^1.4.0",
+        "husky": "^0.14.3",
+        "prettier": "^1.13.0",
+        "pretty-quick": "^1.6.0",
+        "tslint": "^5.10.0",
+        "tslint-config-mailonline": "^3.0.0"
+    },
+    "prettier": {
+        "printWidth": 120,
+        "tabWidth": 4,
+        "useTabs": false,
+        "semi": true,
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "bracketSpacing": false,
+        "jsxBracketSameLine": false
+    },
+    "lint-staged": {
+        "**/*.js": [
+            "prettier --write",
+            "git add"
+        ]
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/mol-conventional-changelog"
+        }
+    },
+    "jest": {
+        "moduleFileExtensions": [
+            "ts",
+            "tsx",
+            "js",
+            "jsx"
+        ],
+        "transform": {
+            "^.+\\.tsx?$": "ts-jest"
+        },
+        "testRegex": ".*/__tests__/.*\\.(test|spec)\\.(jsx?|tsx?)$"
+    },
+    "keywords": [
+        "markdown",
+        "md",
+        "parser",
+        "ast",
+        "mdast"
+    ]
 }
