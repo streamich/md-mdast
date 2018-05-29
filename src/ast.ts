@@ -1,11 +1,17 @@
-export type TTokenType = 'Parent' | 'Inline' | 'Table' | 'Icon';
+export type TTokenType = 'Parent' | 'Inline' | 'Table' | 'Icon' | 'Link';
 
 export interface TToken {
     type: TTokenType;
-    children?: TToken | string;
+    children?: TToken;
     pos?: number;
     len?: number;
     src?: string;
 }
 
-export type TAnyNode = TToken;
+export interface TLink extends TToken {
+    type: 'Link';
+    title: string;
+    url: string;
+}
+
+export type TAnyNode = TToken | TLink;

@@ -13,7 +13,7 @@ export interface IcreateParserOptions {
     block: TTokenizer[];
 }
 
-export const createParser = ({inline, block}: IcreateParserOptions) => {
+export const createParser = ({inline}: IcreateParserOptions) => {
     const parser: any = {};
     const inlineTokenizer = loop('Inline', first(inline));
 
