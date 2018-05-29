@@ -1,4 +1,5 @@
-import {token} from '../lib';
+import {token, first} from '../lib';
+import Icon from '../tokenizer/Icon';
 
 describe('lib', () => {
     describe('node()', () => {
@@ -11,6 +12,21 @@ describe('lib', () => {
                 pos: 1,
                 len: 2,
             });
+        });
+    });
+
+    describe('first()', () => {
+        test('exists', () => {
+            expect(typeof first).toBe('function');
+        });
+
+        test('works', () => {
+            const tokenizer = first([(() => undefined) as any, Icon]);
+
+            const tok = tokenizer(':smile:', 0, {} as any);
+
+            expect(typeof tok).toBe('object');
+            expect(tok.type).toBe('Icon');
         });
     });
 });

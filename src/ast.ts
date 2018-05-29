@@ -1,4 +1,4 @@
-export type TTokenType = 'Parent' | 'Table' | 'Icon';
+export type TTokenType = 'Parent' | 'Inline' | 'Table' | 'Icon';
 
 export interface TToken {
     type: TTokenType;
