@@ -23,7 +23,7 @@ describe('lib', () => {
         test('works', () => {
             const tokenizer = first([(() => undefined) as any, Icon]);
 
-            const tok = tokenizer(':smile:', 0, {} as any);
+            const tok = tokenizer(':smile:', 0, {} as any) as any;
 
             expect(typeof tok).toBe('object');
             expect(tok.type).toBe('Icon');

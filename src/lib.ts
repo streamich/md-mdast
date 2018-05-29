@@ -59,7 +59,7 @@ export const loop = (type: TTokenType, tokenizer: TTokenizer) => (src: string, p
 
     let length = 0;
 
-    while (pos < end) {
+    while (length < end) {
         const tok = tokenizer(src, pos, ctx);
 
         if (tok) {
