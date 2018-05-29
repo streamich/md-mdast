@@ -1,4 +1,4 @@
-export type TTokenType = 'Parent' | 'Inline' | 'Table' | 'Icon' | 'Link';
+export type TTokenType = 'Parent' | 'Inline' | 'Table' | 'Icon' | 'Link' | 'Whitespace';
 
 export interface TToken {
     type: TTokenType;
@@ -19,4 +19,8 @@ export interface TLink extends TToken {
     url: string;
 }
 
-export type TAnyToken = TToken | TLink | TIcon;
+export interface IWhitespace extends TToken {
+    type: 'Whitespace';
+}
+
+export type TAnyToken = TToken | TLink | TIcon | IWhitespace;
