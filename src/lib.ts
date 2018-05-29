@@ -1,4 +1,4 @@
-import {TToken, TTokenType} from './ast';
+import {TToken, TTokenType, TAnyToken} from './ast';
 import {TTokenizer, IContext} from '.';
 
 // tslint:disable no-any
@@ -20,22 +20,26 @@ export const token = (type: TTokenType, children?: any, pos?: number, len?: numb
     return tok;
 };
 
-export const regexToken = (
+export const regex = (
     type: TTokenType,
-    regex: string | RegExp,
+    reg: string | RegExp,
     flags: string,
-    getChildren: (matches: any, src: string, pos: number, ctx: IContext) => string | TToken
+    onToken: (token: TAnyToken, matches: any, src: string, pos: number, ctx: IContext) => TToken
 ) => {
     const tokenizer: TTokenizer = (src, pos, ctx) => {
-        const matches = src.substr(pos).match(regex instanceof RegExp ? regex : new RegExp('^' + regex + '', flags));
+        const matches = src.substr(pos).match(reg instanceof RegExp ? reg : new RegExp('^' + reg + '', flags));
 
         if (!matches) {
             return;
         }
 
-        const children = getChildren(matches, src, pos, ctx);
+        let tok = token(type, undefined, pos, matches[0].length);
 
-        return token(type, children, pos, matches[0].length);
+        if (onToken) {
+            tok = onToken(tok, matches, src, pos, ctx);
+        }
+
+        return tok;
     };
 
     return tokenizer;

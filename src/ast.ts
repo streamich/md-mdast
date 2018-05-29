@@ -8,10 +8,15 @@ export interface TToken {
     src?: string;
 }
 
+export interface TIcon extends TToken {
+    type: 'Link';
+    emoji: string;
+}
+
 export interface TLink extends TToken {
     type: 'Link';
     title: string;
     url: string;
 }
 
-export type TAnyNode = TToken | TLink;
+export type TAnyToken = TToken | TLink | TIcon;
