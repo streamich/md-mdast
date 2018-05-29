@@ -1,5 +1,5 @@
 import {TTokenType, TAnyToken} from './ast';
-import {TTokenizer, IContext, TTokenizerResult} from '.';
+import {TTokenizer, IContext, TTokenizerResult} from './createParser';
 
 // tslint:disable no-any
 export const token = <T extends TAnyToken>(type: TTokenType, children?: any, pos?: number, len?: number): T => {

@@ -1,26 +1,26 @@
 export type TTokenType = 'Parent' | 'Inline' | 'Table' | 'Icon' | 'Link' | 'Whitespace';
 
-export interface TToken {
+export interface IToken {
     type: TTokenType;
-    children?: TToken;
+    children?: IToken;
     pos?: number;
     len?: number;
     src?: string;
 }
 
-export interface TIcon extends TToken {
+export interface IIcon extends IToken {
     type: 'Icon';
     emoji: string;
 }
 
-export interface TLink extends TToken {
+export interface ILink extends IToken {
     type: 'Link';
     title: string;
     url: string;
 }
 
-export interface IWhitespace extends TToken {
+export interface IWhitespace extends IToken {
     type: 'Whitespace';
 }
 
-export type TAnyToken = TToken | TLink | TIcon | IWhitespace;
+export type TAnyToken = IToken | ILink | IIcon | IWhitespace;

@@ -1,9 +1,9 @@
 import {regex} from '../lib';
-import {TLink, TAnyToken} from '../ast';
+import {ILink, TAnyToken} from '../ast';
 import {label, url, title, replace} from '../regex';
 
-const onToken = (token: TAnyToken, matches: string[]): TLink => {
-    const tok = token as TLink;
+const onToken = (token: TAnyToken, matches: string[]): ILink => {
+    const tok = token as ILink;
 
     tok.children = matches[1] as any;
     tok.url = matches[2];
@@ -17,6 +17,6 @@ const REG = replace(/^!?\[(label)\]\(url(?:\s+(title))?\s*\)/, {
     title,
 });
 
-const Link = () => regex<TLink>('Link', REG, '', onToken);
+const Link = () => regex<ILink>('Link', REG, '', onToken);
 
 export default Link;

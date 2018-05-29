@@ -21,7 +21,7 @@ describe('lib', () => {
         });
 
         test('works', () => {
-            const tokenizer = first([(() => undefined) as any, Icon]);
+            const tokenizer = first([(() => undefined) as any, Icon()]);
 
             const tok = tokenizer(':smile:', 0, {} as any) as any;
 

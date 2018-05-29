@@ -1,6 +1,6 @@
 import {token} from '../lib';
 import {IWhitespace} from '../ast';
-import {TTokenizer, TTokenizerResult} from '..';
+import {TTokenizer, TTokenizerResult} from '../createParser';
 
 const REG = /^\s+/;
 

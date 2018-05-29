@@ -1,10 +1,10 @@
-import {createParser} from '../index';
+import createParser from '../createParser';
 import Icon from '../tokenizer/Icon';
 
 describe('createParser()', () => {
     test('returns a parser object', () => {
         const parser = createParser({
-            inline: [Icon],
+            inline: [Icon()],
             block: [],
         });
 
@@ -14,7 +14,7 @@ describe('createParser()', () => {
 
     test('returns AST', () => {
         const parser = createParser({
-            inline: [Icon],
+            inline: [Icon()],
             block: [],
         });
 
