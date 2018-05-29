@@ -6,7 +6,8 @@
         "object-literal-sort-keys": false,
         "interface-name": false,
         "prefer-template": false,
-        "no-any": false
+        "no-any": false,
+        "array-type": false
     },
     "linterOptions": {
         "exclude": ["coverage/", "dist/", "node_modules/"]

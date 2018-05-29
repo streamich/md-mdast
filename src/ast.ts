@@ -9,7 +9,7 @@ export interface TToken {
 }
 
 export interface TIcon extends TToken {
-    type: 'Link';
+    type: 'Icon';
     emoji: string;
 }
 

@@ -1,4 +1,4 @@
-import {TToken} from './ast';
+import {TAnyToken} from './ast';
 import {loop, first} from './lib';
 
 export interface IContext {
@@ -6,11 +6,12 @@ export interface IContext {
     parser: any;
 }
 
-export type TTokenizer = (src: string, pos: number, ctx: IContext) => TToken | undefined | null;
+export type TTokenizerResult<T extends TAnyToken> = T | undefined | null;
+export type TTokenizer<T extends TAnyToken> = (src: string, pos: number, ctx: IContext) => TTokenizerResult<T>;
 
 export interface IcreateParserOptions {
-    inline: TTokenizer[];
-    block: TTokenizer[];
+    inline: TTokenizer<any>[];
+    block: TTokenizer<any>[];
 }
 
 export const createParser = ({inline}: IcreateParserOptions) => {

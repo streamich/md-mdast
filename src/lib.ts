@@ -1,8 +1,8 @@
-import {TToken, TTokenType, TAnyToken} from './ast';
-import {TTokenizer, IContext} from '.';
+import {TTokenType, TAnyToken} from './ast';
+import {TTokenizer, IContext, TTokenizerResult} from '.';
 
 // tslint:disable no-any
-export const token = (type: TTokenType, children?: any, pos?: number, len?: number): TToken => {
+export const token = <T extends TAnyToken>(type: TTokenType, children?: any, pos?: number, len?: number): T => {
     if (children instanceof Array) {
         if (children.length === 1) {
             // tslint:disable no-parameter-reassignment
@@ -10,42 +10,42 @@ export const token = (type: TTokenType, children?: any, pos?: number, len?: numb
         }
     }
 
-    const tok: TToken = {
+    const tok = {
         type,
         children,
         pos,
         len,
-    };
+    } as T;
 
     return tok;
 };
 
-export const regex = (
+export const regex = <T extends TAnyToken>(
     type: TTokenType,
     reg: string | RegExp,
     flags: string,
-    onToken: (token: TAnyToken, matches: any, src: string, pos: number, ctx: IContext) => TToken
-) => {
-    const tokenizer: TTokenizer = (src, pos, ctx) => {
-        const matches = src.substr(pos).match(reg instanceof RegExp ? reg : new RegExp('^' + reg + '', flags));
+    onToken: (token: TAnyToken, matches: any, src: string, pos: number, ctx: IContext) => T
+): TTokenizer<T> => (src: string, pos: number, ctx: IContext): TTokenizerResult<T> => {
+    const matches = src.substr(pos).match(reg instanceof RegExp ? reg : new RegExp('^' + reg + '', flags));
 
-        if (!matches) {
-            return;
-        }
+    if (!matches) {
+        return;
+    }
 
-        let tok = token(type, undefined, pos, matches[0].length);
+    let tok = token<T>(type, undefined, pos, matches[0].length);
 
-        if (onToken) {
-            tok = onToken(tok, matches, src, pos, ctx);
-        }
+    if (onToken) {
+        tok = onToken(tok, matches, src, pos, ctx);
+    }
 
-        return tok;
-    };
-
-    return tokenizer;
+    return tok;
 };
 
-export const first = (tokenizers: TTokenizer[]): TTokenizer => (src: string, pos: number, ctx: IContext) => {
+export const first = <T extends TAnyToken>(tokenizers: TTokenizer<T>[]): TTokenizer<T> => (
+    src: string,
+    pos: number,
+    ctx: IContext
+): TTokenizerResult<T> => {
     for (const tokenizer of tokenizers) {
         const tok = tokenizer(src, pos, ctx);
 
@@ -57,7 +57,11 @@ export const first = (tokenizers: TTokenizer[]): TTokenizer => (src: string, pos
     return;
 };
 
-export const loop = (type: TTokenType, tokenizer: TTokenizer) => (src: string, pos: number, ctx: IContext) => {
+export const loop = <T extends TAnyToken>(type: TTokenType, tokenizer: TTokenizer<T>) => (
+    src: string,
+    pos: number,
+    ctx: IContext
+): TTokenizerResult<T> => {
     const children = [];
     const end = src.length;
 
@@ -76,5 +80,5 @@ export const loop = (type: TTokenType, tokenizer: TTokenizer) => (src: string, p
         }
     }
 
-    return token(type, children, pos, length);
+    return token<T>(type, children, pos, length);
 };

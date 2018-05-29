@@ -1,10 +1,14 @@
 import {regex} from '../lib';
-import {TIcon} from '../ast';
+import {TIcon, TAnyToken} from '../ast';
 
-const Icon = regex('Icon', '(\\s:|:)([^\\s:]{1,32}?)(:(\\s|$)|:)', '', (token, matches) => {
-    (token as TIcon).emoji = matches[2];
+const onToken = (token: TAnyToken, matches: string[]): TIcon => {
+    const tok = token as TIcon;
 
-    return token;
-});
+    tok.emoji = matches[2];
+
+    return tok;
+};
+
+const Icon = regex<TIcon>('Icon', '(\\s:|:)([^\\s:]{1,32}?)(:(\\s|$)|:)', '', onToken);
 
 export default Icon;
