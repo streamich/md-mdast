@@ -16,7 +16,7 @@ export interface IcreateParserOptions {
 
 const createParser = ({inline}: IcreateParserOptions) => {
     const parser: any = {};
-    const inlineTokenizer = loop('inline', first(inline));
+    const inlineTokenizer = loop(first(inline));
 
     parser.inline = (str: string) =>
         inlineTokenizer(str, 0, {

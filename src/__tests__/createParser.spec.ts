@@ -12,7 +12,7 @@ describe('createParser()', () => {
         expect(typeof parser.inline).toBe('function');
     });
 
-    test('returns AST', () => {
+    test('returns a single AST token', () => {
         const parser = createParser({
             inline: [icon()],
             block: [],
@@ -21,8 +21,6 @@ describe('createParser()', () => {
         const ast = parser.inline(':smile:');
 
         expect(typeof ast).toBe('object');
-        expect(ast.type).toBe('inline');
-        expect(typeof ast.children).toBe('object');
-        expect(ast.children.type).toBe('icon');
+        expect(ast.type).toBe('icon');
     });
 });

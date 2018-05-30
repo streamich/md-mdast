@@ -57,11 +57,11 @@ export const first = <T extends TAnyToken>(tokenizers: TTokenizer<T>[]): TTokeni
     return;
 };
 
-export const loop = <T extends TAnyToken>(type: TTokenType, tokenizer: TTokenizer<T>) => (
+export const loop = (tokenizer: TTokenizer<TAnyToken>) => (
     src: string,
     pos: number,
     ctx: IContext
-): TTokenizerResult<T> => {
+): TAnyToken | TAnyToken[] | null | undefined => {
     const children = [];
     const end = src.length;
 
@@ -80,5 +80,9 @@ export const loop = <T extends TAnyToken>(type: TTokenType, tokenizer: TTokenize
         }
     }
 
-    return token<T>(type, children, pos, length);
+    if (children.length === 1) {
+        return children[0];
+    } else {
+        return children;
+    }
 };
