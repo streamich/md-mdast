@@ -21,8 +21,8 @@ describe('createParser()', () => {
         const ast = parser.inline(':smile:');
 
         expect(typeof ast).toBe('object');
-        expect(ast.type).toBe('Inline');
+        expect(ast.type).toBe('inline');
         expect(typeof ast.children).toBe('object');
-        expect(ast.children.type).toBe('Icon');
+        expect(ast.children.type).toBe('icon');
     });
 });

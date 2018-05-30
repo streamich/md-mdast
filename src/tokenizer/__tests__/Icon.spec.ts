@@ -17,7 +17,7 @@ describe('Icon', () => {
 
         expect(typeof token).toBe('object');
         expect(token).toMatchObject({
-            type: 'Icon',
+            type: 'icon',
             emoji: 'smile',
             pos: 0,
             len: 7,
@@ -43,7 +43,7 @@ describe('Icon', () => {
 
         expect(typeof token).toBe('object');
         expect(token).toMatchObject({
-            type: 'Icon',
+            type: 'icon',
             emoji: 'crossed_fingers',
             pos: 0,
             len: 17,
@@ -61,7 +61,7 @@ describe('Icon', () => {
 
         expect(typeof token).toBe('object');
         expect(token).toMatchObject({
-            type: 'Icon',
+            type: 'icon',
             emoji: 'crossed-fingers',
             pos: 0,
             len: 17,

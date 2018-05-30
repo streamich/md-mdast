@@ -4,10 +4,10 @@ import Icon from '../tokenizer/Icon';
 describe('lib', () => {
     describe('node()', () => {
         test('returns a token', () => {
-            const tok = token('Parent', 'children', 1, 2);
+            const tok = token('root', 'children', 1, 2);
 
             expect(tok).toMatchObject({
-                type: 'Parent',
+                type: 'root',
                 children: 'children',
                 pos: 1,
                 len: 2,
@@ -26,7 +26,7 @@ describe('lib', () => {
             const tok = tokenizer(':smile:', 0, {} as any) as any;
 
             expect(typeof tok).toBe('object');
-            expect(tok.type).toBe('Icon');
+            expect(tok.type).toBe('icon');
         });
     });
 });

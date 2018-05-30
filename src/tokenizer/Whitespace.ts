@@ -8,7 +8,7 @@ const Whitespace = (): TTokenizer<IWhitespace> => (str: string, pos: number): TT
     const matches = str.match(REG);
 
     if (matches) {
-        return token<IWhitespace>('Whitespace', undefined, pos, matches[0].length);
+        return token<IWhitespace>('whitespace', undefined, pos, matches[0].length);
     }
 
     return;

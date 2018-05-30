@@ -9,6 +9,6 @@ const onToken = (token: TAnyToken, matches: string[]): IIcon => {
     return tok;
 };
 
-const Icon = () => regex<IIcon>('Icon', '(\\s:|:)([^\\s:]{1,32}?)(:(\\s|$)|:)', '', onToken);
+const Icon = () => regex<IIcon>('icon', '(\\s:|:)([^\\s:]{1,32}?)(:(\\s|$)|:)', '', onToken);
 
 export default Icon;

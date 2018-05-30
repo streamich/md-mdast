@@ -1,4 +1,4 @@
-export type TTokenType = 'Parent' | 'Inline' | 'Table' | 'Icon' | 'Link' | 'Whitespace';
+export type TTokenType = 'root' | 'inline' | 'text' | 'icon' | 'link' | 'whitespace';
 
 export interface IToken {
     type: TTokenType;
@@ -9,18 +9,18 @@ export interface IToken {
 }
 
 export interface IIcon extends IToken {
-    type: 'Icon';
+    type: 'icon';
     emoji: string;
 }
 
 export interface ILink extends IToken {
-    type: 'Link';
+    type: 'link';
     title: string;
     url: string;
 }
 
 export interface IWhitespace extends IToken {
-    type: 'Whitespace';
+    type: 'whitespace';
 }
 
 export type TAnyToken = IToken | ILink | IIcon | IWhitespace;
