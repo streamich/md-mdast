@@ -1,5 +1,5 @@
 import {token, first} from '../lib';
-import Icon from '../tokenizer/Icon';
+import icon from '../tokenizer/icon';
 
 describe('lib', () => {
     describe('node()', () => {
@@ -21,7 +21,7 @@ describe('lib', () => {
         });
 
         test('works', () => {
-            const tokenizer = first([(() => undefined) as any, Icon()]);
+            const tokenizer = first([(() => undefined) as any, icon()]);
 
             const tok = tokenizer(':smile:', 0, {} as any) as any;
 

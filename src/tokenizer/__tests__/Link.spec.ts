@@ -1,14 +1,14 @@
-import Link from '../Link';
+import link from '../link';
 import {ILink} from '../../ast';
 
-describe('Link', () => {
+describe('link tokenizer', () => {
     test('exists', () => {
-        expect(typeof Link).toBe('function');
-        expect(typeof Link()).toBe('function');
+        expect(typeof link).toBe('function');
+        expect(typeof link()).toBe('function');
     });
 
     test('matches a link', () => {
-        const tokenizer = Link();
+        const tokenizer = link();
         const tok = tokenizer('[hello](http://example.com) more text', 0, {} as any) as ILink;
 
         expect(tok.type).toBe('link');

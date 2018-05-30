@@ -4,7 +4,7 @@ import {TTokenizer, TTokenizerResult} from '../createParser';
 
 const REG = /^\s+/;
 
-const Whitespace = (): TTokenizer<IWhitespace> => (str: string, pos: number): TTokenizerResult<IWhitespace> => {
+const whitespace = (): TTokenizer<IWhitespace> => (str: string, pos: number): TTokenizerResult<IWhitespace> => {
     const matches = str.match(REG);
 
     if (matches) {
@@ -14,4 +14,4 @@ const Whitespace = (): TTokenizer<IWhitespace> => (str: string, pos: number): TT
     return;
 };
 
-export default Whitespace;
+export default whitespace;

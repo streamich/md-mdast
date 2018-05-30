@@ -17,6 +17,6 @@ const REG = replace(/^!?\[(label)\]\(url(?:\s+(title))?\s*\)/, {
     title,
 });
 
-const Link = () => regex<ILink>('link', REG, '', onToken);
+const link = () => regex<ILink>('link', REG, '', onToken);
 
-export default Link;
+export default link;

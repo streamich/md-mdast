@@ -1,19 +1,19 @@
-import Icon from '../Icon';
+import icon from '../icon';
 
-describe('Icon', () => {
+describe('icon tokenizer', () => {
     test('exists', () => {
-        expect(typeof Icon).toBe('function');
-        expect(typeof Icon()).toBe('function');
+        expect(typeof icon).toBe('function');
+        expect(typeof icon()).toBe('function');
     });
 
     test('returns undefined if not icon', () => {
-        const token = Icon()('adsf', 1, {} as any);
+        const token = icon()('adsf', 1, {} as any);
 
         expect(token).toBe(undefined);
     });
 
     test('returns icon token', () => {
-        const token = Icon()(':smile:', 0, {} as any);
+        const token = icon()(':smile:', 0, {} as any);
 
         expect(typeof token).toBe('object');
         expect(token).toMatchObject({
@@ -39,7 +39,7 @@ describe('Icon', () => {
     */
 
     test('allows underscore', () => {
-        const token = Icon()(':crossed_fingers:', 0, {} as any);
+        const token = icon()(':crossed_fingers:', 0, {} as any);
 
         expect(typeof token).toBe('object');
         expect(token).toMatchObject({
@@ -51,13 +51,13 @@ describe('Icon', () => {
     });
 
     test('does not allow spaces', () => {
-        const token = Icon()(': space:', 0, {} as any);
+        const token = icon()(': space:', 0, {} as any);
 
         expect(typeof token).toBe('undefined');
     });
 
     test('does allow hyphens', () => {
-        const token = Icon()(':crossed-fingers:', 0, {} as any);
+        const token = icon()(':crossed-fingers:', 0, {} as any);
 
         expect(typeof token).toBe('object');
         expect(token).toMatchObject({

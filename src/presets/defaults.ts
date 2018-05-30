@@ -1,9 +1,9 @@
-import Icon from '../tokenizer/Icon';
-import Whitespace from '../tokenizer/Whitespace';
-import Link from '../tokenizer/Link';
+import icon from '../tokenizer/icon';
+import whitespace from '../tokenizer/whitespace';
+import link from '../tokenizer/link';
 
 const preset = {
-    inline: [Whitespace(), Icon(), Link()],
+    inline: [whitespace(), icon(), link()],
     block: [],
 };
 
