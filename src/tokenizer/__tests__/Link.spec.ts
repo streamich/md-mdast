@@ -5,10 +5,15 @@ const tokenizer = link();
 
 const runTokenizer = (tk, value) => {
     // tslint:disable no-unnecessary-callback-wrapper
-    const eat = (subvalue, type, children, overrides) =>
-        token(subvalue, type, children, overrides);
+    const eat = (subvalue, type, children, overrides) => token(subvalue, type, children, overrides);
 
-    return tk.call({}, eat, value);
+    return tk.call(
+        {
+            tokenizeInline: (val: string) => val,
+        },
+        eat,
+        value
+    );
 };
 
 describe('link tokenizer', () => {
