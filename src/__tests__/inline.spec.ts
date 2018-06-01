@@ -480,4 +480,75 @@ describe('Inline Markdown', () => {
             ]);
         });
     });
+
+    describe('sub', () => {
+        test('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('~foo~');
+
+            expect(ast).toMatchObject({
+                type: 'sub',
+                children: {
+                    type: 'text',
+                    value: 'foo',
+                },
+            });
+        });
+
+        test('complex example', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('~foo~ *okay ~bar~* hello ~world~');
+
+            expect(ast).toMatchObject([
+                {
+                    type: 'sub',
+                    len: 5,
+                    children: {
+                        type: 'text',
+                        len: 3,
+                        value: 'foo',
+                    },
+                },
+                {
+                    type: 'text',
+                    len: 1,
+                    value: ' ',
+                },
+                {
+                    type: 'emphasis',
+                    len: 12,
+                    children: [
+                        {
+                            type: 'text',
+                            len: 5,
+                            value: 'okay ',
+                        },
+                        {
+                            type: 'sub',
+                            len: 5,
+                            children: {
+                                type: 'text',
+                                len: 3,
+                                value: 'bar',
+                            },
+                        },
+                    ],
+                },
+                {
+                    type: 'text',
+                    len: 7,
+                    value: ' hello ',
+                },
+                {
+                    type: 'sub',
+                    len: 7,
+                    children: {
+                        type: 'text',
+                        len: 5,
+                        value: 'world',
+                    },
+                },
+            ]);
+        });
+    });
 });

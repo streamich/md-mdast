@@ -3,7 +3,7 @@ import {TTokenizer, ISup} from '../types';
 
 const REG = /^\^(?=\S)([\s\S]*?\S)\^/;
 
-const superscript: TTokenizer<ISup> = function(eat, value) {
+const sup: TTokenizer<ISup> = function(eat, value) {
     const matches = value.match(REG);
 
     if (matches) {
@@ -13,4 +13,4 @@ const superscript: TTokenizer<ISup> = function(eat, value) {
     return;
 };
 
-export default superscript;
+export default sup;

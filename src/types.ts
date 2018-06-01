@@ -8,6 +8,7 @@ export type TTokenInline =
     | 'linkReference'
     | 'inlineLink'
     | 'sup'
+    | 'sub'
     | 'icon'
     | 'highlight'
     | 'link'
@@ -64,6 +65,10 @@ export interface ISup extends IToken {
     type: 'sup';
 }
 
+export interface ISub extends IToken {
+    type: 'sub';
+}
+
 export interface IIcon extends IToken {
     type: 'icon';
     emoji: string;
@@ -101,6 +106,7 @@ export type TInlineToken =
     | ILink
     | IInlineLink
     | ISup
+    | ISub
     | IIcon
     | IHighlight
     | IText

@@ -12,6 +12,7 @@ import footnoteReference from '../tokenizer/footnoteReference';
 import linkReference from '../tokenizer/linkReference';
 import inlineLink from '../tokenizer/inlineLink';
 import sup from '../tokenizer/sup';
+import sub from '../tokenizer/sub';
 
 const preset = {
     inline: [
@@ -25,6 +26,7 @@ const preset = {
         linkReference,
         inlineLink,
         sup,
+        sub,
         highlight(),
         icon(32),
         text(),
