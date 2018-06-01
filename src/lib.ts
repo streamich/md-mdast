@@ -1,5 +1,4 @@
-import {TTokenType, TAnyToken} from './ast';
-import {TTokenizer, IContext, TTokenizerResult} from './createParser';
+import {TTokenType, TAnyToken, TTokenizer} from './types';
 
 // tslint:disable no-any
 export const token = <T extends TAnyToken>(type: TTokenType, children?: any, pos?: number, len?: number): T => {
@@ -41,20 +40,18 @@ export const regex = <T extends TAnyToken>(
     return tok;
 };
 
-export const first = <T extends TAnyToken>(tokenizers: TTokenizer<T>[]): TTokenizer<T> => (
-    src: string,
-    pos: number,
-    ctx: IContext
-): TTokenizerResult<T> => {
-    for (const tokenizer of tokenizers) {
-        const tok = tokenizer(src, pos, ctx);
+export const first = <T extends TAnyToken>(tokenizers: TTokenizer<T>[]): TTokenizer<T> => {
+    return function (this: IParser, eat: TEat<T>, value: string) {
+        for (const tokenizer of tokenizers) {
+            const tok = tokenizer(src, pos, ctx);
 
-        if (tok) {
-            return tok;
+            if (tok) {
+                return tok;
+            }
         }
-    }
 
-    return;
+        return;
+    };
 };
 
 export const loop = (tokenizer: TTokenizer<TAnyToken>) => (

@@ -24,3 +24,12 @@ export interface IWhitespace extends IToken {
 }
 
 export type TAnyToken = IToken | ILink | IIcon | IWhitespace;
+
+export interface IParser {
+    tokenizeInline(value: string): TAnyToken[] | TAnyToken | undefined | null;
+}
+
+export type TNullableToken<T extends TAnyToken> = T | undefined | null;
+export type TChildrenToken<T extends TAnyToken> = TNullableToken<T> | T[];
+export type TEat<T extends TAnyToken> = (subvalue: string, type: TTokenType, children?: TNullableToken<any>, overrides?: Partial<TAnyToken>) => T;
+export type TTokenizer<T extends TAnyToken> = (this: IParser, eat: TEat<T>, value: string) => TNullableToken<T>;

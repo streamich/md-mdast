@@ -1,14 +1,15 @@
-import {regex} from '../lib';
-import {IIcon, TAnyToken} from '../ast';
+import {IIcon, TAnyToken, IParser, TEat} from '../types';
 
-const onToken = (token: TAnyToken, matches: string[]): IIcon => {
-    const tok = token as IIcon;
+const icon = (sentinel: string, maxLength: number) => {
+    const REG = new RegExp(`^(\\s${sentinel}|${sentinel})([^\\s${sentinel}]{1,${maxLength}?)(${sentinel}(\\s|$)|${sentinel})`, '');
 
-    tok.emoji = matches[2];
+    return function (this: IParser, eat: TEat<IIcon>, value: string) {
+        const matches = value.match(REG);
 
-    return tok;
+        if (matches) {
+            return eat(matches[0], 'icon', void 0, {emoji: matches[2]});
+        }
+    };
 };
-
-const icon = () => regex<IIcon>('icon', '(\\s:|:)([^\\s:]{1,32}?)(:(\\s|$)|:)', '', onToken);
 
 export default icon;

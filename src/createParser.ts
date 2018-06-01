@@ -1,27 +1,78 @@
-import {TAnyToken} from './ast';
-import {loop, first} from './lib';
+import { TTokenizer, TAnyToken, TTokenType, TEat, IParser, TNullableToken, TChildrenToken } from './types';
 
-export interface IContext {
-    off?: number;
-    parser: any;
-}
+// tslint:disable no-any
+export const token = <T extends TAnyToken>(type: TTokenType, children?: any): T => {
+    if (children instanceof Array) {
+        if (children.length === 1) {
+            // tslint:disable no-parameter-reassignment
+            children = children[0];
+        }
+    }
 
-export type TTokenizerResult<T extends TAnyToken> = T | undefined | null;
-export type TTokenizer<T extends TAnyToken> = (src: string, pos: number, ctx: IContext) => TTokenizerResult<T>;
+    const tok = {
+        type,
+        children,
+    } as T;
+
+    return tok;
+};
+
+const eat: TEat<TAnyToken> = (subvalue, type, children, overrides) => {
+    const tok = token(type, children);
+
+    if (overrides) {
+        Object.assign(token, overrides);
+    }
+
+    return tok;
+};
+
+export const loop = (parser: IParser, tokenizer: TTokenizer<TAnyToken>, value: string): TChildrenToken<TAnyToken> => {
+    const children = [];
+    const remaining = value;
+    const end = value.length;
+
+    let length = 0;
+
+    while (length < end) {
+        const tok = tokenizer.call(parser, eat, remaining);
+
+        if (tok) {
+            children.push(tok);
+            length += tok.len || 0;
+        } else {
+            if (!children.length) {
+                return;
+            }
+        }
+    }
+
+    if (children.length === 1) {
+        return children[0];
+    } else {
+        return children;
+    }
+};
+
+export const first = (tokenizers: TTokenizer<any>[]): TTokenizer<any> => {
+    return function (this: IParser, eat: TEat<any>, value: string) {
+        for (const tokenizer of tokenizers) {
+            const tok = tokenizer.call(this, eat, value);
+
+            if (tok) return tok;
+        }
+    };
+};
 
 export interface IcreateParserOptions {
-    inline: TTokenizer<any>[];
-    block: TTokenizer<any>[];
+    inline: TTokenizer<TAnyToken>[];
+    block: TTokenizer<TAnyToken>[];
 }
 
 const createParser = ({inline}: IcreateParserOptions) => {
-    const parser: any = {};
-    const inlineTokenizer = loop(first(inline));
+    const parser: IParser = {} as IParser;
 
-    parser.inline = (str: string) =>
-        inlineTokenizer(str, 0, {
-            parser,
-        });
+    parser.tokenizeInline = (value: string) => loop(parser, first(inline), value);
 
     return parser;
 };
