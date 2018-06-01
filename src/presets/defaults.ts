@@ -1,3 +1,4 @@
+import escape from '../tokenizer/escape';
 import icon from '../tokenizer/icon';
 import link from '../tokenizer/link';
 import text from '../tokenizer/text';
@@ -19,6 +20,7 @@ import inlineBreak from '../tokenizer/break';
 
 const preset = {
     inline: [
+        escape,
         inlineCode(),
         strong,
         emphasis,

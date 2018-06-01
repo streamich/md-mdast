@@ -725,4 +725,16 @@ describe('Inline Markdown', () => {
             ]);
         });
     });
+
+    describe('escape', () => {
+        it('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('\\[\\$\\@');
+
+            expect(ast).toMatchObject({
+                type: 'text',
+                value: '[$@',
+            });
+        });
+    });
 });

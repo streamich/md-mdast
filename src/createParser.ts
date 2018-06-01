@@ -118,6 +118,12 @@ const createParser = ({inline}: IcreateParserOptions) => {
             tokens = merged;
         }
 
+        if (tokens instanceof Array) {
+            if (tokens.length === 1) {
+                tokens = tokens[0];
+            }
+        }
+
         return tokens;
     };
 
