@@ -701,4 +701,28 @@ describe('Inline Markdown', () => {
             ]);
         });
     });
+
+    describe('break', () => {
+        it('two spaces before linebreak', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('foo  \nbar');
+
+            expect(ast).toMatchObject([
+                {type: 'text', len: 3, value: 'foo'},
+                {type: 'break', len: 3},
+                {type: 'text', len: 3, value: 'bar'},
+            ]);
+        });
+
+        it('escaped linebrak \\n character', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('foo\\nbar');
+
+            expect(ast).toMatchObject([
+                {type: 'text', len: 3, value: 'foo'},
+                {type: 'break', len: 2},
+                {type: 'text', len: 3, value: 'bar'},
+            ]);
+        });
+    });
 });

@@ -15,12 +15,13 @@ import sup from '../tokenizer/sup';
 import sub from '../tokenizer/sub';
 import handle from '../tokenizer/handle';
 import underline from '../tokenizer/underline';
+import inlineBreak from '../tokenizer/break';
 
 const preset = {
     inline: [
         inlineCode(),
-        strong(),
-        emphasis(),
+        strong,
+        emphasis,
         deletedText(),
         inlineMath(),
         footnoteReference,
@@ -32,6 +33,7 @@ const preset = {
         highlight,
         handle,
         underline,
+        inlineBreak,
         icon(32),
         text(),
     ] as TTokenizer<TAnyToken>[],
