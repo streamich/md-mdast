@@ -18,7 +18,7 @@
         "precommit": "pretty-quick --staged && yarn run lint",
         "prepush": "yarn run test",
         "prettier": "prettier --write '**/*.ts'",
-        "lint": "tsc --noEmit -p './tsconfig.jest.json' && yarn tslint",
+        "lint": "yarn tslint",
         "tslint": "tslint './src/**/*.{ts,tsx}' -t verbose"
     },
     "dependencies": {},

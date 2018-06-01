@@ -1,7 +1,12 @@
-import {TTokenizer, TAnyToken, TTokenType, TEat, IParser, TNullableToken, TChildrenToken} from './types';
+import {TTokenizer, TAnyToken, TTokenType, TEat, IParser, TChildrenToken} from './types';
 
 // tslint:disable no-any
-export const token = <T extends TAnyToken>(value: string, type: TTokenType, children?: any, overrides?: Partial<TAnyToken>): T => {
+export const token = <T extends TAnyToken>(
+    value: string,
+    type: TTokenType,
+    children?: any,
+    overrides?: Partial<TAnyToken>
+): T => {
     if (children instanceof Array) {
         if (children.length === 1) {
             // tslint:disable no-parameter-reassignment
@@ -11,7 +16,7 @@ export const token = <T extends TAnyToken>(value: string, type: TTokenType, chil
 
     const tok = {
         type,
-        len: value.length
+        len: value.length,
     } as T;
 
     if (children) {
@@ -46,7 +51,7 @@ export const loop = (parser: IParser, tokenizer: TTokenizer<TAnyToken>, value: s
         if (tok) {
             children.push(tok);
             length += tok.len || 0;
-            remaining = remaining.substr(tok.len)
+            remaining = remaining.substr(tok.len);
         } else {
             if (!children.length) {
                 return;
