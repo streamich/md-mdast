@@ -1,10 +1,9 @@
-import {token} from '../lib';
-import { IParser, TEat, TTokenizer, IWhitespace} from '../types';
+import {IParser, TEat, TTokenizer, IWhitespace} from '../types';
 
 const REG = /^\s+/;
 
 const whitespace = (): TTokenizer<IWhitespace> => {
-    return function (this: IParser, eat: TEat<IWhitespace>, value: string) {
+    return function(this: IParser, eat: TEat<IWhitespace>, value: string) {
         const matches = value.match(REG);
 
         if (matches) {

@@ -1,10 +1,16 @@
-export type TTokenType = 'root' | 'inline' | 'text' | 'icon' | 'highlight' | 'link' | 'whitespace' | 'text';
+export type TTokenType = 'root' | 'inlineCode' | 'text' | 'icon' | 'highlight' | 'link' | 'whitespace' | 'text';
 
 export interface IToken {
     type: TTokenType;
     len: number;
     children?: IToken;
     value?: string;
+}
+
+export interface IInlineCode extends IToken {
+    type: 'inlineCode';
+    value: string;
+    wrap: string;
 }
 
 export interface IIcon extends IToken {
@@ -33,7 +39,7 @@ export interface IText extends IToken {
     value: string;
 }
 
-export type TInlineToken = ILink | IIcon | IHighlight | IWhitespace;
+export type TInlineToken = IInlineCode | ILink | IIcon | IHighlight | IWhitespace;
 export type TAnyToken = IToken | TInlineToken;
 
 export type TNullableToken<T extends TAnyToken> = T | undefined | null;

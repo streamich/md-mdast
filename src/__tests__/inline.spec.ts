@@ -5,7 +5,7 @@ describe('Inline Markdown', () => {
         const parser = create();
         const ast = parser.tokenizeInline('Hello :world:!');
 
-        expect(ast).toEqual([
+        expect(ast).toMatchObject([
             {type: 'text', len: 6, value: 'Hello '},
             {type: 'icon', len: 7, emoji: 'world'},
             {type: 'text', len: 1, value: '!'},
@@ -16,7 +16,7 @@ describe('Inline Markdown', () => {
         const parser = create();
         const ast = parser.tokenizeInline(':smile: foo ::+1:: bar ::tada::');
 
-        expect(ast).toEqual([
+        expect(ast).toMatchObject([
             {type: 'icon', len: 7, emoji: 'smile'},
             {type: 'text', len: 5, value: ' foo '},
             {type: 'icon', len: 6, emoji: '+1'},
@@ -29,7 +29,7 @@ describe('Inline Markdown', () => {
         const parser = create();
         const ast = parser.tokenizeInline('I ==really== want this!');
 
-        expect(ast).toEqual([
+        expect(ast).toMatchObject([
             {type: 'text', len: 2, value: 'I '},
             {
                 type: 'highlight',
@@ -44,7 +44,7 @@ describe('Inline Markdown', () => {
         const parser = create();
         const ast = parser.tokenizeInline('Click [me](http://example.com)!');
 
-        expect(ast).toEqual([
+        expect(ast).toMatchObject([
             {type: 'text', len: 6, value: 'Click '},
             {type: 'link', len: 24, children: {type: 'text', len: 2, value: 'me'}, url: 'http://example.com'},
             {type: 'text', len: 1, value: '!'},
@@ -55,7 +55,7 @@ describe('Inline Markdown', () => {
         const parser = create();
         const ast = parser.tokenizeInline('Click [this ==higlighted== text :smile:](http://example.com)!');
 
-        expect(ast).toEqual([
+        expect(ast).toMatchObject([
             {type: 'text', len: 6, value: 'Click '},
             {
                 type: 'link',
@@ -94,5 +94,27 @@ describe('Inline Markdown', () => {
                 value: '!',
             },
         ]);
+    });
+
+    describe('inline code', () => {
+        test('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('See this: `console.log(123)`');
+
+            expect(ast).toMatchObject([
+                {type: 'text', len: 10, value: 'See this: '},
+                {type: 'inlineCode', len: 18, value: 'console.log(123)', wrap: '`'},
+            ]);
+        });
+
+        test('supports double back-ticks', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('See this: ``console.log(123)``');
+
+            expect(ast).toMatchObject([
+                {type: 'text', len: 10, value: 'See this: '},
+                {type: 'inlineCode', len: 20, value: 'console.log(123)', wrap: '``'},
+            ]);
+        });
     });
 });
