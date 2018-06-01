@@ -148,4 +148,60 @@ describe('Inline Markdown', () => {
             expect(ast).toMatchObject(result);
         });
     });
+
+    describe('strong', () => {
+        const result = [
+            {type: 'text', len: 6, value: 'Hello '},
+            {
+                type: 'strong',
+                len: 9,
+                children: {type: 'text', len: 5, value: 'world'},
+            },
+            {type: 'text', len: 2, value: '! '},
+            {
+                type: 'strong',
+                len: 6,
+                children: {type: 'text', len: 2, value: 'OK'},
+            },
+        ];
+
+        test('asterisk', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('Hello **world**! **OK**');
+
+            expect(ast).toMatchObject(result);
+        });
+
+        test('underscore', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('Hello __world__! __OK__');
+
+            expect(ast).toMatchObject(result);
+        });
+
+        test('together with emphasis', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('*em1* **strong** *em2*');
+
+            expect(ast).toMatchObject([
+                {
+                    type: 'emphasis',
+                    len: 5,
+                    children: {type: 'text', len: 3, value: 'em1'},
+                },
+                {type: 'text', len: 1, value: ' '},
+                {
+                    type: 'strong',
+                    len: 10,
+                    children: {type: 'text', len: 6, value: 'strong'},
+                },
+                {type: 'text', len: 1, value: ' '},
+                {
+                    type: 'emphasis',
+                    len: 5,
+                    children: {type: 'text', len: 3, value: 'em2'},
+                },
+            ]);
+        });
+    });
 });
