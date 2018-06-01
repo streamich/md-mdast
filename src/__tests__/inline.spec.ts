@@ -324,4 +324,26 @@ describe('Inline Markdown', () => {
             });
         });
     });
+
+    describe('footnoteReference', () => {
+        test('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('[^1]');
+
+            expect(ast).toMatchObject({
+                type: 'footnoteReference',
+                value: '1',
+            });
+        });
+
+        test('end of sentence', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('To be, or not to be.[^my-ref]');
+
+            expect(ast).toMatchObject([
+                {type: 'text', len: 20, value: 'To be, or not to be.'},
+                {type: 'footnoteReference', len: 9, value: 'my-ref'},
+            ]);
+        });
+    });
 });

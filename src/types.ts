@@ -4,6 +4,7 @@ export type TTokenInline =
     | 'emphasis'
     | 'delete'
     | 'inlineMath'
+    | 'footnoteReference'
     | 'text'
     | 'icon'
     | 'highlight'
@@ -41,6 +42,10 @@ export interface IInlineMath extends IToken {
     type: 'inlineMath';
 }
 
+export interface IFootnoteReference extends IToken {
+    type: 'footnoteReference';
+}
+
 export interface IIcon extends IToken {
     type: 'icon';
     emoji: string;
@@ -73,6 +78,7 @@ export type TInlineToken =
     | IEmphasis
     | IDelete
     | IInlineMath
+    | IFootnoteReference
     | ILink
     | IIcon
     | IHighlight
