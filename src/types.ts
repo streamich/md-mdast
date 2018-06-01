@@ -2,8 +2,8 @@ export type TTokenType = 'root' | 'inline' | 'text' | 'icon' | 'highlight' | 'li
 
 export interface IToken {
     type: TTokenType;
+    len: number;
     children?: IToken;
-    len?: number;
     value?: string;
 }
 

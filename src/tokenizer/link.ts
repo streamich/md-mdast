@@ -12,7 +12,7 @@ const link = () => {
         const matches = value.match(REG);
 
         if (matches) {
-            return eat(matches[0], 'link', matches[1], {url: matches[2]});
+            return eat(matches[0], 'link', this.tokenizeInline(matches[1]), {url: matches[2]});
         }
     };
 };

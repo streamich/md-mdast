@@ -1,9 +1,10 @@
 import icon from '../tokenizer/icon';
-import whitespace from '../tokenizer/whitespace';
 import link from '../tokenizer/link';
+import text from '../tokenizer/text';
+import highlight from '../tokenizer/highlight';
 
 const preset = {
-    inline: [whitespace(), icon(':', 32), link()],
+    inline: [link(), highlight(), icon(32), text()],
     block: [],
 };
 

@@ -7,7 +7,7 @@ const highlight = () => {
         const matches = value.match(REG);
 
         if (matches) {
-            return eat(matches[0], 'highlight', matches[1]);
+            return eat(matches[0], 'highlight', this.tokenizeInline(matches[1]));
         }
     };
 };

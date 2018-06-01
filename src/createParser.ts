@@ -1,4 +1,4 @@
-import {TTokenizer, TAnyToken, TTokenType, TEat, IParser, TChildrenToken} from './types';
+import {TTokenizer, TAnyToken, TTokenType, TEat, IParser, TChildrenToken, TInlineToken, IText} from './types';
 
 // tslint:disable no-any
 export const token = <T extends TAnyToken>(
@@ -21,8 +21,6 @@ export const token = <T extends TAnyToken>(
 
     if (children) {
         tok.children = children;
-    } else if (value) {
-        tok.value = value;
     }
 
     if (overrides) {
@@ -87,7 +85,41 @@ export interface IcreateParserOptions {
 const createParser = ({inline}: IcreateParserOptions) => {
     const parser: IParser = {} as IParser;
 
-    parser.tokenizeInline = (value: string) => loop(parser, first(inline), value);
+    parser.tokenizeInline = (value: string) => {
+        let tokens = loop(parser, first(inline), value);
+
+        // MERGE ADJACENT TEXT TOKENS.
+        if (tokens instanceof Array) {
+            const merged: TAnyToken[] = [];
+            let lastTextToken: IText | null = null;
+
+            // tslint:disable prefer-for-of
+            for (let i = 0; i < tokens.length; i++) {
+                const tok = tokens[i];
+
+                if (!tok) {
+                    continue;
+                }
+
+                if (tok.type === 'text') {
+                    if (lastTextToken) {
+                        lastTextToken.value += tok.value;
+                        lastTextToken.len += tok.len;
+                    } else {
+                        merged.push(tok);
+                        lastTextToken = tok as IText;
+                    }
+                } else {
+                    merged.push(tok);
+                    lastTextToken = null;
+                }
+            }
+
+            tokens = merged;
+        }
+
+        return tokens;
+    };
 
     return parser;
 };

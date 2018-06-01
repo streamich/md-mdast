@@ -9,7 +9,9 @@ const text = () => {
         const matches = value.match(REG);
 
         if (matches) {
-            return eat(matches[0], 'text');
+            const matchedValue = matches[0];
+
+            return eat(matchedValue, 'text', void 0, {value: matchedValue});
         }
     };
 
