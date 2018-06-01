@@ -346,4 +346,44 @@ describe('Inline Markdown', () => {
             ]);
         });
     });
+
+    describe('linkReference', () => {
+        test('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('[1][2]');
+
+            expect(ast).toMatchObject({
+                type: 'linkReference',
+                len: 6,
+                children: {type: 'text', len: 1, value: '1'},
+                identifier: '2',
+                referenceType: 'full',
+            });
+        });
+
+        test('full and collapsed', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('See [this][link-1] and [foo][].');
+
+            expect(ast).toMatchObject([
+                {type: 'text', len: 4, value: 'See '},
+                {
+                    type: 'linkReference',
+                    len: 14,
+                    children: {type: 'text', len: 4, value: 'this'},
+                    identifier: 'link-1',
+                    referenceType: 'full',
+                },
+                {type: 'text', len: 5, value: ' and '},
+                {
+                    type: 'linkReference',
+                    len: 7,
+                    children: {type: 'text', len: 3, value: 'foo'},
+                    identifier: 'foo',
+                    referenceType: 'collapsed',
+                },
+                {type: 'text', len: 1, value: '.'},
+            ]);
+        });
+    });
 });

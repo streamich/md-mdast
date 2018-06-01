@@ -9,6 +9,7 @@ import strong from '../tokenizer/strong';
 import deletedText from '../tokenizer/delete';
 import inlineMath from '../tokenizer/inlineMath';
 import footnoteReference from '../tokenizer/footnoteReference';
+import linkReference from '../tokenizer/linkReference';
 
 const preset = {
     inline: [
@@ -18,6 +19,7 @@ const preset = {
         deletedText(),
         inlineMath(),
         footnoteReference,
+        linkReference,
         link(),
         highlight(),
         icon(32),
