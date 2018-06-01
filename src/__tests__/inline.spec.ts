@@ -203,5 +203,91 @@ describe('Inline Markdown', () => {
                 },
             ]);
         });
+
+        test('bold inside italic', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('*italic __bold__*');
+
+            expect(ast).toMatchObject({
+                type: 'emphasis',
+                len: 17,
+                children: [
+                    {
+                        type: 'text',
+                        len: 7,
+                        value: 'italic ',
+                    },
+                    {
+                        type: 'strong',
+                        len: 8,
+                        children: {
+                            type: 'text',
+                            len: 4,
+                            value: 'bold',
+                        },
+                    },
+                ],
+            });
+        });
+
+        test('italic inside bold', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('**bold _italic_**');
+
+            expect(ast).toMatchObject({
+                type: 'strong',
+                len: 17,
+                children: [
+                    {
+                        type: 'text',
+                        len: 5,
+                        value: 'bold ',
+                    },
+                    {
+                        type: 'emphasis',
+                        len: 8,
+                        children: {
+                            type: 'text',
+                            len: 6,
+                            value: 'italic',
+                        },
+                    },
+                ],
+            });
+        });
+    });
+
+    describe('delete text', () => {
+        test('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('~~123~~');
+
+            expect(ast).toMatchObject({
+                type: 'delete',
+                children: {
+                    type: 'text',
+                    value: '123',
+                },
+            });
+        });
+
+        test('parses inline text', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('~~*1*~~');
+
+            expect(ast).toMatchObject({
+                type: 'delete',
+                len: 7,
+                children: {
+                    type: 'emphasis',
+                    len: 3,
+                    children: {
+                        type: 'text',
+                        len: 1,
+                        value: '1',
+                    },
+                },
+            });
+        });
     });
 });

@@ -1,7 +1,8 @@
 export type TTokenInline =
     | 'inlineCode'
-    | 'emphasis'
     | 'strong'
+    | 'emphasis'
+    | 'delete'
     | 'text'
     | 'icon'
     | 'highlight'
@@ -23,12 +24,16 @@ export interface IInlineCode extends IToken {
     wrap: string;
 }
 
+export interface IStrong extends IToken {
+    type: 'strong';
+}
+
 export interface IEmphasis extends IToken {
     type: 'emphasis';
 }
 
-export interface IStrong extends IToken {
-    type: 'strong';
+export interface IDelete extends IToken {
+    type: 'delete';
 }
 
 export interface IIcon extends IToken {
@@ -57,7 +62,7 @@ export interface IText extends IToken {
     value: string;
 }
 
-export type TInlineToken = IInlineCode | IEmphasis | IStrong | ILink | IIcon | IHighlight | IWhitespace;
+export type TInlineToken = IInlineCode | IStrong | IEmphasis | IDelete | ILink | IIcon | IHighlight | IWhitespace;
 
 export type TAnyToken = IToken | TInlineToken;
 
