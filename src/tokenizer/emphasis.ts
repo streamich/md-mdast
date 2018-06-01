@@ -10,6 +10,8 @@ const emphasis = () => {
         if (matches) {
             return eat(matches[0], 'emphasis', this.tokenizeInline(matches[1] || matches[3]));
         }
+
+        return;
     };
 
     return tokenizer;

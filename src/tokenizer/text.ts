@@ -13,6 +13,8 @@ const text = () => {
 
             return eat(matchedValue, 'text', void 0, {value: matchedValue});
         }
+
+        return;
     };
 
     return tokenizer;

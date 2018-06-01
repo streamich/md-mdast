@@ -9,6 +9,8 @@ const highlight = () => {
         if (matches) {
             return eat(matches[0], 'highlight', this.tokenizeInline(matches[1]));
         }
+
+        return;
     };
 };
 

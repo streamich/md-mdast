@@ -11,6 +11,8 @@ const whitespace = (): TTokenizer<IWhitespace> => {
 
             return eat(subvalue, 'whitespace', void 0, {length: subvalue.length});
         }
+
+        return;
     };
 };
 

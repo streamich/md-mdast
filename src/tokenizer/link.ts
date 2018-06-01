@@ -14,6 +14,8 @@ const link = () => {
         if (matches) {
             return eat(matches[0], 'link', this.tokenizeInline(matches[1]), {url: matches[2]});
         }
+
+        return;
     };
 };
 

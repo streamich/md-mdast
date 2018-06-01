@@ -13,6 +13,8 @@ const inlineCode = () => {
                 wrap: matches[1],
             });
         }
+
+        return;
     };
 
     return tokenizer;

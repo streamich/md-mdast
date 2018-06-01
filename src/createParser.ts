@@ -1,4 +1,4 @@
-import {TTokenizer, TAnyToken, TTokenType, TEat, IParser, TChildrenToken, TInlineToken, IText} from './types';
+import {TTokenizer, TAnyToken, TTokenType, TEat, IParser, TChildrenToken, IText} from './types';
 
 // tslint:disable no-any
 export const token = <T extends TAnyToken>(
@@ -79,7 +79,7 @@ export const first = (tokenizers: TTokenizer<any>[]): TTokenizer<any> => {
 
 export interface IcreateParserOptions {
     inline: TTokenizer<TAnyToken>[];
-    block: TTokenizer<TAnyToken>[];
+    // block: TTokenizer<TAnyToken>[];
 }
 
 const createParser = ({inline}: IcreateParserOptions) => {

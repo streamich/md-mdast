@@ -1,4 +1,4 @@
-import {IIcon, TAnyToken, IParser, TEat} from '../types';
+import {IIcon, IParser, TEat} from '../types';
 
 const icon = (maxLength: number = 32) => {
     const REG1 = new RegExp(`^::([^'\\s:]{1,${maxLength}}?)::`, '');
@@ -14,6 +14,8 @@ const icon = (maxLength: number = 32) => {
         if (matches) {
             return eat(matches[0], 'icon', void 0, {emoji: matches[1]});
         }
+
+        return;
     };
 };
 
