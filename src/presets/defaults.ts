@@ -7,11 +7,20 @@ import emphasis from '../tokenizer/emphasis';
 import {TAnyToken, TTokenizer} from '../types';
 import strong from '../tokenizer/strong';
 import deletedText from '../tokenizer/delete';
+import inlineMath from '../tokenizer/inlineMath';
 
 const preset = {
-    inline: [inlineCode(), strong(), emphasis(), deletedText(), link(), highlight(), icon(32), text()] as TTokenizer<
-        TAnyToken
-    >[],
+    inline: [
+        inlineCode(),
+        strong(),
+        emphasis(),
+        deletedText(),
+        inlineMath(),
+        link(),
+        highlight(),
+        icon(32),
+        text(),
+    ] as TTokenizer<TAnyToken>[],
 };
 
 export default preset;

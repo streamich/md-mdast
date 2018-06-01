@@ -290,4 +290,38 @@ describe('Inline Markdown', () => {
             });
         });
     });
+
+    describe('math', () => {
+        test('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('$$1+1$$');
+
+            expect(ast).toMatchObject({
+                type: 'inlineMath',
+                value: '1+1',
+            });
+        });
+
+        test('in text', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('Hey, look $$f(x) = Y ^ 2$$ is a real function.');
+
+            expect(ast).toMatchObject([
+                {type: 'text', len: 10, value: 'Hey, look '},
+                {type: 'inlineMath', len: 16, value: 'f(x) = Y ^ 2'},
+                {type: 'text', len: 20, value: ' is a real function.'},
+            ]);
+        });
+
+        test('emphasized', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('*$$123$$*');
+
+            expect(ast).toMatchObject({
+                type: 'emphasis',
+                len: 9,
+                children: {type: 'inlineMath', len: 7, value: '123'},
+            });
+        });
+    });
 });

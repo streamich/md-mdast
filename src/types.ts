@@ -3,6 +3,7 @@ export type TTokenInline =
     | 'strong'
     | 'emphasis'
     | 'delete'
+    | 'inlineMath'
     | 'text'
     | 'icon'
     | 'highlight'
@@ -36,6 +37,10 @@ export interface IDelete extends IToken {
     type: 'delete';
 }
 
+export interface IInlineMath extends IToken {
+    type: 'inlineMath';
+}
+
 export interface IIcon extends IToken {
     type: 'icon';
     emoji: string;
@@ -62,7 +67,16 @@ export interface IText extends IToken {
     value: string;
 }
 
-export type TInlineToken = IInlineCode | IStrong | IEmphasis | IDelete | ILink | IIcon | IHighlight | IWhitespace;
+export type TInlineToken =
+    | IInlineCode
+    | IStrong
+    | IEmphasis
+    | IDelete
+    | IInlineMath
+    | ILink
+    | IIcon
+    | IHighlight
+    | IWhitespace;
 
 export type TAnyToken = IToken | TInlineToken;
 
