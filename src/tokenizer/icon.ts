@@ -1,10 +1,13 @@
 import {IIcon, TAnyToken, IParser, TEat} from '../types';
 
-const icon = (sentinel: string, maxLength: number) => {
-    const REG = new RegExp(`^(\\s${sentinel}|${sentinel})([^\\s${sentinel}]{1,${maxLength}?)(${sentinel}(\\s|$)|${sentinel})`, '');
+const icon = (maxLength: number = 32) => {
+    const REG = new RegExp(`^(:|::)([^'\\s:]{1,${maxLength}}?)(:|::)`, '');
 
-    return function (this: IParser, eat: TEat<IIcon>, value: string) {
+    return function(this: IParser, eat: TEat<IIcon>, value: string) {
         const matches = value.match(REG);
+        console.log('value', value);
+        console.log('REG', REG);
+        console.log('matches', matches);
 
         if (matches) {
             return eat(matches[0], 'icon', void 0, {emoji: matches[2]});

@@ -7,7 +7,8 @@
         "interface-name": false,
         "prefer-template": false,
         "no-any": false,
-        "array-type": false
+        "array-type": false,
+        "no-inferrable-types": false
     },
     "linterOptions": {
         "exclude": ["coverage/", "dist/", "node_modules/"]

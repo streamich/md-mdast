@@ -1,4 +1,4 @@
-import { TTokenizer, TAnyToken, TTokenType, TEat, IParser, TNullableToken, TChildrenToken } from './types';
+import {TTokenizer, TAnyToken, TTokenType, TEat, IParser, TNullableToken, TChildrenToken} from './types';
 
 // tslint:disable no-any
 export const token = <T extends TAnyToken>(type: TTokenType, children?: any): T => {
@@ -21,7 +21,7 @@ const eat: TEat<TAnyToken> = (subvalue, type, children, overrides) => {
     const tok = token(type, children);
 
     if (overrides) {
-        Object.assign(token, overrides);
+        Object.assign(tok, overrides);
     }
 
     return tok;
@@ -55,11 +55,14 @@ export const loop = (parser: IParser, tokenizer: TTokenizer<TAnyToken>, value: s
 };
 
 export const first = (tokenizers: TTokenizer<any>[]): TTokenizer<any> => {
-    return function (this: IParser, eat: TEat<any>, value: string) {
+    // tslint:disable no-shadowed-variable
+    return function(this: IParser, eat: TEat<any>, value: string) {
         for (const tokenizer of tokenizers) {
             const tok = tokenizer.call(this, eat, value);
 
-            if (tok) return tok;
+            if (tok) {
+                return tok;
+            }
         }
     };
 };

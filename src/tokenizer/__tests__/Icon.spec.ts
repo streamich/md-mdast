@@ -1,26 +1,41 @@
 import icon from '../icon';
+import {token} from '../../createParser';
+
+const tokenizer = icon(32);
+
+const runTokenizer = (tk, value) => {
+    const eat = (subvalue, type, children, overrides) => {
+        const tok = token(type, children);
+
+        if (overrides) {
+            Object.assign(tok, overrides);
+        }
+
+        return tok;
+    };
+
+    return tk.call({}, eat, value);
+};
 
 describe('icon tokenizer', () => {
     test('exists', () => {
         expect(typeof icon).toBe('function');
-        expect(typeof icon()).toBe('function');
+        expect(typeof icon(32)).toBe('function');
     });
 
     test('returns undefined if not icon', () => {
-        const token = icon()('adsf', 1, {} as any);
+        const tok = runTokenizer(tokenizer, 'adsf');
 
-        expect(token).toBe(undefined);
+        expect(tok).toBe(undefined);
     });
 
     test('returns icon token', () => {
-        const token = icon()(':smile:', 0, {} as any);
+        const tok = runTokenizer(tokenizer, ':smile:');
 
-        expect(typeof token).toBe('object');
-        expect(token).toMatchObject({
+        expect(typeof tok).toBe('object');
+        expect(tok).toMatchObject({
             type: 'icon',
             emoji: 'smile',
-            pos: 0,
-            len: 7,
         });
     });
 
@@ -32,39 +47,33 @@ describe('icon tokenizer', () => {
         expect(token).toMatchObject({
             type: 'Icon',
             children: 'smile',
-            pos: 0,
-            len: 9,
         });
     });
     */
 
     test('allows underscore', () => {
-        const token = icon()(':crossed_fingers:', 0, {} as any);
+        const tok = runTokenizer(tokenizer, ':crossed_fingers:');
 
-        expect(typeof token).toBe('object');
-        expect(token).toMatchObject({
+        expect(typeof tok).toBe('object');
+        expect(tok).toMatchObject({
             type: 'icon',
             emoji: 'crossed_fingers',
-            pos: 0,
-            len: 17,
         });
     });
 
     test('does not allow spaces', () => {
-        const token = icon()(': space:', 0, {} as any);
+        const tok = runTokenizer(tokenizer, ': space:');
 
-        expect(typeof token).toBe('undefined');
+        expect(typeof tok).toBe('undefined');
     });
 
     test('does allow hyphens', () => {
-        const token = icon()(':crossed-fingers:', 0, {} as any);
+        const tok = runTokenizer(tokenizer, ':crossed-fingers:');
 
-        expect(typeof token).toBe('object');
-        expect(token).toMatchObject({
+        expect(typeof tok).toBe('object');
+        expect(tok).toMatchObject({
             type: 'icon',
             emoji: 'crossed-fingers',
-            pos: 0,
-            len: 17,
         });
     });
 });
