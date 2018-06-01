@@ -1,4 +1,4 @@
-export type TTokenType = 'root' | 'inline' | 'text' | 'icon' | 'link' | 'whitespace';
+export type TTokenType = 'root' | 'inline' | 'text' | 'icon' | 'highlight' | 'link' | 'whitespace';
 
 export interface IToken {
     type: TTokenType;
@@ -12,6 +12,11 @@ export interface IIcon extends IToken {
     emoji: string;
 }
 
+export interface IHighlight extends IToken {
+    type: 'highlight';
+    children: TChildrenToken<any>;
+}
+
 export interface ILink extends IToken {
     type: 'link';
     title: string;
@@ -23,11 +28,18 @@ export interface IWhitespace extends IToken {
     length: number;
 }
 
-export type TAnyToken = IToken | ILink | IIcon | IWhitespace;
+export type TInlineToken = ILink | IIcon | IHighlight | IWhitespace;
+export type TAnyToken = IToken | TInlineToken;
 
 export type TNullableToken<T extends TAnyToken> = T | undefined | null;
 export type TChildrenToken<T extends TAnyToken> = TNullableToken<T> | T[];
-export type TEat<T extends TAnyToken> = (subvalue: string, type: TTokenType, children?: TNullableToken<any>, overrides?: Partial<TAnyToken>) => T;
+export type TChildrenInline = TChildrenToken<TInlineToken>;
+export type TEat<T extends TAnyToken> = (
+    subvalue: string,
+    type: TTokenType,
+    children?: TNullableToken<any>,
+    overrides?: Partial<TAnyToken>
+) => T;
 export type TTokenizer<T extends TAnyToken> = (this: IParser, eat: TEat<T>, value: string) => TNullableToken<T>;
 
 export interface IParser {
