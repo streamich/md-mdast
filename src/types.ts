@@ -6,7 +6,7 @@ export type TTokenInline =
     | 'inlineMath'
     | 'footnoteReference'
     | 'linkReference'
-    | 'text'
+    | 'inlineLink'
     | 'icon'
     | 'highlight'
     | 'link'
@@ -53,6 +53,11 @@ export interface ILinkReference extends IToken {
     referenceType: 'shortcut' | 'collapsed' | 'full';
 }
 
+export interface IInlineLink extends IToken {
+    type: 'inlineLink';
+    value: string;
+}
+
 export interface IIcon extends IToken {
     type: 'icon';
     emoji: string;
@@ -69,14 +74,14 @@ export interface ILink extends IToken {
     url: string;
 }
 
-export interface IWhitespace extends IToken {
-    type: 'whitespace';
-    length: number;
-}
-
 export interface IText extends IToken {
     type: 'text';
     value: string;
+}
+
+export interface IWhitespace extends IToken {
+    type: 'whitespace';
+    length: number;
 }
 
 export type TInlineToken =
@@ -88,8 +93,10 @@ export type TInlineToken =
     | IFootnoteReference
     | ILinkReference
     | ILink
+    | IInlineLink
     | IIcon
     | IHighlight
+    | IText
     | IWhitespace;
 
 export type TAnyToken = IToken | TInlineToken;

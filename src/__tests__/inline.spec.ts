@@ -386,4 +386,27 @@ describe('Inline Markdown', () => {
             ]);
         });
     });
+
+    describe('inlineLink', () => {
+        test('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('http://google.com');
+
+            expect(ast).toMatchObject({
+                type: 'inlineLink',
+                value: 'http://google.com',
+            });
+        });
+
+        test('finds link in text', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('Hey, check this http://google.com out!');
+
+            expect(ast).toMatchObject([
+                {type: 'text', len: 16, value: 'Hey, check this '},
+                {type: 'inlineLink', len: 17, value: 'http://google.com'},
+                {type: 'text', len: 5, value: ' out!'},
+            ]);
+        });
+    });
 });
