@@ -551,4 +551,83 @@ describe('Inline Markdown', () => {
             ]);
         });
     });
+
+    describe('handle', () => {
+        test('works', () => {
+            const parser = create();
+
+            expect(parser.tokenizeInline('@foo')).toMatchObject({
+                type: 'handle',
+                value: 'foo',
+                prefix: '@',
+            });
+            expect(parser.tokenizeInline('~foo')).toMatchObject({
+                type: 'handle',
+                value: 'foo',
+                prefix: '~',
+            });
+            expect(parser.tokenizeInline('#foo')).toMatchObject({
+                type: 'handle',
+                value: 'foo',
+                prefix: '#',
+            });
+        });
+
+        test('complex value', () => {
+            const parser = create();
+
+            expect(parser.tokenizeInline('@{foo bar}')).toMatchObject({
+                type: 'handle',
+                value: 'foo bar',
+                prefix: '@',
+            });
+            expect(parser.tokenizeInline('~{foo bar}')).toMatchObject({
+                type: 'handle',
+                value: 'foo bar',
+                prefix: '~',
+            });
+            expect(parser.tokenizeInline('#{foo bar}')).toMatchObject({
+                type: 'handle',
+                value: 'foo bar',
+                prefix: '#',
+            });
+        });
+
+        test('allows = in complex value', () => {
+            const parser = create();
+
+            expect(parser.tokenizeInline('@{foo=bar}')).toMatchObject({
+                type: 'handle',
+                value: 'foo=bar',
+                prefix: '@',
+            });
+            expect(parser.tokenizeInline('~{foo=bar}')).toMatchObject({
+                type: 'handle',
+                value: 'foo=bar',
+                prefix: '~',
+            });
+            expect(parser.tokenizeInline('#{foo=bar}')).toMatchObject({
+                type: 'handle',
+                value: 'foo=bar',
+                prefix: '#',
+            });
+        });
+
+        test('in various positions in text', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('#foo hello @bar world *@baz*');
+
+            expect(ast).toMatchObject([
+                {type: 'handle', len: 4, value: 'foo', prefix: '#'},
+                {type: 'text', len: 7, value: ' hello '},
+                {type: 'handle', len: 4, value: 'bar', prefix: '@'},
+                {type: 'text', len: 7, value: ' world '},
+                {
+                    type: 'emphasis',
+                    len: 6,
+                    children: {type: 'handle', len: 4, value: 'baz', prefix: '@'},
+                },
+            ]);
+        });
+    });
 });

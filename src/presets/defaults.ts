@@ -13,6 +13,7 @@ import linkReference from '../tokenizer/linkReference';
 import inlineLink from '../tokenizer/inlineLink';
 import sup from '../tokenizer/sup';
 import sub from '../tokenizer/sub';
+import handle from '../tokenizer/handle';
 
 const preset = {
     inline: [
@@ -28,6 +29,7 @@ const preset = {
         sup,
         sub,
         highlight(),
+        handle,
         icon(32),
         text(),
     ] as TTokenizer<TAnyToken>[],

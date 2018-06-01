@@ -9,8 +9,9 @@ export type TTokenInline =
     | 'inlineLink'
     | 'sup'
     | 'sub'
-    | 'icon'
     | 'highlight'
+    | 'handle'
+    | 'icon'
     | 'link'
     | 'whitespace'
     | 'text';
@@ -69,14 +70,20 @@ export interface ISub extends IToken {
     type: 'sub';
 }
 
-export interface IIcon extends IToken {
-    type: 'icon';
-    emoji: string;
-}
-
 export interface IHighlight extends IToken {
     type: 'highlight';
     children: TChildrenToken<any>;
+}
+
+export interface IHandle extends IToken {
+    type: 'handle';
+    value: string;
+    prefix: '#' | '~' | '@';
+}
+
+export interface IIcon extends IToken {
+    type: 'icon';
+    emoji: string;
 }
 
 export interface ILink extends IToken {
@@ -107,8 +114,9 @@ export type TInlineToken =
     | IInlineLink
     | ISup
     | ISub
-    | IIcon
     | IHighlight
+    | IHandle
+    | IIcon
     | IText
     | IWhitespace;
 
