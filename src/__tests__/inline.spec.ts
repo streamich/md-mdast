@@ -737,4 +737,13 @@ describe('Inline Markdown', () => {
             });
         });
     });
+
+    describe('smartypants', () => {
+        test('replaces ellipsis', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('...');
+
+            expect(ast).toMatchObject({type: 'text', len: 3, value: '…'});
+        });
+    });
 });

@@ -36,7 +36,7 @@ const eat: TEat<TAnyToken> = (subvalue, type, children, overrides) => {
     return tok;
 };
 
-export const loop = (parser: IParser, tokenizer: TTokenizer<TAnyToken>, value: string): TChildrenToken<TAnyToken> => {
+export const loop = (parser: IParser, tokenizer: TTokenizer<TAnyToken>, value: string): TAnyToken[] | undefined => {
     const children = [];
     const end = value.length;
 
@@ -57,11 +57,7 @@ export const loop = (parser: IParser, tokenizer: TTokenizer<TAnyToken>, value: s
         }
     }
 
-    if (children.length === 1) {
-        return children[0];
-    } else {
-        return children;
-    }
+    return children;
 };
 
 export const first = (tokenizers: TTokenizer<any>[]): TTokenizer<any> => {
@@ -82,49 +78,60 @@ export interface IcreateParserOptions {
     // block: TTokenizer<TAnyToken>[];
 }
 
+const smartypants = (text: string) =>
+    text
+        // em-dashes
+        .replace(/---/g, '\u2014')
+        // en-dashes
+        .replace(/--/g, '\u2013')
+        // opening singles
+        .replace(/(^|[-\u2014/(\[{"\s])'/g, '$1\u2018')
+        // closing singles & apostrophes
+        .replace(/'/g, '\u2019')
+        // opening doubles
+        .replace(/(^|[-\u2014/(\[{\u2018\s])"/g, '$1\u201c')
+        // closing doubles
+        .replace(/"/g, '\u201d')
+        // ellipses
+        .replace(/\.{3}/g, '\u2026');
+
 const createParser = ({inline}: IcreateParserOptions) => {
     const parser: IParser = {} as IParser;
 
     parser.tokenizeInline = (value: string) => {
         let tokens = loop(parser, first(inline), value);
 
+        if (!tokens) {
+            return;
+        }
+
         // MERGE ADJACENT TEXT TOKENS.
-        if (tokens instanceof Array) {
-            const merged: TAnyToken[] = [];
-            let lastTextToken: IText | null = null;
+        const merged: TAnyToken[] = [];
+        let lastTextToken: IText | null = null;
 
-            // tslint:disable prefer-for-of
-            for (let i = 0; i < tokens.length; i++) {
-                const tok = tokens[i];
+        // tslint:disable prefer-for-of
+        for (let i = 0; i < tokens.length; i++) {
+            const tok = tokens[i];
 
-                if (!tok) {
-                    continue;
-                }
+            if (tok.type === 'text') {
+                tok.value = smartypants((tok as IText).value);
 
-                if (tok.type === 'text') {
-                    if (lastTextToken) {
-                        lastTextToken.value += tok.value;
-                        lastTextToken.len += tok.len;
-                    } else {
-                        merged.push(tok);
-                        lastTextToken = tok as IText;
-                    }
+                if (lastTextToken) {
+                    lastTextToken.value += tok.value;
+                    lastTextToken.len += tok.len;
                 } else {
                     merged.push(tok);
-                    lastTextToken = null;
+                    lastTextToken = tok as IText;
                 }
-            }
-
-            tokens = merged;
-        }
-
-        if (tokens instanceof Array) {
-            if (tokens.length === 1) {
-                tokens = tokens[0];
+            } else {
+                merged.push(tok);
+                lastTextToken = null;
             }
         }
 
-        return tokens;
+        tokens = merged;
+
+        return tokens.length === 1 ? tokens[0] : tokens;
     };
 
     return parser;
