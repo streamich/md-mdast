@@ -4,15 +4,9 @@ import {token} from '../../createParser';
 const tokenizer = icon(32);
 
 const runTokenizer = (tk, value) => {
-    const eat = (subvalue, type, children, overrides) => {
-        const tok = token(type, children);
-
-        if (overrides) {
-            Object.assign(tok, overrides);
-        }
-
-        return tok;
-    };
+    // tslint:disable no-unnecessary-callback-wrapper
+    const eat = (subvalue, type, children, overrides) =>
+        token(subvalue, type, children, overrides);
 
     return tk.call({}, eat, value);
 };

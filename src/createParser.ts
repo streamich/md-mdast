@@ -1,7 +1,7 @@
 import {TTokenizer, TAnyToken, TTokenType, TEat, IParser, TNullableToken, TChildrenToken} from './types';
 
 // tslint:disable no-any
-export const token = <T extends TAnyToken>(type: TTokenType, children?: any): T => {
+export const token = <T extends TAnyToken>(value: string, type: TTokenType, children?: any, overrides?: Partial<TAnyToken>): T => {
     if (children instanceof Array) {
         if (children.length === 1) {
             // tslint:disable no-parameter-reassignment
@@ -11,14 +11,14 @@ export const token = <T extends TAnyToken>(type: TTokenType, children?: any): T 
 
     const tok = {
         type,
-        children,
+        len: value.length
     } as T;
 
-    return tok;
-};
-
-const eat: TEat<TAnyToken> = (subvalue, type, children, overrides) => {
-    const tok = token(type, children);
+    if (children) {
+        tok.children = children;
+    } else if (value) {
+        tok.value = value;
+    }
 
     if (overrides) {
         Object.assign(tok, overrides);
@@ -27,11 +27,17 @@ const eat: TEat<TAnyToken> = (subvalue, type, children, overrides) => {
     return tok;
 };
 
+const eat: TEat<TAnyToken> = (subvalue, type, children, overrides) => {
+    const tok = token(subvalue, type, children, overrides);
+
+    return tok;
+};
+
 export const loop = (parser: IParser, tokenizer: TTokenizer<TAnyToken>, value: string): TChildrenToken<TAnyToken> => {
     const children = [];
-    const remaining = value;
     const end = value.length;
 
+    let remaining = value;
     let length = 0;
 
     while (length < end) {
@@ -40,6 +46,7 @@ export const loop = (parser: IParser, tokenizer: TTokenizer<TAnyToken>, value: s
         if (tok) {
             children.push(tok);
             length += tok.len || 0;
+            remaining = remaining.substr(tok.len)
         } else {
             if (!children.length) {
                 return;

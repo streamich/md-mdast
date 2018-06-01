@@ -4,21 +4,21 @@ import icon from '../tokenizer/icon';
 describe('createParser()', () => {
     test('returns a parser object', () => {
         const parser = createParser({
-            inline: [icon()],
+            inline: [icon(32)],
             block: [],
         });
 
         expect(typeof parser).toBe('object');
-        expect(typeof parser.inline).toBe('function');
+        expect(typeof parser.tokenizeInline).toBe('function');
     });
 
     test('returns a single AST token', () => {
         const parser = createParser({
-            inline: [icon()],
+            inline: [icon(32)],
             block: [],
         });
 
-        const ast = parser.inline(':smile:');
+        const ast = parser.tokenizeInline(':smile:');
 
         expect(typeof ast).toBe('object');
         expect(ast.type).toBe('icon');

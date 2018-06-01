@@ -1,17 +1,18 @@
 import {token} from '../lib';
-import {IWhitespace} from '../ast';
-import {TTokenizer, TTokenizerResult} from '../createParser';
+import { IParser, TEat, TTokenizer, IWhitespace} from '../types';
 
 const REG = /^\s+/;
 
-const whitespace = (): TTokenizer<IWhitespace> => (str: string, pos: number): TTokenizerResult<IWhitespace> => {
-    const matches = str.match(REG);
+const whitespace = (): TTokenizer<IWhitespace> => {
+    return function (this: IParser, eat: TEat<IWhitespace>, value: string) {
+        const matches = value.match(REG);
 
-    if (matches) {
-        return token<IWhitespace>('whitespace', undefined, pos, matches[0].length);
-    }
+        if (matches) {
+            const subvalue = matches[0];
 
-    return;
+            return eat(subvalue, 'whitespace', void 0, {length: subvalue.length});
+        }
+    };
 };
 
 export default whitespace;
