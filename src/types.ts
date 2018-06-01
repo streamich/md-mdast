@@ -1,4 +1,4 @@
-export type TTokenType = 'root' | 'inline' | 'text' | 'icon' | 'highlight' | 'link' | 'whitespace';
+export type TTokenType = 'root' | 'inline' | 'text' | 'icon' | 'highlight' | 'link' | 'whitespace' | 'text';
 
 export interface IToken {
     type: TTokenType;
@@ -26,6 +26,11 @@ export interface ILink extends IToken {
 export interface IWhitespace extends IToken {
     type: 'whitespace';
     length: number;
+}
+
+export interface IText extends IToken {
+    type: 'text';
+    value: string;
 }
 
 export type TInlineToken = ILink | IIcon | IHighlight | IWhitespace;
