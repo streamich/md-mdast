@@ -14,6 +14,7 @@ import inlineLink from '../tokenizer/inlineLink';
 import sup from '../tokenizer/sup';
 import sub from '../tokenizer/sub';
 import handle from '../tokenizer/handle';
+import underline from '../tokenizer/underline';
 
 const preset = {
     inline: [
@@ -30,6 +31,7 @@ const preset = {
         sub,
         highlight(),
         handle,
+        underline,
         icon(32),
         text(),
     ] as TTokenizer<TAnyToken>[],

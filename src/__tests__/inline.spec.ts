@@ -630,4 +630,75 @@ describe('Inline Markdown', () => {
             ]);
         });
     });
+
+    describe('underline', () => {
+        test('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('++foo++');
+
+            expect(ast).toMatchObject({
+                type: 'underline',
+                children: {
+                    type: 'text',
+                    value: 'foo',
+                },
+            });
+        });
+
+        test('complex example', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('++foo++ *okay ++bar++* hello ++world++');
+
+            expect(ast).toMatchObject([
+                {
+                    type: 'underline',
+                    len: 7,
+                    children: {
+                        type: 'text',
+                        len: 3,
+                        value: 'foo',
+                    },
+                },
+                {
+                    type: 'text',
+                    len: 1,
+                    value: ' ',
+                },
+                {
+                    type: 'emphasis',
+                    len: 14,
+                    children: [
+                        {
+                            type: 'text',
+                            len: 5,
+                            value: 'okay ',
+                        },
+                        {
+                            type: 'underline',
+                            len: 7,
+                            children: {
+                                type: 'text',
+                                len: 3,
+                                value: 'bar',
+                            },
+                        },
+                    ],
+                },
+                {
+                    type: 'text',
+                    len: 7,
+                    value: ' hello ',
+                },
+                {
+                    type: 'underline',
+                    len: 9,
+                    children: {
+                        type: 'text',
+                        len: 5,
+                        value: 'world',
+                    },
+                },
+            ]);
+        });
+    });
 });

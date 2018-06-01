@@ -11,6 +11,7 @@ export type TTokenInline =
     | 'sub'
     | 'highlight'
     | 'handle'
+    | 'underline'
     | 'icon'
     | 'link'
     | 'whitespace'
@@ -81,6 +82,10 @@ export interface IHandle extends IToken {
     prefix: '#' | '~' | '@';
 }
 
+export interface IUnderline extends IToken {
+    type: 'underline';
+}
+
 export interface IIcon extends IToken {
     type: 'icon';
     emoji: string;
@@ -116,6 +121,7 @@ export type TInlineToken =
     | ISub
     | IHighlight
     | IHandle
+    | IUnderline
     | IIcon
     | IText
     | IWhitespace;
