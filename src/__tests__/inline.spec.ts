@@ -25,14 +25,14 @@ describe('Inline Markdown', () => {
         ]);
     });
 
-    test('highlighted text', () => {
+    test('marked text', () => {
         const parser = create();
         const ast = parser.tokenizeInline('I ==really== want this!');
 
         expect(ast).toMatchObject([
             {type: 'text', len: 2, value: 'I '},
             {
-                type: 'highlight',
+                type: 'mark',
                 len: 10,
                 children: {type: 'text', len: 6, value: 'really'},
             },
@@ -67,7 +67,7 @@ describe('Inline Markdown', () => {
                         value: 'this ',
                     },
                     {
-                        type: 'highlight',
+                        type: 'mark',
                         len: 14,
                         children: {
                             type: 'text',

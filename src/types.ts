@@ -9,7 +9,7 @@ export type TTokenTypeInline =
     | 'inlineLink'
     | 'sup'
     | 'sub'
-    | 'highlight'
+    | 'mark'
     | 'handle'
     | 'underline'
     | 'break'
@@ -72,8 +72,8 @@ export interface ISub extends IToken {
     type: 'sub';
 }
 
-export interface IHighlight extends IToken {
-    type: 'highlight';
+export interface IMark extends IToken {
+    type: 'mark';
     children: TChildrenToken<any>;
 }
 
@@ -124,7 +124,7 @@ export type TInlineToken =
     | IInlineLink
     | ISup
     | ISub
-    | IHighlight
+    | IMark
     | IHandle
     | IUnderline
     | IBreak

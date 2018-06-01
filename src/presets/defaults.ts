@@ -2,7 +2,7 @@ import escape from '../tokenizer/escape';
 import icon from '../tokenizer/icon';
 import link from '../tokenizer/link';
 import text from '../tokenizer/text';
-import highlight from '../tokenizer/highlight';
+import mark from '../tokenizer/mark';
 import inlineCode from '../tokenizer/inlineCode';
 import emphasis from '../tokenizer/emphasis';
 import {TAnyToken, TTokenizer} from '../types';
@@ -32,7 +32,7 @@ const preset = {
         inlineLink,
         sup,
         sub,
-        highlight,
+        mark,
         handle,
         underline,
         inlineBreak,
