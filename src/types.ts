@@ -1,4 +1,5 @@
-export type TTokenType = 'root' | 'inlineCode' | 'text' | 'icon' | 'highlight' | 'link' | 'whitespace' | 'text';
+export type TTokenInline = 'inlineCode' | 'emphasis' | 'text' | 'icon' | 'highlight' | 'link' | 'whitespace' | 'text';
+export type TTokenType = 'root' | TTokenInline;
 
 export interface IToken {
     type: TTokenType;
@@ -11,6 +12,10 @@ export interface IInlineCode extends IToken {
     type: 'inlineCode';
     value: string;
     wrap: string;
+}
+
+export interface IEmphasis extends IToken {
+    type: 'emphasis';
 }
 
 export interface IIcon extends IToken {
@@ -39,7 +44,8 @@ export interface IText extends IToken {
     value: string;
 }
 
-export type TInlineToken = IInlineCode | ILink | IIcon | IHighlight | IWhitespace;
+export type TInlineToken = IInlineCode | IEmphasis | ILink | IIcon | IHighlight | IWhitespace;
+
 export type TAnyToken = IToken | TInlineToken;
 
 export type TNullableToken<T extends TAnyToken> = T | undefined | null;

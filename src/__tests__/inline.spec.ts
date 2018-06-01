@@ -117,4 +117,35 @@ describe('Inline Markdown', () => {
             ]);
         });
     });
+
+    describe('emphasis', () => {
+        const result = [
+            {type: 'text', len: 6, value: 'Hello '},
+            {
+                type: 'emphasis',
+                len: 7,
+                children: {type: 'text', len: 5, value: 'world'},
+            },
+            {type: 'text', len: 2, value: '! '},
+            {
+                type: 'emphasis',
+                len: 4,
+                children: {type: 'text', len: 2, value: 'OK'},
+            },
+        ];
+
+        test('asterisk', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('Hello *world*! *OK*');
+
+            expect(ast).toMatchObject(result);
+        });
+
+        test('underscore', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('Hello _world_! _OK_');
+
+            expect(ast).toMatchObject(result);
+        });
+    });
 });
