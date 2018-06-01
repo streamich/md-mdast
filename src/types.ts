@@ -7,11 +7,13 @@ export type TTokenInline =
     | 'footnoteReference'
     | 'linkReference'
     | 'inlineLink'
+    | 'sup'
     | 'icon'
     | 'highlight'
     | 'link'
     | 'whitespace'
     | 'text';
+
 export type TTokenType = 'root' | TTokenInline;
 
 export interface IToken {
@@ -58,6 +60,10 @@ export interface IInlineLink extends IToken {
     value: string;
 }
 
+export interface ISup extends IToken {
+    type: 'sup';
+}
+
 export interface IIcon extends IToken {
     type: 'icon';
     emoji: string;
@@ -94,6 +100,7 @@ export type TInlineToken =
     | ILinkReference
     | ILink
     | IInlineLink
+    | ISup
     | IIcon
     | IHighlight
     | IText
