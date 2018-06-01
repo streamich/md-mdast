@@ -29,7 +29,7 @@ const preset = {
         inlineLink,
         sup,
         sub,
-        highlight(),
+        highlight,
         handle,
         underline,
         icon(32),

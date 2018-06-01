@@ -1,4 +1,4 @@
-export type TTokenInline =
+export type TTokenTypeInline =
     | 'inlineCode'
     | 'strong'
     | 'emphasis'
@@ -17,7 +17,7 @@ export type TTokenInline =
     | 'whitespace'
     | 'text';
 
-export type TTokenType = 'root' | TTokenInline;
+export type TTokenType = 'root' | TTokenTypeInline;
 
 export interface IToken {
     type: TTokenType;

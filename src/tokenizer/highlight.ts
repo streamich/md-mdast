@@ -1,17 +1,7 @@
-import {TEat, IParser, IHighlight} from '../types';
+import {IHighlight, TTokenizer} from '../types';
+import createRegexTokenizer from '../createRegexTokenizer';
 
 const REG = /^==(?=\S)([\s\S]*?\S)==/;
-
-const highlight = () => {
-    return function(this: IParser, eat: TEat<IHighlight>, value: string) {
-        const matches = value.match(REG);
-
-        if (matches) {
-            return eat(matches[0], 'highlight', this.tokenizeInline(matches[1]));
-        }
-
-        return;
-    };
-};
+const highlight: TTokenizer<IHighlight> = createRegexTokenizer('highlight', REG, 1);
 
 export default highlight;
