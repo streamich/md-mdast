@@ -40,60 +40,115 @@ describe('Inline Markdown', () => {
         ]);
     });
 
-    test('tokenizes a link', () => {
-        const parser = create();
-        const ast = parser.tokenizeInline('Click [me](http://example.com)!');
+    describe('link', () => {
+        test('basic case', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('[me](http://example.com)');
 
-        expect(ast).toMatchObject([
-            {type: 'text', len: 6, value: 'Click '},
-            {type: 'link', len: 24, children: {type: 'text', len: 2, value: 'me'}, url: 'http://example.com'},
-            {type: 'text', len: 1, value: '!'},
-        ]);
+            expect(ast).toMatchObject({
+                type: 'link',
+                len: 24,
+                children: {type: 'text', len: 2, value: 'me'},
+                url: 'http://example.com',
+            });
+        });
+
+        test('with title', () => {
+            const result = {
+                type: 'link',
+                len: 34,
+                children: {type: 'text', len: 2, value: 'me'},
+                url: 'http://example.com',
+                title: 'foo bar',
+            };
+            const parser = create();
+
+            expect(parser.tokenizeInline("[me](http://example.com 'foo bar')")).toMatchObject(result);
+            expect(parser.tokenizeInline('[me](http://example.com "foo bar")')).toMatchObject(result);
+        });
+
+        test('tokenizes a link', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('Click [me](http://example.com)!');
+
+            expect(ast).toMatchObject([
+                {type: 'text', len: 6, value: 'Click '},
+                {type: 'link', len: 24, children: {type: 'text', len: 2, value: 'me'}, url: 'http://example.com'},
+                {type: 'text', len: 1, value: '!'},
+            ]);
+        });
+
+        test('tokenizes link text', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('Click [this ==higlighted== text :smile:](http://example.com)!');
+
+            expect(ast).toMatchObject([
+                {type: 'text', len: 6, value: 'Click '},
+                {
+                    type: 'link',
+                    len: 54,
+                    children: [
+                        {
+                            type: 'text',
+                            len: 5,
+                            value: 'this ',
+                        },
+                        {
+                            type: 'mark',
+                            len: 14,
+                            children: {
+                                type: 'text',
+                                len: 10,
+                                value: 'higlighted',
+                            },
+                        },
+                        {
+                            type: 'text',
+                            len: 6,
+                            value: ' text ',
+                        },
+                        {
+                            type: 'icon',
+                            len: 7,
+                            emoji: 'smile',
+                        },
+                    ],
+                    url: 'http://example.com',
+                },
+                {
+                    type: 'text',
+                    len: 1,
+                    value: '!',
+                },
+            ]);
+        });
     });
 
-    test('tokenizes link text', () => {
-        const parser = create();
-        const ast = parser.tokenizeInline('Click [this ==higlighted== text :smile:](http://example.com)!');
+    describe('image', () => {
+        test('basic case', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('![me](http://example.com)');
 
-        expect(ast).toMatchObject([
-            {type: 'text', len: 6, value: 'Click '},
-            {
-                type: 'link',
-                len: 54,
-                children: [
-                    {
-                        type: 'text',
-                        len: 5,
-                        value: 'this ',
-                    },
-                    {
-                        type: 'mark',
-                        len: 14,
-                        children: {
-                            type: 'text',
-                            len: 10,
-                            value: 'higlighted',
-                        },
-                    },
-                    {
-                        type: 'text',
-                        len: 6,
-                        value: ' text ',
-                    },
-                    {
-                        type: 'icon',
-                        len: 7,
-                        emoji: 'smile',
-                    },
-                ],
+            expect(ast).toMatchObject({
+                type: 'image',
+                len: 25,
                 url: 'http://example.com',
-            },
-            {
-                type: 'text',
-                len: 1,
-                value: '!',
-            },
-        ]);
+                alt: 'me',
+            });
+        });
+
+        test('with title', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('![me](http://example.com "title goes here")');
+
+            expect(ast).toMatchObject({
+                type: 'image',
+                len: 43,
+                url: 'http://example.com',
+                alt: 'me',
+                title: 'title goes here',
+            });
+        });
     });
 
     describe('inline code', () => {

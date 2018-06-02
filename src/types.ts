@@ -15,6 +15,7 @@ export type TTokenTypeInline =
     | 'break'
     | 'icon'
     | 'link'
+    | 'image'
     | 'whitespace'
     | 'text';
 
@@ -102,6 +103,13 @@ export interface ILink extends IToken {
     url: string;
 }
 
+export interface IImage extends IToken {
+    type: 'image';
+    title: string;
+    alt: string;
+    url: string;
+}
+
 export interface IText extends IToken {
     type: 'text';
     value: string;
@@ -121,6 +129,7 @@ export type TInlineToken =
     | IFootnoteReference
     | ILinkReference
     | ILink
+    | IImage
     | IInlineLink
     | ISup
     | ISub
