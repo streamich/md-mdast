@@ -80,10 +80,14 @@ export interface IcreateParserOptions {
 
 const smartypants = (text: string) =>
     text
-        // em-dashes
+        .replace(/\(C\)/gi, '©')
+        .replace(/\(R\)/gi, '®')
+        .replace(/\(TM\)/gi, '™')
+        .replace(/\(P\)/gi, '§')
+        .replace(/\+\-/g, '±')
         .replace(/---/g, '\u2014')
-        // en-dashes
         .replace(/--/g, '\u2013')
+        .replace(/\.{3}/g, '\u2026')
         // opening singles
         .replace(/(^|[-\u2014/(\[{"\s])'/g, '$1\u2018')
         // closing singles & apostrophes
@@ -91,9 +95,7 @@ const smartypants = (text: string) =>
         // opening doubles
         .replace(/(^|[-\u2014/(\[{\u2018\s])"/g, '$1\u201c')
         // closing doubles
-        .replace(/"/g, '\u201d')
-        // ellipses
-        .replace(/\.{3}/g, '\u2026');
+        .replace(/"/g, '\u201d');
 
 const createParser = ({inline}: IcreateParserOptions) => {
     const parser: IParser = {} as IParser;
