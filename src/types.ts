@@ -1,4 +1,4 @@
-export type TTokenTypeBlock = 'root' | 'newline' | 'code';
+export type TTokenTypeBlock = 'root' | 'newline' | 'code' | 'math';
 
 export type TTokenTypeInline =
     | 'inlineCode'
@@ -44,6 +44,11 @@ export interface ICode extends IToken {
     value: string;
     lang: string | null;
     meta?: string | null;
+}
+
+export interface IMath extends IToken {
+    type: 'math';
+    value: string;
 }
 
 export interface IInlineCode extends IToken {
@@ -138,7 +143,7 @@ export interface IWhitespace extends IToken {
     length: number;
 }
 
-export type TBlockToken = INewline | ICode;
+export type TBlockToken = INewline | ICode | IMath;
 
 export type TInlineToken =
     | IInlineCode
