@@ -101,4 +101,36 @@ describe('Block Markdown', () => {
             });
         });
     });
+
+    describe('thematicBreak', () => {
+        it('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('---\n');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {type: 'thematicBreak', value: '---'},
+            });
+        });
+
+        it('supports asterisks', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('*****\n');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {type: 'thematicBreak', value: '*****'},
+            });
+        });
+
+        it('supports underscores', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('_______\n');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {type: 'thematicBreak', value: '_______'},
+            });
+        });
+    });
 });
