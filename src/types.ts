@@ -43,6 +43,7 @@ export interface ICode extends IToken {
     type: 'code';
     value: string;
     lang: string | null;
+    meta?: string | null;
 }
 
 export interface IInlineCode extends IToken {

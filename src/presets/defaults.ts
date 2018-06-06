@@ -19,9 +19,10 @@ import underline from '../tokenizer/underline';
 import inlineBreak from '../tokenizer/break';
 import code from '../tokenizer/code';
 import newline from '../tokenizer/newline';
+import fences from '../tokenizer/fences';
 
 const preset = {
-    block: [newline, code] as TTokenizer<TBlockToken>[],
+    block: [newline, code, fences] as TTokenizer<TBlockToken>[],
     inline: [
         escape,
         inlineCode(),

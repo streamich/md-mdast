@@ -46,4 +46,35 @@ describe('Block Markdown', () => {
             });
         });
     });
+
+    describe('fences', () => {
+        it('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('```js\nalert(123);\n```');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'code',
+                    value: 'alert(123);',
+                    lang: 'js',
+                },
+            });
+        });
+
+        it('matches meta information', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('```js meta\nalert(123);\n```');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'code',
+                    value: 'alert(123);',
+                    lang: 'js',
+                    meta: 'meta',
+                },
+            });
+        });
+    });
 });
