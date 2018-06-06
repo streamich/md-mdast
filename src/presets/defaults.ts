@@ -26,11 +26,21 @@ import heading from '../tokenizer/heading';
 import blockquote from '../tokenizer/blockquote';
 import paragraph from '../tokenizer/paragraph';
 import definition from '../tokenizer/definition';
+import footnoteDefinition from '../tokenizer/footnoteDefinition';
 
 const preset = {
-    block: [newline, code, fences, math, thematicBreak, heading, blockquote, definition, paragraph] as TTokenizer<
-        TBlockToken
-    >[],
+    block: [
+        newline,
+        code,
+        fences,
+        math,
+        thematicBreak,
+        heading,
+        blockquote,
+        footnoteDefinition,
+        definition,
+        paragraph,
+    ] as TTokenizer<TBlockToken>[],
     inline: [
         escape,
         inlineCode(),

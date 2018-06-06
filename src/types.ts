@@ -7,6 +7,7 @@ export type TTokenTypeBlock =
     | 'heading'
     | 'blockquote'
     | 'definition'
+    | 'footnoteDefinition'
     | 'paragraph';
 
 export type TTokenTypeInline =
@@ -73,7 +74,7 @@ export interface IHeading extends IToken {
 
 export interface IBlockquote extends IToken {
     type: 'blockquote';
-    children: TChildrenBlock | TChildrenInline;
+    children: TChildrenBlock;
 }
 
 export interface IDefinition extends IToken {
@@ -81,6 +82,12 @@ export interface IDefinition extends IToken {
     identifier: string;
     title: string | null;
     url: string;
+}
+
+export interface IFootnoteDefinition extends IToken {
+    type: 'footnoteDefinition';
+    identifier: string;
+    children: TChildrenBlock;
 }
 
 export interface IParagraph extends IToken {
@@ -180,7 +187,16 @@ export interface IWhitespace extends IToken {
     length: number;
 }
 
-export type TBlockToken = INewline | ICode | IMath | IThematicBreak | IHeading | IBlockquote | IDefinition | IParagraph;
+export type TBlockToken =
+    | INewline
+    | ICode
+    | IMath
+    | IThematicBreak
+    | IHeading
+    | IBlockquote
+    | IDefinition
+    | IFootnoteDefinition
+    | IParagraph;
 
 export type TInlineToken =
     | IInlineCode

@@ -405,4 +405,55 @@ trololo`);
             });
         });
     });
+
+    describe('footnoteDefinition', () => {
+        it('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('[^alpha]: foobar');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'footnoteDefinition',
+                    identifier: 'alpha',
+                    children: {
+                        type: 'paragraph',
+                        children: {
+                            type: 'text',
+                            value: 'foobar',
+                        },
+                    },
+                },
+            });
+        });
+
+        it('supports multiple paragraphs', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('[^alpha]: foo\n\n  bar');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'footnoteDefinition',
+                    identifier: 'alpha',
+                    children: [
+                        {
+                            type: 'paragraph',
+                            children: {
+                                type: 'text',
+                                value: 'foo',
+                            },
+                        },
+                        {
+                            type: 'paragraph',
+                            children: {
+                                type: 'text',
+                                value: 'bar',
+                            },
+                        },
+                    ],
+                },
+            });
+        });
+    });
 });
