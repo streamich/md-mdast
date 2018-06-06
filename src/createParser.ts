@@ -1,4 +1,16 @@
-import {TTokenizer, TAnyToken, TTokenType, TEat, IParser, IText, TInlineToken, TBlockToken, IRoot} from './types';
+import {
+    TTokenizer,
+    TAnyToken,
+    TTokenType,
+    TEat,
+    IParser,
+    IText,
+    TInlineToken,
+    TBlockToken,
+    IRoot,
+    TChildrenInline,
+    TChildrenBlock,
+} from './types';
 
 // tslint:disable no-any
 export const token = <T extends TAnyToken>(
@@ -156,6 +168,30 @@ const createParser = ({inline, block}: IcreateParserOptions) => {
             children: children.length > 1 ? children : children[0],
             len: value.length,
         } as IRoot;
+    };
+
+    parser.tokenizeChildBlock = (value: string) => {
+        let children = parser.tokenizeBlock(value) as any;
+
+        if (!children) {
+            return children;
+        }
+
+        if (children.type === 'root') {
+            children = children.children;
+        }
+
+        if (!children) {
+            return children;
+        }
+
+        if (children instanceof Array) {
+            if (children.length === 1) {
+                return children[0];
+            }
+        }
+
+        return children;
     };
 
     return parser;

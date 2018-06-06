@@ -76,6 +76,21 @@ describe('Block Markdown', () => {
                 },
             });
         });
+
+        it('supports tilde separators', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('~~~js meta\nalert(123);\n~~~');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'code',
+                    value: 'alert(123);',
+                    lang: 'js',
+                    meta: 'meta',
+                },
+            });
+        });
     });
 
     describe('math', () => {
@@ -222,6 +237,154 @@ describe('Block Markdown', () => {
                         value: 'Title',
                     },
                 },
+            });
+        });
+    });
+
+    describe('blockquote', () => {
+        it('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('> foobar');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'blockquote',
+                    children: {
+                        type: 'paragraph',
+                        children: {
+                            type: 'text',
+                            value: 'foobar',
+                        },
+                    },
+                },
+            });
+        });
+
+        it('multiple paragraphs', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('> foo\n>\n> bar');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'blockquote',
+                    children: [
+                        {
+                            type: 'paragraph',
+                            children: {
+                                type: 'text',
+                                value: 'foo',
+                            },
+                        },
+                        {
+                            type: 'paragraph',
+                            children: {
+                                type: 'text',
+                                value: 'bar',
+                            },
+                        },
+                    ],
+                },
+            });
+        });
+
+        it('code blocks', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('>     git-cz\n>\n> ```js\n> console.log(123)\n> ```\n');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'blockquote',
+                    children: [
+                        {
+                            type: 'code',
+                            value: 'git-cz',
+                        },
+                        {
+                            type: 'code',
+                            value: 'console.log(123)',
+                        },
+                    ],
+                },
+            });
+        });
+    });
+
+    describe('paragraph', () => {
+        it('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('hello world');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'paragraph',
+                    children: {
+                        type: 'text',
+                        value: 'hello world',
+                    },
+                },
+            });
+        });
+
+        it('trims spacing', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('hello world\n');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'paragraph',
+                    children: {
+                        type: 'text',
+                        value: 'hello world',
+                    },
+                },
+            });
+        });
+
+        it('Multiple paragraphs', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock(`hello
+
+world
+
+trololo`);
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: [
+                    {
+                        type: 'paragraph',
+                        len: 7,
+                        children: {
+                            type: 'text',
+                            len: 5,
+                            value: 'hello',
+                        },
+                    },
+                    {
+                        type: 'paragraph',
+                        len: 7,
+                        children: {
+                            type: 'text',
+                            len: 5,
+                            value: 'world',
+                        },
+                    },
+                    {
+                        type: 'paragraph',
+                        len: 7,
+                        children: {
+                            type: 'text',
+                            len: 7,
+                            value: 'trololo',
+                        },
+                    },
+                ],
+                len: 21,
             });
         });
     });

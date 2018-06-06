@@ -1,4 +1,12 @@
-export type TTokenTypeBlock = 'root' | 'newline' | 'code' | 'math' | 'thematicBreak' | 'heading';
+export type TTokenTypeBlock =
+    | 'root'
+    | 'newline'
+    | 'code'
+    | 'math'
+    | 'thematicBreak'
+    | 'heading'
+    | 'blockquote'
+    | 'paragraph';
 
 export type TTokenTypeInline =
     | 'inlineCode'
@@ -59,6 +67,16 @@ export interface IThematicBreak extends IToken {
 export interface IHeading extends IToken {
     type: 'heading';
     depth: number;
+    children: TChildrenInline;
+}
+
+export interface IBlockquote extends IToken {
+    type: 'blockquote';
+    children: TChildrenBlock | TChildrenInline;
+}
+
+export interface IParagraph extends IToken {
+    type: 'paragraph';
     children: TChildrenInline;
 }
 
@@ -154,7 +172,7 @@ export interface IWhitespace extends IToken {
     length: number;
 }
 
-export type TBlockToken = INewline | ICode | IMath | IThematicBreak | IHeading;
+export type TBlockToken = INewline | ICode | IMath | IThematicBreak | IHeading | IBlockquote | IParagraph;
 
 export type TInlineToken =
     | IInlineCode
@@ -196,4 +214,5 @@ export type TTokenizer<T extends TAnyToken> = (this: IParser, eat: TEat<T>, valu
 export interface IParser {
     tokenizeInline(value: string): TChildrenToken<any>;
     tokenizeBlock(value: string): IRoot | undefined | null;
+    tokenizeChildBlock(value: string): TChildrenBlock | TChildrenInline;
 }

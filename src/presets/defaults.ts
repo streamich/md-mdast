@@ -23,9 +23,11 @@ import fences from '../tokenizer/fences';
 import math from '../tokenizer/math';
 import thematicBreak from '../tokenizer/thematicBreak';
 import heading from '../tokenizer/heading';
+import blockquote from '../tokenizer/blockquote';
+import paragraph from '../tokenizer/paragraph';
 
 const preset = {
-    block: [newline, code, fences, math, thematicBreak, heading] as TTokenizer<TBlockToken>[],
+    block: [newline, code, fences, math, thematicBreak, heading, blockquote, paragraph] as TTokenizer<TBlockToken>[],
     inline: [
         escape,
         inlineCode(),
