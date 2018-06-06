@@ -1,4 +1,16 @@
-import {TTokenizer, TAnyToken, TTokenType, TEat, IParser, IText} from './types';
+import {
+    TTokenizer,
+    TAnyToken,
+    TTokenType,
+    TEat,
+    IParser,
+    IText,
+    TInlineToken,
+    TBlockToken,
+    IRoot,
+    TTokenTypeBlock,
+    TChildrenBlock,
+} from './types';
 
 // tslint:disable no-any
 export const token = <T extends TAnyToken>(
@@ -74,8 +86,8 @@ export const first = (tokenizers: TTokenizer<any>[]): TTokenizer<any> => {
 };
 
 export interface IcreateParserOptions {
-    inline: TTokenizer<TAnyToken>[];
-    // block: TTokenizer<TAnyToken>[];
+    inline: TTokenizer<TInlineToken>[];
+    block: TTokenizer<TBlockToken>[];
 }
 
 const smartypants = (text: string) =>
@@ -97,7 +109,7 @@ const smartypants = (text: string) =>
         // closing doubles
         .replace(/"/g, '\u201d');
 
-const createParser = ({inline}: IcreateParserOptions) => {
+const createParser = ({inline, block}: IcreateParserOptions) => {
     const parser: IParser = {} as IParser;
 
     parser.tokenizeInline = (value: string) => {
@@ -134,6 +146,28 @@ const createParser = ({inline}: IcreateParserOptions) => {
         tokens = merged;
 
         return tokens.length === 1 ? tokens[0] : tokens;
+    };
+
+    parser.tokenizeBlock = (value: string) => {
+        const tokens = loop(parser, first(block), value) as TBlockToken[];
+
+        if (!tokens) {
+            return;
+        }
+
+        const children = [] as TBlockToken[];
+
+        for (const tok of tokens) {
+            if (tok.type !== 'newline') {
+                children.push(tok);
+            }
+        }
+
+        return {
+            type: 'root',
+            children: children.length > 1 ? children : children[0],
+            len: value.length,
+        } as IRoot;
     };
 
     return parser;

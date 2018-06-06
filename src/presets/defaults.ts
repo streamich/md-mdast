@@ -5,7 +5,7 @@ import text from '../tokenizer/text';
 import mark from '../tokenizer/mark';
 import inlineCode from '../tokenizer/inlineCode';
 import emphasis from '../tokenizer/emphasis';
-import {TAnyToken, TTokenizer} from '../types';
+import {TTokenizer, TBlockToken, TInlineToken} from '../types';
 import strong from '../tokenizer/strong';
 import deletedText from '../tokenizer/delete';
 import inlineMath from '../tokenizer/inlineMath';
@@ -17,8 +17,15 @@ import sub from '../tokenizer/sub';
 import handle from '../tokenizer/handle';
 import underline from '../tokenizer/underline';
 import inlineBreak from '../tokenizer/break';
+import code from '../tokenizer/code';
+import newline from '../tokenizer/newline';
+import fences from '../tokenizer/fences';
+import math from '../tokenizer/math';
+import thematicBreak from '../tokenizer/thematicBreak';
+import heading from '../tokenizer/heading';
 
 const preset = {
+    block: [newline, code, fences, math, thematicBreak, heading] as TTokenizer<TBlockToken>[],
     inline: [
         escape,
         inlineCode(),
@@ -38,7 +45,7 @@ const preset = {
         inlineBreak,
         icon(32),
         text(),
-    ] as TTokenizer<TAnyToken>[],
+    ] as TTokenizer<TInlineToken>[],
 };
 
 export default preset;

@@ -1,3 +1,5 @@
+export type TTokenTypeBlock = 'root' | 'newline' | 'code' | 'math' | 'thematicBreak' | 'heading';
+
 export type TTokenTypeInline =
     | 'inlineCode'
     | 'strong'
@@ -19,13 +21,45 @@ export type TTokenTypeInline =
     | 'whitespace'
     | 'text';
 
-export type TTokenType = 'root' | TTokenTypeInline;
+export type TTokenType = 'root' | TTokenTypeBlock | TTokenTypeInline;
 
 export interface IToken {
     type: TTokenType;
     len: number;
-    children?: IToken;
+    children?: TChildrenToken<TAnyToken>;
     value?: string;
+}
+
+export interface IRoot extends IToken {
+    type: 'root';
+    children: TChildrenBlock;
+}
+
+export interface INewline extends IToken {
+    type: 'newline';
+}
+
+export interface ICode extends IToken {
+    type: 'code';
+    value: string;
+    lang: string | null;
+    meta?: string | null;
+}
+
+export interface IMath extends IToken {
+    type: 'math';
+    value: string;
+}
+
+export interface IThematicBreak extends IToken {
+    type: 'thematicBreak';
+    value: string;
+}
+
+export interface IHeading extends IToken {
+    type: 'heading';
+    depth: number;
+    children: TChildrenInline;
 }
 
 export interface IInlineCode extends IToken {
@@ -120,6 +154,8 @@ export interface IWhitespace extends IToken {
     length: number;
 }
 
+export type TBlockToken = INewline | ICode | IMath | IThematicBreak | IHeading;
+
 export type TInlineToken =
     | IInlineCode
     | IStrong
@@ -141,11 +177,14 @@ export type TInlineToken =
     | IText
     | IWhitespace;
 
-export type TAnyToken = IToken | TInlineToken;
+export type TAnyToken = TBlockToken | TInlineToken;
 
 export type TNullableToken<T extends TAnyToken> = T | undefined | null;
 export type TChildrenToken<T extends TAnyToken> = TNullableToken<T> | T[];
+
+export type TChildrenBlock = TChildrenToken<TBlockToken>;
 export type TChildrenInline = TChildrenToken<TInlineToken>;
+
 export type TEat<T extends TAnyToken> = (
     subvalue: string,
     type: TTokenType,
@@ -156,4 +195,5 @@ export type TTokenizer<T extends TAnyToken> = (this: IParser, eat: TEat<T>, valu
 
 export interface IParser {
     tokenizeInline(value: string): TChildrenToken<any>;
+    tokenizeBlock(value: string): IRoot | undefined | null;
 }
