@@ -1,3 +1,5 @@
+export type TTokenTypeBlock = 'root' | 'space' | 'code';
+
 export type TTokenTypeInline =
     | 'inlineCode'
     | 'strong'
@@ -19,13 +21,24 @@ export type TTokenTypeInline =
     | 'whitespace'
     | 'text';
 
-export type TTokenType = 'root' | TTokenTypeInline;
+export type TTokenType = 'root' | TTokenTypeBlock | TTokenTypeInline;
 
 export interface IToken {
     type: TTokenType;
     len: number;
-    children?: IToken;
+    children?: TChildrenToken<TAnyToken>;
     value?: string;
+}
+
+export interface IRoot extends IToken {
+    type: 'root';
+    children: TChildrenBlock;
+}
+
+export interface ICode extends IToken {
+    type: 'code';
+    value: string;
+    lang: string | null;
 }
 
 export interface IInlineCode extends IToken {
@@ -120,6 +133,8 @@ export interface IWhitespace extends IToken {
     length: number;
 }
 
+export type TBlockToken = ICode;
+
 export type TInlineToken =
     | IInlineCode
     | IStrong
@@ -141,11 +156,14 @@ export type TInlineToken =
     | IText
     | IWhitespace;
 
-export type TAnyToken = IToken | TInlineToken;
+export type TAnyToken = TBlockToken | TInlineToken;
 
 export type TNullableToken<T extends TAnyToken> = T | undefined | null;
 export type TChildrenToken<T extends TAnyToken> = TNullableToken<T> | T[];
+
+export type TChildrenBlock = TChildrenToken<TBlockToken>;
 export type TChildrenInline = TChildrenToken<TInlineToken>;
+
 export type TEat<T extends TAnyToken> = (
     subvalue: string,
     type: TTokenType,
@@ -156,4 +174,5 @@ export type TTokenizer<T extends TAnyToken> = (this: IParser, eat: TEat<T>, valu
 
 export interface IParser {
     tokenizeInline(value: string): TChildrenToken<any>;
+    tokenizeBlock(value: string): IRoot | undefined | null;
 }
