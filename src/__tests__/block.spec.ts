@@ -388,4 +388,21 @@ trololo`);
             });
         });
     });
+
+    describe('definition', () => {
+        it('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('[alpha]: http://example.com');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'definition',
+                    identifier: 'alpha',
+                    title: null,
+                    url: 'http://example.com',
+                },
+            });
+        });
+    });
 });

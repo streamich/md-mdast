@@ -6,6 +6,7 @@ export type TTokenTypeBlock =
     | 'thematicBreak'
     | 'heading'
     | 'blockquote'
+    | 'definition'
     | 'paragraph';
 
 export type TTokenTypeInline =
@@ -73,6 +74,13 @@ export interface IHeading extends IToken {
 export interface IBlockquote extends IToken {
     type: 'blockquote';
     children: TChildrenBlock | TChildrenInline;
+}
+
+export interface IDefinition extends IToken {
+    type: 'definition';
+    identifier: string;
+    title: string | null;
+    url: string;
 }
 
 export interface IParagraph extends IToken {
@@ -172,7 +180,7 @@ export interface IWhitespace extends IToken {
     length: number;
 }
 
-export type TBlockToken = INewline | ICode | IMath | IThematicBreak | IHeading | IBlockquote | IParagraph;
+export type TBlockToken = INewline | ICode | IMath | IThematicBreak | IHeading | IBlockquote | IDefinition | IParagraph;
 
 export type TInlineToken =
     | IInlineCode
