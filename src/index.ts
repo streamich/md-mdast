@@ -1,7 +1,4 @@
-import {TToken} from './ast';
+import createParser from './createParser';
+import preset from './presets/defaults';
 
-export interface IContext {
-    off: number;
-}
-
-export type TTokenizer = (src: string, pos: number, ctx: IContext) => TToken | undefined | null;
+export const create = () => createParser(preset);
