@@ -20,5 +20,4 @@ export const hr = /^ {0,3}((?:- *){3,}|(?:_ *){3,}|(?:\* *){3,})(?:\n+|$)/;
 export const bull = /(?:[*+-]|\d+\.)/;
 export const def = replace(/^ {0,3}\[(label)\]: *\n? *<?([^\s>]+)>?(?:(?: +\n? *| *\n *)(title))? *(?:\n+|$)/, {label, title});
 export const list = replace(/^( *)(bull) [\s\S]+?(?:hr|def|\n{2,}(?! )(?!\1bull )\n*|\s*$)/, {bull, hr, def});
-export const paragraph = replace(/^([^\n]+(?:\n(?!hr|lheading| {0,3}>)[^\n]+)*)/, {hr, heading, lheading});
-// export const paragraph = /^((?:[^\n]+\n?)+)\n*/;
+export const paragraph = replace(/^((?:[^\n]+(\n(?!\s*bull))?)+)\n*/, {bull});
