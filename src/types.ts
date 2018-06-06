@@ -1,4 +1,4 @@
-export type TTokenTypeBlock = 'root' | 'space' | 'code';
+export type TTokenTypeBlock = 'root' | 'newline' | 'code';
 
 export type TTokenTypeInline =
     | 'inlineCode'
@@ -33,6 +33,10 @@ export interface IToken {
 export interface IRoot extends IToken {
     type: 'root';
     children: TChildrenBlock;
+}
+
+export interface INewline extends IToken {
+    type: 'newline';
 }
 
 export interface ICode extends IToken {
@@ -133,7 +137,7 @@ export interface IWhitespace extends IToken {
     length: number;
 }
 
-export type TBlockToken = ICode;
+export type TBlockToken = INewline | ICode;
 
 export type TInlineToken =
     | IInlineCode

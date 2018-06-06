@@ -149,10 +149,18 @@ const createParser = ({inline, block}: IcreateParserOptions) => {
     };
 
     parser.tokenizeBlock = (value: string) => {
-        const children = loop(parser, first(block), value) as TChildrenBlock[];
+        const tokens = loop(parser, first(block), value) as TBlockToken[];
 
-        if (!children) {
+        if (!tokens) {
             return;
+        }
+
+        const children = [] as TBlockToken[];
+
+        for (const tok of tokens) {
+            if (tok.type !== 'newline') {
+                children.push(tok);
+            }
         }
 
         return {

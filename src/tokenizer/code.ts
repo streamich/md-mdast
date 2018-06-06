@@ -12,7 +12,7 @@ const code: TTokenizer<ICode> = function(eat, value) {
 
     const subvalue = matches[0];
     const overrides = {
-        value: subvalue.replace(/^ {4}/gm, ''),
+        value: subvalue.replace(/^ {4}/gm, '').replace(/\n+$/, ''),
         lang: null,
     };
 
