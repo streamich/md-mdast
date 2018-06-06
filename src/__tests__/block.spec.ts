@@ -133,4 +133,96 @@ describe('Block Markdown', () => {
             });
         });
     });
+
+    describe('heading', () => {
+        it('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('# Title');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'heading',
+                    depth: 1,
+                    children: {
+                        type: 'text',
+                        value: 'Title',
+                    },
+                },
+            });
+        });
+
+        it('supports all h1-h6 heading levels', () => {
+            const parser = create();
+            const result = depth => ({
+                type: 'root',
+                children: {
+                    type: 'heading',
+                    depth,
+                    children: {
+                        type: 'text',
+                        value: 'Title',
+                    },
+                },
+            });
+
+            for (let i = 1; i < 7; i++) {
+                const src = new Array(i + 1).join('#') + ' Title';
+                const ast = parser.tokenizeBlock(src);
+
+                expect(ast).toMatchObject(result(i));
+            }
+        });
+
+        it('supports only up to h6 depth', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('####### Title');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'heading',
+                    depth: 6,
+                    children: {
+                        type: 'text',
+                        value: '# Title',
+                    },
+                },
+            });
+        });
+
+        it('supports orthodox heading h1', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('Title\n' + '-----');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'heading',
+                    depth: 1,
+                    children: {
+                        type: 'text',
+                        value: 'Title',
+                    },
+                },
+            });
+        });
+
+        it('supports orthodox heading h2', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('Title\n' + '=====');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'heading',
+                    depth: 2,
+                    children: {
+                        type: 'text',
+                        value: 'Title',
+                    },
+                },
+            });
+        });
+    });
 });
