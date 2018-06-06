@@ -1,6 +1,7 @@
 import {TTokenizer, IParagraph} from '../types';
+import {paragraph as REG} from '../regex';
 
-const REG = /^((?:[^\n]+\n?)+)\n*/;
+console.log('r', REG.source)
 
 // tslint:disable only-arrow-functions, no-invalid-this
 const paragraph: TTokenizer<IParagraph> = function(eat, value) {

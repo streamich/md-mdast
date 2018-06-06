@@ -456,4 +456,15 @@ trololo`);
             });
         });
     });
+
+    describe('list', () => {
+        it.only('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock(` - item 1
+    - subitem
+  - item 2`);
+
+            console.log(JSON.stringify(ast, null, 2));
+        });
+    });
 });

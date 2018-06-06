@@ -6,6 +6,8 @@ export type TTokenTypeBlock =
     | 'thematicBreak'
     | 'heading'
     | 'blockquote'
+    | 'list'
+    | 'listItem'
     | 'definition'
     | 'footnoteDefinition'
     | 'paragraph';
@@ -74,6 +76,21 @@ export interface IHeading extends IToken {
 
 export interface IBlockquote extends IToken {
     type: 'blockquote';
+    children: TChildrenBlock;
+}
+
+export interface IList extends IToken {
+    type: 'list';
+    ordered: boolean;
+    start: number | null;
+    loose: boolean;
+    children: IListItem[];
+}
+
+export interface IListItem extends IToken {
+    type: 'listItem';
+    loose: boolean;
+    checked: boolean | null;
     children: TChildrenBlock;
 }
 
@@ -194,6 +211,8 @@ export type TBlockToken =
     | IThematicBreak
     | IHeading
     | IBlockquote
+    | IList
+    | IListItem
     | IDefinition
     | IFootnoteDefinition
     | IParagraph;

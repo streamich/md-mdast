@@ -1,7 +1,5 @@
 import {TTokenizer, IDefinition} from '../types';
-import {replace, label, title} from '../regex';
-
-const REG = replace(/^ {0,3}\[(label)\]: *\n? *<?([^\s>]+)>?(?:(?: +\n? *| *\n *)(title))? *(?:\n+|$)/, {label, title});
+import {def as REG} from '../regex';;
 
 // tslint:disable only-arrow-functions
 const definition: TTokenizer<IDefinition> = function(eat, value) {

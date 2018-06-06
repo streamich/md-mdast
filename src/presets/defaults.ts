@@ -27,6 +27,7 @@ import blockquote from '../tokenizer/blockquote';
 import paragraph from '../tokenizer/paragraph';
 import definition from '../tokenizer/definition';
 import footnoteDefinition from '../tokenizer/footnoteDefinition';
+import list from '../tokenizer/list';
 
 const preset = {
     block: [
@@ -37,6 +38,7 @@ const preset = {
         thematicBreak,
         heading,
         blockquote,
+        list,
         footnoteDefinition,
         definition,
         paragraph,
