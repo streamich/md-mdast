@@ -2,7 +2,7 @@ import {TTokenizer, IList, IListItem} from '../types';
 import {list as REG} from '../regex';
 
 const REG_LINE = /^(\s*)([*+-]|\d\.)(\s{1}|\t)(.+)$/;
-const REG_SPLIT = /^\s{0,3}(?:[*+-]|\d\.){1}(?:\s{1,2}|\t)/mg;
+const REG_SPLIT = /^\s{0,3}(?:[*+-]|\d\.){1}(?:\s{1,2}|\t)/gm;
 const REG_BULLET = /^(\s*)([*+-]|\d\.)(\s{1,2}|\t)/;
 
 // tslint:disable-next-line only-arrow-functions
@@ -40,7 +40,8 @@ const list: TTokenizer<IList> = function(eat, value) {
         const space = indent + bulletMarker.length;
 
         // Outdent
-        const outdented = part.replace(new RegExp('^ {1,' + space + '}', 'gm'), '')
+        const outdented = part.replace(/^ {1,4}/gm, '');
+        // const outdented = part.replace(new RegExp('^ {1,' + space + '}', 'gm'), '')
 
         const partLoose = false;
 

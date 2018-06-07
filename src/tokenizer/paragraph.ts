@@ -1,8 +1,6 @@
 import {TTokenizer, IParagraph} from '../types';
 import {paragraph as REG} from '../regex';
 
-console.log('r', REG.source)
-
 // tslint:disable only-arrow-functions, no-invalid-this
 const paragraph: TTokenizer<IParagraph> = function(eat, value) {
     const matches = value.match(REG);

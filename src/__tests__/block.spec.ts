@@ -458,13 +458,32 @@ trololo`);
     });
 
     describe('list', () => {
-        it.only('works', () => {
+        it('works', () => {
             const parser = create();
-            const ast = parser.tokenizeBlock(` - item 1
-    - subitem
-  - item 2`);
+            const ast = parser.tokenizeBlock(`- foo`);
 
-            console.log(JSON.stringify(ast, null, 2));
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'list',
+                    len: 5,
+                    children: {
+                        type: 'listItem',
+                        checked: null,
+                        children: {
+                            type: 'paragraph',
+                            len: 3,
+                            children: {
+                                type: 'text',
+                                len: 3,
+                                value: 'foo',
+                            },
+                        },
+                    },
+                    start: 1,
+                },
+                len: 5,
+            });
         });
     });
 });

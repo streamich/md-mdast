@@ -18,6 +18,9 @@ export const lheading = /^([^\n]+)\n *(=|-){2,} *(?:\n+|$)/;
 export const blockquote = /^( *>[^\n]+(\n(?!^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$))[^\n]+)*\n*)+/;
 export const hr = /^ {0,3}((?:- *){3,}|(?:_ *){3,}|(?:\* *){3,})(?:\n+|$)/;
 export const bull = /(?:[*+-]|\d+\.)/;
-export const def = replace(/^ {0,3}\[(label)\]: *\n? *<?([^\s>]+)>?(?:(?: +\n? *| *\n *)(title))? *(?:\n+|$)/, {label, title});
+export const def = replace(/^ {0,3}\[(label)\]: *\n? *<?([^\s>]+)>?(?:(?: +\n? *| *\n *)(title))? *(?:\n+|$)/, {
+    label,
+    title,
+});
 export const list = replace(/^( *)(bull) [\s\S]+?(?:hr|def|\n{2,}(?! )(?!\1bull )\n*|\s*$)/, {bull, hr, def});
-export const paragraph = replace(/^((?:[^\n]+(\n(?!\s*bull))?)+)\n*/, {bull});
+export const paragraph = replace(/^((?:[^\n]+(\n(?!\s{0,3}bull))?)+)\n*/, {bull});
