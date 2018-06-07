@@ -466,7 +466,69 @@ trololo`);
                 type: 'root',
                 children: {
                     type: 'list',
+                    ordered: false,
                     len: 5,
+                    children: {
+                        type: 'listItem',
+                        checked: null,
+                        children: {
+                            type: 'paragraph',
+                            len: 3,
+                            children: {
+                                type: 'text',
+                                len: 3,
+                                value: 'foo',
+                            },
+                        },
+                    },
+                    start: null,
+                },
+                len: 5,
+            });
+        });
+
+        it('supports all bullet markers', () => {
+            const result = {
+                type: 'root',
+                children: {
+                    type: 'list',
+                    ordered: false,
+                    len: 5,
+                    children: {
+                        type: 'listItem',
+                        checked: null,
+                        children: {
+                            type: 'paragraph',
+                            len: 3,
+                            children: {
+                                type: 'text',
+                                len: 3,
+                                value: 'foo',
+                            },
+                        },
+                    },
+                    start: null,
+                },
+                len: 5,
+            };
+
+            const parser = create();
+
+            expect(parser.tokenizeBlock(`- foo`)).toMatchObject(result);
+            expect(parser.tokenizeBlock(`* foo`)).toMatchObject(result);
+            expect(parser.tokenizeBlock(`+ foo`)).toMatchObject(result);
+        });
+
+        it('supports ordered lists', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock(`1. foo`);
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'list',
+                    ordered: true,
+                    len: 6,
                     children: {
                         type: 'listItem',
                         checked: null,
@@ -482,7 +544,7 @@ trololo`);
                     },
                     start: 1,
                 },
-                len: 5,
+                len: 6,
             });
         });
     });
