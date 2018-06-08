@@ -1,8 +1,5 @@
 import {TTokenizer, ITable, ITableRow} from '../types';
 
-const REG1 = /^ *([^|\n ].*\|.*)\n *([-:]+ *\|[-| :]*)(?:\n((?:.*[^>\n ].*(?:\n|$))*)\n*|$)/;
-const REG2 = /^ *\|(.+)\n *\|?( *[-:]+[-| :]*)(?:\n((?: *[^>\n ].*(?:\n|$))*)\n*|$)/;
-
 const REG = /^ *\|(.+)\n *\|?( *[-:]+[-| :]*)(?:\n((?: *[^>\n ].*(?:\n|$))*)\n*|$)/;
 
 const splitCells = (tableRow: string, count?: number) => {
@@ -78,7 +75,7 @@ const table: TTokenizer<ITable> = function(eat, value) {
         }
     }
 
-    return eat(matches[0], 'table', children, {align});
+    return eat(subvalue, 'table', children, {align});
 };
 
 export default table;

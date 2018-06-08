@@ -1,7 +1,6 @@
-import {TTokenizer, IList, IListItem} from '../types';
+import {TTokenizer, IList} from '../types';
 import {list as REG, item as REG_PARTS} from '../regex';
 
-const REG_SPLIT = /^\s{0,3}(?:[*+-]|\d\.){1}(?:\s{1,2}|\t)/gm;
 const REG_BULLET = /^(\s*)([*+-]|\d\.)(\s{1,2}|\t)/;
 const REG_LOOSE = /\n\n(?!\s*$)/;
 

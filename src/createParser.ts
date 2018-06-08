@@ -1,16 +1,4 @@
-import {
-    TTokenizer,
-    TAnyToken,
-    TTokenType,
-    TEat,
-    IParser,
-    IText,
-    TInlineToken,
-    TBlockToken,
-    IRoot,
-    TChildrenInline,
-    TChildrenBlock,
-} from './types';
+import {TTokenizer, TAnyToken, TTokenType, TEat, IParser, IText, TInlineToken, TBlockToken, IRoot} from './types';
 
 // tslint:disable no-any
 export const token = <T extends TAnyToken>(
