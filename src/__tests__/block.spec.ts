@@ -734,4 +734,115 @@ trololo`);
             });
         });
     });
+
+    describe('table', () => {
+        it('works', () => {
+            const table = `| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| zebra stripes | are neat      |    $1 |
+| zebra stripes | are neat 2    |    $2 |`;
+
+            const parser = create();
+            const ast = parser.tokenizeBlock(table);
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'table',
+                    len: 167,
+                    children: [
+                        {
+                            type: 'tableRow',
+                            children: [
+                                {
+                                    type: 'tableCell',
+                                    children: {
+                                        type: 'text',
+                                        len: 6,
+                                        value: 'Tables',
+                                    },
+                                },
+                                {
+                                    type: 'tableCell',
+                                    children: {
+                                        type: 'text',
+                                        len: 3,
+                                        value: 'Are',
+                                    },
+                                },
+                                {
+                                    type: 'tableCell',
+                                    children: {
+                                        type: 'text',
+                                        len: 4,
+                                        value: 'Cool',
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            type: 'tableRow',
+                            children: [
+                                {
+                                    type: 'tableCell',
+                                    children: {
+                                        type: 'text',
+                                        len: 13,
+                                        value: 'zebra stripes',
+                                    },
+                                },
+                                {
+                                    type: 'tableCell',
+                                    children: {
+                                        type: 'text',
+                                        len: 8,
+                                        value: 'are neat',
+                                    },
+                                },
+                                {
+                                    type: 'tableCell',
+                                    children: {
+                                        type: 'text',
+                                        len: 2,
+                                        value: '$1',
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            type: 'tableRow',
+                            children: [
+                                {
+                                    type: 'tableCell',
+                                    children: {
+                                        type: 'text',
+                                        len: 13,
+                                        value: 'zebra stripes',
+                                    },
+                                },
+                                {
+                                    type: 'tableCell',
+                                    children: {
+                                        type: 'text',
+                                        len: 10,
+                                        value: 'are neat 2',
+                                    },
+                                },
+                                {
+                                    type: 'tableCell',
+                                    children: {
+                                        type: 'text',
+                                        len: 2,
+                                        value: '$2',
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                    align: [null, 'center', 'right'],
+                },
+                len: 167,
+            });
+        });
+    });
 });

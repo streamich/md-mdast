@@ -28,6 +28,7 @@ import paragraph from '../tokenizer/paragraph';
 import definition from '../tokenizer/definition';
 import footnoteDefinition from '../tokenizer/footnoteDefinition';
 import list from '../tokenizer/list';
+import table from '../tokenizer/table';
 
 const preset = {
     block: [
@@ -39,6 +40,7 @@ const preset = {
         heading,
         blockquote,
         list,
+        table,
         footnoteDefinition,
         definition,
         paragraph,

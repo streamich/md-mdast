@@ -8,6 +8,9 @@ export type TTokenTypeBlock =
     | 'blockquote'
     | 'list'
     | 'listItem'
+    | 'table'
+    | 'tableRow'
+    | 'tableCell'
     | 'definition'
     | 'footnoteDefinition'
     | 'paragraph';
@@ -92,6 +95,19 @@ export interface IListItem extends IToken {
     loose: boolean;
     checked: boolean | null;
     children: TChildrenBlock;
+}
+
+export interface ITable extends IToken {
+    type: 'table';
+    align: ('left' | 'right' | 'center' | null)[];
+}
+
+export interface ITableRow extends IToken {
+    type: 'tableRow';
+}
+
+export interface ITableCell extends IToken {
+    type: 'tableCell';
 }
 
 export interface IDefinition extends IToken {
@@ -213,6 +229,9 @@ export type TBlockToken =
     | IBlockquote
     | IList
     | IListItem
+    | ITable
+    | ITableRow
+    | ITableCell
     | IDefinition
     | IFootnoteDefinition
     | IParagraph;
