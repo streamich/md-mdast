@@ -5,7 +5,7 @@ Markdown-to-MDAST converter. Small and fast.
 ## Installation
 
 ```shell
-npm i -g md-mdast
+npm install md-mdast
 ```
 
 ## Usage
