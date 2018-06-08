@@ -737,6 +737,57 @@ trololo`);
 
     describe('table', () => {
         it('works', () => {
+            const table = `| Table |
+            | ----- |
+            | *hello* |`;
+
+            const parser = create();
+            const ast = parser.tokenizeBlock(table);
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'table',
+                    len: 55,
+                    children: [
+                        {
+                            type: 'tableRow',
+                            children: [
+                                {
+                                    type: 'tableCell',
+                                    children: {
+                                        type: 'text',
+                                        len: 5,
+                                        value: 'Table',
+                                    },
+                                },
+                            ],
+                        },
+                        {
+                            type: 'tableRow',
+                            children: [
+                                {
+                                    type: 'tableCell',
+                                    children: {
+                                        type: 'emphasis',
+                                        len: 7,
+                                        children: {
+                                            type: 'text',
+                                            len: 5,
+                                            value: 'hello',
+                                        },
+                                    },
+                                },
+                            ],
+                        },
+                    ],
+                    align: [null],
+                },
+                len: 55,
+            });
+        });
+
+        it('twor row table with alignment', () => {
             const table = `| Tables        | Are           | Cool  |
 | ------------- |:-------------:| -----:|
 | zebra stripes | are neat      |    $1 |
