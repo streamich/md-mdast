@@ -19,3 +19,4 @@ yarn-error.log
 /tsconfig.jest.json
 /tsconfig.json
 /tslint.json
+/lib/
