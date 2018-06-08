@@ -1,6 +1,6 @@
 # pr-markdown
 
-Markdown-to-AST parser built for speed and size.
+Markdown-to-MDAST converter. Small and fast.
 
 ## Installation
 
@@ -18,3 +18,7 @@ const parser = create();
 console.log(parser.tokenizeBlock('hello world'));
 console.log(parser.tokenizeInline('hello world'));
 ```
+
+## License
+
+[Unlicense](http://unlicense.org/) &mdash; public domain.
