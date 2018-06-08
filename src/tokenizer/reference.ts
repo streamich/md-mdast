@@ -4,7 +4,7 @@ import {replace, label} from '../regex';
 
 const REG = replace(/^!?\[(label)\]\s*\[([^\]]*)\]/, {label});
 
-const linkReference: TTokenizer<ILinkReference | IImageReference> = function(eat, value) {
+const reference: TTokenizer<ILinkReference | IImageReference> = function(eat, value) {
     const matches = value.match(REG);
 
     if (matches) {
@@ -37,4 +37,4 @@ const linkReference: TTokenizer<ILinkReference | IImageReference> = function(eat
     return;
 };
 
-export default linkReference;
+export default reference;

@@ -10,7 +10,7 @@ import strong from '../tokenizer/strong';
 import deletedText from '../tokenizer/delete';
 import inlineMath from '../tokenizer/inlineMath';
 import footnoteReference from '../tokenizer/footnoteReference';
-import linkReference from '../tokenizer/linkReference';
+import reference from '../tokenizer/reference';
 import inlineLink from '../tokenizer/inlineLink';
 import sup from '../tokenizer/sup';
 import sub from '../tokenizer/sub';
@@ -54,7 +54,7 @@ const preset = {
         inlineMath(),
         footnoteReference,
         link(),
-        linkReference,
+        reference,
         inlineLink,
         sup,
         sub,
