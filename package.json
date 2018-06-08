@@ -10,7 +10,7 @@
     "scripts": {
         "clean": "rimraf dist lib",
         "prebuild": "yarn clean",
-        "build": "tsc && browserify --node -o dist/index.js lib/index.js",
+        "build": "tsc && browserify --node --standalone create -o dist/index.js lib/index.js",
         "test": "jest",
         "release": "semantic-release",
         "preversion": "yarn run lint && yarn run test",
