@@ -5,7 +5,7 @@
     "main": "dist/index.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/onp4/p4-markdown.git"
+        "url": "https://github.com/onp4/md-mdast.git"
     },
     "scripts": {
         "clean": "rimraf dist lib",
