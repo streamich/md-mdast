@@ -1,4 +1,4 @@
-# pr-markdown
+# md-mdast
 
 Markdown-to-MDAST converter. Small and fast.
 
