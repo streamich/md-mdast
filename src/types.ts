@@ -8,6 +8,7 @@ export type TTokenTypeBlock =
     | 'blockquote'
     | 'list'
     | 'listItem'
+    | 'html'
     | 'table'
     | 'tableRow'
     | 'tableCell'
@@ -96,6 +97,11 @@ export interface IListItem extends IToken {
     loose: boolean;
     checked: boolean | null;
     children: TChildrenBlock;
+}
+
+export interface IHtml extends IToken {
+    type: 'html';
+    value: string;
 }
 
 export interface ITable extends IToken {
@@ -237,6 +243,7 @@ export type TBlockToken =
     | IBlockquote
     | IList
     | IListItem
+    | IHtml
     | ITable
     | ITableRow
     | ITableCell

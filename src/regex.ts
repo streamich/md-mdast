@@ -25,3 +25,31 @@ export const def = replace(/^ {0,3}\[(label)\]: *\n? *<?([^\s>]+)>?(?:(?: +\n? *
 export const list = replace(/^( *)(bull) [\s\S]+?(?:hr|def|\n{2,}(?! )(?!\1bull )\n*|\s*$)/, {bull, hr, def});
 export const item = replace(/^( *)(bull) [^\n]*(?:\n(?!\1\- )[^\n]*)*/gm, {bull});
 export const paragraph = replace(/^((?:[^\n]+(\n(?!\s{0,3}bull))?)+)\n*/, {bull});
+export const comment = /<!--(?!-?>)[\s\S]*?-->/;
+export const tag = new RegExp(
+    'address|article|aside|base|basefont|blockquote|body|caption' +
+        '|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption' +
+        '|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe' +
+        '|legend|li|link|main|menu|menuitem|meta|nav|noframes|ol|optgroup|option' +
+        '|p|param|section|source|summary|table|tbody|td|tfoot|th|thead|title|tr' +
+        '|track|ul'
+);
+export const html = replace(
+    new RegExp(
+        '^ {0,3}(?:' + // optional indentation
+        '<(script|pre|style)[\\s>][\\s\\S]*?(?:</\\1>[^\\n]*\\n+|$)' + // (1)
+        '|comment[^\\n]*(\\n+|$)' + // (2)
+        '|<\\?[\\s\\S]*?\\?>\\n*' + // (3)
+        '|<![A-Z][\\s\\S]*?>\\n*' + // (4)
+        '|<!\\[CDATA\\[[\\s\\S]*?\\]\\]>\\n*' + // (5)
+        '|</?(tag)(?: +|\\n|/?>)[\\s\\S]*?(?:\\n{2,}|$)' + // (6)
+        '|<(?!script|pre|style)([a-z][\\w-]*)(?:attribute)*? */?>(?=\\h*\\n)[\\s\\S]*?(?:\\n{2,}|$)' + // (7) open tag
+        '|</(?!script|pre|style)[a-z][\\w-]*\\s*>(?=\\h*\\n)[\\s\\S]*?(?:\\n{2,}|$)' + // (7) closing tag
+            ')'
+    ),
+    {
+        comment,
+        tag,
+        attribute: / +[a-zA-Z:_][\w.:-]*(?: *= *"[^"\n]*"| *= *'[^'\n]*'| *= *[^\s"'=<>`]+)?/,
+    }
+);

@@ -896,4 +896,17 @@ trololo`);
             });
         });
     });
+
+    describe('html', () => {
+        it('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('<div>foobar</div>');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {type: 'html', len: 17, value: '<div>foobar</div>'},
+                len: 17,
+            });
+        });
+    });
 });
