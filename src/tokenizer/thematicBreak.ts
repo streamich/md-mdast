@@ -1,7 +1,7 @@
 import {TTokenizer, IThematicBreak} from '../types';
+import {hr as REG} from '../regex';
 
 // const REG = /^ *([-*_]{3,})\s*(?:\n+|$)/;
-const REG = /^ {0,3}((?:- *){3,}|(?:_ *){3,}|(?:\* *){3,})(?:\n+|$)/;
 
 // tslint:disable only-arrow-functions
 const thematicBreak: TTokenizer<IThematicBreak> = function(eat, value) {

@@ -1,4 +1,19 @@
-export type TTokenTypeBlock = 'root' | 'newline' | 'code' | 'math' | 'thematicBreak' | 'heading';
+export type TTokenTypeBlock =
+    | 'root'
+    | 'newline'
+    | 'code'
+    | 'math'
+    | 'thematicBreak'
+    | 'heading'
+    | 'blockquote'
+    | 'list'
+    | 'listItem'
+    | 'table'
+    | 'tableRow'
+    | 'tableCell'
+    | 'definition'
+    | 'footnoteDefinition'
+    | 'paragraph';
 
 export type TTokenTypeInline =
     | 'inlineCode'
@@ -59,6 +74,57 @@ export interface IThematicBreak extends IToken {
 export interface IHeading extends IToken {
     type: 'heading';
     depth: number;
+    children: TChildrenInline;
+}
+
+export interface IBlockquote extends IToken {
+    type: 'blockquote';
+    children: TChildrenBlock;
+}
+
+export interface IList extends IToken {
+    type: 'list';
+    ordered: boolean;
+    start: number | null;
+    loose: boolean;
+    children: IListItem[];
+}
+
+export interface IListItem extends IToken {
+    type: 'listItem';
+    loose: boolean;
+    checked: boolean | null;
+    children: TChildrenBlock;
+}
+
+export interface ITable extends IToken {
+    type: 'table';
+    align: ('left' | 'right' | 'center' | null)[];
+}
+
+export interface ITableRow extends IToken {
+    type: 'tableRow';
+}
+
+export interface ITableCell extends IToken {
+    type: 'tableCell';
+}
+
+export interface IDefinition extends IToken {
+    type: 'definition';
+    identifier: string;
+    title: string | null;
+    url: string;
+}
+
+export interface IFootnoteDefinition extends IToken {
+    type: 'footnoteDefinition';
+    identifier: string;
+    children: TChildrenBlock;
+}
+
+export interface IParagraph extends IToken {
+    type: 'paragraph';
     children: TChildrenInline;
 }
 
@@ -154,7 +220,21 @@ export interface IWhitespace extends IToken {
     length: number;
 }
 
-export type TBlockToken = INewline | ICode | IMath | IThematicBreak | IHeading;
+export type TBlockToken =
+    | INewline
+    | ICode
+    | IMath
+    | IThematicBreak
+    | IHeading
+    | IBlockquote
+    | IList
+    | IListItem
+    | ITable
+    | ITableRow
+    | ITableCell
+    | IDefinition
+    | IFootnoteDefinition
+    | IParagraph;
 
 export type TInlineToken =
     | IInlineCode
@@ -196,4 +276,5 @@ export type TTokenizer<T extends TAnyToken> = (this: IParser, eat: TEat<T>, valu
 export interface IParser {
     tokenizeInline(value: string): TChildrenToken<any>;
     tokenizeBlock(value: string): IRoot | undefined | null;
+    tokenizeChildBlock(value: string): TChildrenBlock | TChildrenInline;
 }

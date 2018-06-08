@@ -1,0 +1,85 @@
+import {TTokenizer, IList} from '../types';
+import {list as REG, item as REG_PARTS} from '../regex';
+
+const REG_BULLET = /^(\s*)([*+-]|\d\.)(\s{1,2}|\t)/;
+const REG_LOOSE = /\n\n(?!\s*$)/;
+
+const getParts = (subvalue: string): string[] | null => {
+    const parts = subvalue.match(REG_PARTS);
+
+    return parts;
+};
+
+// tslint:disable-next-line only-arrow-functions
+const list: TTokenizer<IList> = function(eat, value) {
+    const matches = value.match(REG);
+
+    if (!matches) {
+        return;
+    }
+
+    const subvalue = matches[0];
+    const parts = getParts(subvalue);
+    // const [, ...parts] = subvalue.split(/^(?: *)(?:\-) [^\n]*(?:\n(?!\1\- )[^\n]*)*/gm);
+    // const bullets = subvalue.match(REG_SPLIT);
+
+    if (!parts) {
+        return;
+    }
+
+    const length = parts.length;
+    const children: any[] = [];
+
+    let ordered = false;
+    let start = null;
+    let loose = false;
+
+    for (let i = 0; i < length; i++) {
+        const part = parts[i];
+        const bulletMatch = part.match(REG_BULLET);
+
+        // This should never happen.
+        if (!bulletMatch) {
+            return;
+        }
+
+        const sansBullet = part.substr(bulletMatch[0].length);
+
+        // const indent = bulletMatch[1].length;
+        const bulletMarker = bulletMatch[2];
+        // const space = indent + bulletMarker.length;
+
+        if (i === 0) {
+            if (bulletMarker.length > 1) {
+                ordered = true;
+                start = parseInt(bulletMarker, 10);
+            }
+        }
+
+        // Outdent
+        const outdented = sansBullet.replace(/^ {1,4}/gm, '');
+        // const outdented = part.replace(new RegExp('^ {1,' + space + '}', 'gm'), '')
+
+        const partLoose = REG_LOOSE.test(sansBullet);
+
+        if (partLoose) {
+            loose = true;
+        }
+
+        children.push({
+            type: 'listItem',
+            loose: partLoose,
+            checked: null,
+            // tslint:disable-next-line no-invalid-this
+            children: this.tokenizeChildBlock(outdented),
+        });
+    }
+
+    return eat(subvalue, 'list', children, {
+        ordered,
+        start,
+        loose,
+    });
+};
+
+export default list;
