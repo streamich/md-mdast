@@ -23,6 +23,7 @@ export type TTokenTypeInline =
     | 'inlineMath'
     | 'footnoteReference'
     | 'linkReference'
+    | 'imageReference'
     | 'inlineLink'
     | 'sup'
     | 'sub'
@@ -160,6 +161,13 @@ export interface ILinkReference extends IToken {
     referenceType: 'shortcut' | 'collapsed' | 'full';
 }
 
+export interface IImageReference extends IToken {
+    type: 'imageReference';
+    identifier: string;
+    referenceType: 'shortcut' | 'collapsed' | 'full';
+    alt: string | null;
+}
+
 export interface IInlineLink extends IToken {
     type: 'inlineLink';
     value: string;
@@ -244,6 +252,7 @@ export type TInlineToken =
     | IInlineMath
     | IFootnoteReference
     | ILinkReference
+    | IImageReference
     | ILink
     | IImage
     | IInlineLink

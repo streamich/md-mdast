@@ -801,4 +801,19 @@ describe('Inline Markdown', () => {
             expect(ast).toMatchObject({type: 'text', len: 3, value: '…'});
         });
     });
+
+    describe('imageReference', () => {
+        test('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('![alt][ref]');
+
+            expect(ast).toMatchObject({
+                type: 'imageReference',
+                len: 11,
+                identifier: 'ref',
+                referenceType: 'full',
+                alt: 'alt',
+            });
+        });
+    });
 });
