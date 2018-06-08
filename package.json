@@ -1,5 +1,5 @@
 {
-    "name": "p4-markdown",
+    "name": "md-mdast",
     "version": "0.1.0",
     "description": "Tiny but fast Markdown to AST parser",
     "main": "dist/index.js",

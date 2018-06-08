@@ -2,6 +2,7 @@
     "extends": "./tsconfig",
     "exclude": ["node_modules", "dist"],
     "compilerOptions": {
+        "sourceMap": true,
         "lib": ["es2017", "dom"],
         "types": ["node", "jest"]
     }
