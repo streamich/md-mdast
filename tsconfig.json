@@ -1,14 +1,14 @@
 {
     "include": ["./src/**/*.ts", "./src/**/*.tsx"],
-    "exclude": ["node_modules", "dist", "./src/**/*.spec.ts", "./src/**/__tests__/**/*.ts"],
+    "exclude": ["node_modules", "lib", "dist", "./src/**/*.spec.ts", "./src/**/__tests__/**/*.ts"],
     "files": ["./src/index.ts"],
     "compilerOptions": {
-        "target": "es2017",
+        "target": "es5",
         "lib": ["es2017", "dom", "es5", "es6", "es7", "es2015", "scripthost", "dom.iterable"],
         "module": "commonjs",
         "esModuleInterop": true,
         "moduleResolution": "Node",
-        "outDir": "./dist",
+        "outDir": "./lib",
         "allowSyntheticDefaultImports": true,
         "forceConsistentCasingInFileNames": true,
         "noEmitOnError": true,
@@ -20,7 +20,7 @@
         "noUnusedParameters": true,
         "pretty": true,
         "strict": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "types": ["node"]
     }
 }

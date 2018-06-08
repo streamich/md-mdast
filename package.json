@@ -1,16 +1,16 @@
 {
-    "name": "p4-markdown",
+    "name": "md-mdast",
     "version": "0.1.0",
     "description": "Tiny but fast Markdown to AST parser",
     "main": "dist/index.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/onp4/p4-markdown.git"
+        "url": "https://github.com/onp4/md-mdast.git"
     },
     "scripts": {
-        "clean": "rimraf dist",
+        "clean": "rimraf dist lib",
         "prebuild": "yarn clean",
-        "build": "tsc",
+        "build": "tsc && browserify --node -o dist/index.js lib/index.js",
         "test": "jest",
         "release": "semantic-release",
         "preversion": "yarn run lint && yarn run test",
@@ -27,7 +27,7 @@
         "@types/node": "^10.1.3",
         "husky": "^0.14.3",
         "jest": "^23.0.1",
-        "mol-conventional-changelog": "^1.4.0",
+        "git-cz": "^1.7.0",
         "prettier": "^1.13.0",
         "pretty-quick": "^1.6.0",
         "rimraf": "2.6.2",
@@ -36,7 +36,8 @@
         "ts-node": "^6.0.5",
         "tslint": "^5.10.0",
         "tslint-config-mailonline": "^3.0.0",
-        "typescript": "^2.8.3"
+        "typescript": "^2.8.3",
+        "browserify": "^16.2.2"
     },
     "prettier": {
         "printWidth": 120,
@@ -56,7 +57,7 @@
     },
     "config": {
         "commitizen": {
-            "path": "./node_modules/mol-conventional-changelog"
+            "path": "git-cz"
         }
     },
     "jest": {

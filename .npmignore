@@ -14,3 +14,9 @@ yarn.lock
 /src/
 yarn-error.log
 /.vscode/
+/src/
+/.circleci/
+/tsconfig.jest.json
+/tsconfig.json
+/tslint.json
+/lib/
