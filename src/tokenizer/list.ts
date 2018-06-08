@@ -1,9 +1,15 @@
 import {TTokenizer, IList, IListItem} from '../types';
-import {list as REG} from '../regex';
+import {list as REG, item as REG_PARTS} from '../regex';
 
 const REG_SPLIT = /^\s{0,3}(?:[*+-]|\d\.){1}(?:\s{1,2}|\t)/gm;
 const REG_BULLET = /^(\s*)([*+-]|\d\.)(\s{1,2}|\t)/;
 const REG_LOOSE = /\n\n(?!\s*$)/;
+
+const getParts = (subvalue: string): string[] | null => {
+    const parts = subvalue.match(REG_PARTS);
+
+    return parts;
+};
 
 // tslint:disable-next-line only-arrow-functions
 const list: TTokenizer<IList> = function(eat, value) {
@@ -14,10 +20,11 @@ const list: TTokenizer<IList> = function(eat, value) {
     }
 
     const subvalue = matches[0];
-    const [, ...parts] = subvalue.split(REG_SPLIT);
-    const bullets = subvalue.match(REG_SPLIT);
+    const parts = getParts(subvalue);
+    // const [, ...parts] = subvalue.split(/^(?: *)(?:\-) [^\n]*(?:\n(?!\1\- )[^\n]*)*/gm);
+    // const bullets = subvalue.match(REG_SPLIT);
 
-    if (!bullets) {
+    if (!parts) {
         return;
     }
 
@@ -30,13 +37,14 @@ const list: TTokenizer<IList> = function(eat, value) {
 
     for (let i = 0; i < length; i++) {
         const part = parts[i];
-        const bullet = bullets[i];
-        const bulletMatch = subvalue.match(REG_BULLET);
+        const bulletMatch = part.match(REG_BULLET);
 
         // This should never happen.
         if (!bulletMatch) {
             return;
         }
+
+        const sansBullet = part.substr(bulletMatch[0].length);
 
         // const indent = bulletMatch[1].length;
         const bulletMarker = bulletMatch[2];
@@ -50,10 +58,10 @@ const list: TTokenizer<IList> = function(eat, value) {
         }
 
         // Outdent
-        const outdented = part.replace(/^ {1,4}/gm, '');
+        const outdented = sansBullet.replace(/^ {1,4}/gm, '');
         // const outdented = part.replace(new RegExp('^ {1,' + space + '}', 'gm'), '')
 
-        const partLoose = REG_LOOSE.test(part);
+        const partLoose = REG_LOOSE.test(sansBullet);
 
         if (partLoose) {
             loose = true;

@@ -467,10 +467,12 @@ trololo`);
                 children: {
                     type: 'list',
                     ordered: false,
+                    loose: false,
                     len: 5,
                     children: {
                         type: 'listItem',
                         checked: null,
+                        loose: false,
                         children: {
                             type: 'paragraph',
                             len: 3,
@@ -493,10 +495,12 @@ trololo`);
                 children: {
                     type: 'list',
                     ordered: false,
+                    loose: false,
                     len: 5,
                     children: {
                         type: 'listItem',
                         checked: null,
+                        loose: false,
                         children: {
                             type: 'paragraph',
                             len: 3,
@@ -528,10 +532,12 @@ trololo`);
                 children: {
                     type: 'list',
                     ordered: true,
+                    loose: false,
                     len: 6,
                     children: {
                         type: 'listItem',
                         checked: null,
+                        loose: false,
                         children: {
                             type: 'paragraph',
                             len: 3,
@@ -545,6 +551,186 @@ trololo`);
                     start: 1,
                 },
                 len: 6,
+            });
+        });
+
+        it('reports loose items', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock(`- foo\n\n  bar`);
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'list',
+                    len: 12,
+                    children: {
+                        type: 'listItem',
+                        loose: true,
+                        checked: null,
+                        children: [
+                            {
+                                type: 'paragraph',
+                                len: 5,
+                                children: {
+                                    type: 'text',
+                                    len: 3,
+                                    value: 'foo',
+                                },
+                            },
+                            {
+                                type: 'paragraph',
+                                len: 3,
+                                children: {
+                                    type: 'text',
+                                    len: 3,
+                                    value: 'bar',
+                                },
+                            },
+                        ],
+                    },
+                    ordered: false,
+                    start: null,
+                    loose: true,
+                },
+                len: 12,
+            });
+        });
+
+        it('supports multiple items', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock(`- foo\n- bar\n- baz`);
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'list',
+                    len: 17,
+                    children: [
+                        {
+                            type: 'listItem',
+                            loose: false,
+                            checked: null,
+                            children: {
+                                type: 'paragraph',
+                                len: 3,
+                                children: {
+                                    type: 'text',
+                                    len: 3,
+                                    value: 'foo',
+                                },
+                            },
+                        },
+                        {
+                            type: 'listItem',
+                            loose: false,
+                            checked: null,
+                            children: {
+                                type: 'paragraph',
+                                len: 3,
+                                children: {
+                                    type: 'text',
+                                    len: 3,
+                                    value: 'bar',
+                                },
+                            },
+                        },
+                        {
+                            type: 'listItem',
+                            loose: false,
+                            checked: null,
+                            children: {
+                                type: 'paragraph',
+                                len: 3,
+                                children: {
+                                    type: 'text',
+                                    len: 3,
+                                    value: 'baz',
+                                },
+                            },
+                        },
+                    ],
+                    ordered: false,
+                    start: null,
+                    loose: false,
+                },
+                len: 17,
+            });
+        });
+
+        it('supporst nested lists', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock(`- foo\n   - bar\n      - baz`);
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {
+                    type: 'list',
+                    len: 26,
+                    children: {
+                        type: 'listItem',
+                        loose: false,
+                        checked: null,
+                        children: [
+                            {
+                                type: 'paragraph',
+                                len: 4,
+                                children: {
+                                    type: 'text',
+                                    len: 3,
+                                    value: 'foo',
+                                },
+                            },
+                            {
+                                type: 'list',
+                                len: 13,
+                                children: {
+                                    type: 'listItem',
+                                    loose: false,
+                                    checked: null,
+                                    children: [
+                                        {
+                                            type: 'paragraph',
+                                            len: 4,
+                                            children: {
+                                                type: 'text',
+                                                len: 3,
+                                                value: 'bar',
+                                            },
+                                        },
+                                        {
+                                            type: 'list',
+                                            len: 5,
+                                            children: {
+                                                type: 'listItem',
+                                                loose: false,
+                                                checked: null,
+                                                children: {
+                                                    type: 'paragraph',
+                                                    len: 3,
+                                                    children: {
+                                                        type: 'text',
+                                                        len: 3,
+                                                        value: 'baz',
+                                                    },
+                                                },
+                                            },
+                                            ordered: false,
+                                            start: null,
+                                            loose: false,
+                                        },
+                                    ],
+                                },
+                                ordered: false,
+                                start: null,
+                                loose: false,
+                            },
+                        ],
+                    },
+                    ordered: false,
+                    start: null,
+                    loose: false,
+                },
+                len: 26,
             });
         });
     });
