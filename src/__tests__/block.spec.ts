@@ -896,4 +896,43 @@ trololo`);
             });
         });
     });
+
+    describe('html', () => {
+        it('works', () => {
+            const parser = create();
+            const ast = parser.tokenizeBlock('<div>foobar</div>');
+
+            expect(ast).toMatchObject({
+                type: 'root',
+                children: {type: 'html', len: 17, value: '<div>foobar</div>'},
+                len: 17,
+            });
+        });
+    });
+
+    test('returns raw text', () => {
+        const parser = create();
+        const ast = parser.tokenizeBlock('*asdf*');
+
+        expect(ast).toMatchObject({
+            type: 'root',
+            children: {
+                type: 'paragraph',
+                raw: '*asdf*',
+                len: 6,
+                children: {
+                    type: 'emphasis',
+                    raw: '*asdf*',
+                    len: 6,
+                    children: {
+                        type: 'text',
+                        raw: 'asdf',
+                        len: 4,
+                        value: 'asdf',
+                    },
+                },
+            },
+            len: 6,
+        });
+    });
 });

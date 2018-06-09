@@ -8,6 +8,7 @@ export type TTokenTypeBlock =
     | 'blockquote'
     | 'list'
     | 'listItem'
+    | 'html'
     | 'table'
     | 'tableRow'
     | 'tableCell'
@@ -23,6 +24,7 @@ export type TTokenTypeInline =
     | 'inlineMath'
     | 'footnoteReference'
     | 'linkReference'
+    | 'imageReference'
     | 'inlineLink'
     | 'sup'
     | 'sub'
@@ -41,6 +43,7 @@ export type TTokenType = 'root' | TTokenTypeBlock | TTokenTypeInline;
 export interface IToken {
     type: TTokenType;
     len: number;
+    raw?: string;
     children?: TChildrenToken<TAnyToken>;
     value?: string;
 }
@@ -95,6 +98,11 @@ export interface IListItem extends IToken {
     loose: boolean;
     checked: boolean | null;
     children: TChildrenBlock;
+}
+
+export interface IHtml extends IToken {
+    type: 'html';
+    value: string;
 }
 
 export interface ITable extends IToken {
@@ -158,6 +166,13 @@ export interface ILinkReference extends IToken {
     type: 'linkReference';
     identifier: string;
     referenceType: 'shortcut' | 'collapsed' | 'full';
+}
+
+export interface IImageReference extends IToken {
+    type: 'imageReference';
+    identifier: string;
+    referenceType: 'shortcut' | 'collapsed' | 'full';
+    alt: string | null;
 }
 
 export interface IInlineLink extends IToken {
@@ -229,6 +244,7 @@ export type TBlockToken =
     | IBlockquote
     | IList
     | IListItem
+    | IHtml
     | ITable
     | ITableRow
     | ITableCell
@@ -244,6 +260,7 @@ export type TInlineToken =
     | IInlineMath
     | IFootnoteReference
     | ILinkReference
+    | IImageReference
     | ILink
     | IImage
     | IInlineLink

@@ -10,7 +10,7 @@ import strong from '../tokenizer/strong';
 import deletedText from '../tokenizer/delete';
 import inlineMath from '../tokenizer/inlineMath';
 import footnoteReference from '../tokenizer/footnoteReference';
-import linkReference from '../tokenizer/linkReference';
+import reference from '../tokenizer/reference';
 import inlineLink from '../tokenizer/inlineLink';
 import sup from '../tokenizer/sup';
 import sub from '../tokenizer/sub';
@@ -29,6 +29,7 @@ import definition from '../tokenizer/definition';
 import footnoteDefinition from '../tokenizer/footnoteDefinition';
 import list from '../tokenizer/list';
 import table from '../tokenizer/table';
+import html from '../tokenizer/html';
 
 const preset = {
     block: [
@@ -40,6 +41,7 @@ const preset = {
         heading,
         blockquote,
         list,
+        html,
         table,
         footnoteDefinition,
         definition,
@@ -54,7 +56,7 @@ const preset = {
         inlineMath(),
         footnoteReference,
         link(),
-        linkReference,
+        reference,
         inlineLink,
         sup,
         sub,
