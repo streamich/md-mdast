@@ -80,22 +80,18 @@ export interface IcreateParserOptions {
 
 const smartypants = (text: string) =>
     text
+        .replace(/\.{3}/g, '\u2026')
         .replace(/\(C\)/gi, '©')
         .replace(/\(R\)/gi, '®')
         .replace(/\(TM\)/gi, '™')
-        .replace(/\(P\)/gi, '§')
+        .replace(/\(P\)/g, '§')
         .replace(/\+\-/g, '±')
         .replace(/---/g, '\u2014')
         .replace(/--/g, '\u2013')
-        .replace(/\.{3}/g, '\u2026')
-        // opening singles
-        .replace(/(^|[-\u2014/(\[{"\s])'/g, '$1\u2018')
-        // closing singles & apostrophes
-        .replace(/'/g, '\u2019')
-        // opening doubles
-        .replace(/(^|[-\u2014/(\[{\u2018\s])"/g, '$1\u201c')
-        // closing doubles
-        .replace(/"/g, '\u201d');
+        .replace(/(^|[-\u2014/(\[{"\s])'/g, '$1\u2018') // opening singles
+        .replace(/'/g, '\u2019') // closing singles & apostrophes
+        .replace(/(^|[-\u2014/(\[{\u2018\s])"/g, '$1\u201c') // opening doubles
+        .replace(/"/g, '\u201d'); // closing doubles
 
 const createParser = ({inline, block}: IcreateParserOptions) => {
     const parser: IParser = {} as IParser;
