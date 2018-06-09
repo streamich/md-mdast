@@ -43,6 +43,7 @@ export type TTokenType = 'root' | TTokenTypeBlock | TTokenTypeInline;
 export interface IToken {
     type: TTokenType;
     len: number;
+    raw?: string;
     children?: TChildrenToken<TAnyToken>;
     value?: string;
 }

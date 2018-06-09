@@ -16,6 +16,7 @@ export const token = <T extends TAnyToken>(
 
     const tok = {
         type,
+        raw: value,
         len: value.length,
     } as T;
 
