@@ -1,0 +1,97 @@
+{
+    "type": "root",
+    "children": {
+        "type": "paragraph",
+        "raw": "Hello #tag this is *italic* and **bold** and __*bold-italic*__.^super^\n\n",
+        "len": 72,
+        "children": [
+            {
+                "type": "text",
+                "raw": "Hello ",
+                "len": 6,
+                "value": "Hello "
+            },
+            {
+                "type": "handle",
+                "raw": "#tag",
+                "len": 4,
+                "value": "tag",
+                "prefix": "#"
+            },
+            {
+                "type": "text",
+                "raw": " this is ",
+                "len": 9,
+                "value": " this is "
+            },
+            {
+                "type": "emphasis",
+                "raw": "*italic*",
+                "len": 8,
+                "children": {
+                    "type": "text",
+                    "raw": "italic",
+                    "len": 6,
+                    "value": "italic"
+                }
+            },
+            {
+                "type": "text",
+                "raw": " and ",
+                "len": 5,
+                "value": " and "
+            },
+            {
+                "type": "strong",
+                "raw": "**bold**",
+                "len": 8,
+                "children": {
+                    "type": "text",
+                    "raw": "bold",
+                    "len": 4,
+                    "value": "bold"
+                }
+            },
+            {
+                "type": "text",
+                "raw": " and ",
+                "len": 5,
+                "value": " and "
+            },
+            {
+                "type": "strong",
+                "raw": "__*bold-italic*__",
+                "len": 17,
+                "children": {
+                    "type": "emphasis",
+                    "raw": "*bold-italic*",
+                    "len": 13,
+                    "children": {
+                        "type": "text",
+                        "raw": "bold-italic",
+                        "len": 11,
+                        "value": "bold-italic"
+                    }
+                }
+            },
+            {
+                "type": "text",
+                "raw": ".",
+                "len": 1,
+                "value": "."
+            },
+            {
+                "type": "sup",
+                "raw": "^super^",
+                "len": 7,
+                "children": {
+                    "type": "text",
+                    "raw": "super",
+                    "len": 5,
+                    "value": "super"
+                }
+            }
+        ]
+    },
+    "len": 72
+}

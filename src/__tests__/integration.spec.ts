@@ -26,4 +26,5 @@ describe('Integration', () => {
     check('blockquotes.md', 'blockquotes.json');
     check('footnote.md', 'footnote.json');
     check('references.md', 'references.json');
+    check('inline.md', 'inline.json');
 });
