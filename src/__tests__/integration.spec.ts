@@ -18,9 +18,11 @@ const log = (md, json) => {
     const ast = parser.tokenizeBlock(fs.readFileSync(mdFilepath, 'utf8'));
 
     // tslint:disable-next-line no-console
-    console.log(JSON.stringify(ast, null, 2));
+    console.log(JSON.stringify(ast, null, 4));
 };
 
 describe('Integration', () => {
     check('basic.md', 'basic.json');
+    log('blockquotes.md', 'blockquotes.json');
+    check('footnote.md', 'footnote.json');
 });

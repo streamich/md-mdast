@@ -17,7 +17,7 @@
         "postversion": "git push && git push --tags && npm publish",
         "precommit": "pretty-quick --staged && yarn run lint",
         "prepush": "yarn run test",
-        "prettier": "prettier --write '**/*.ts'",
+        "prettier": "prettier --write '**/*.{ts,json}'",
         "lint": "yarn tslint",
         "tslint": "tslint './src/**/*.{ts,tsx}' -t verbose"
     },
