@@ -12,7 +12,8 @@ const footnoteDefinition: TTokenizer<IFootnoteDefinition> = function(eat, value)
 
     const subvalue = matches[0];
     const identifier = matches[1];
-    const children = this.tokenizeChildBlock(matches[2]);
+    const outdented = matches[2].replace(/^ {1,4}/gm, '');
+    const children = this.tokenizeChildBlock(outdented);
 
     return eat(subvalue, 'footnoteDefinition', children, {identifier});
 };

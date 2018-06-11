@@ -8,4 +8,6 @@ Even go to a new [paragraph][] and the footnotes will go to the bottom of the do
 
     This footnote has a second [paragraph][].
 
+        code in footnote
+
 [paragraph]: http://example.com

@@ -92,8 +92,8 @@
         {
             "type": "footnoteDefinition",
             "raw":
-                "[^documentdetails]: Depending on the **final** form of your document, of course. See the documentation and experiment.\n\n    This footnote has a second [paragraph][].\n\n",
-            "len": 167,
+                "[^documentdetails]: Depending on the **final** form of your document, of course. See the documentation and experiment.\n\n    This footnote has a second [paragraph][].\n\n        code in footnote\n\n",
+            "len": 193,
             "children": [
                 {
                     "type": "paragraph",
@@ -127,10 +127,42 @@
                     ]
                 },
                 {
+                    "type": "paragraph",
+                    "raw": "This footnote has a second [paragraph][].\n\n",
+                    "len": 43,
+                    "children": [
+                        {
+                            "type": "text",
+                            "raw": "This footnote has a second ",
+                            "len": 27,
+                            "value": "This footnote has a second "
+                        },
+                        {
+                            "type": "linkReference",
+                            "raw": "[paragraph][]",
+                            "len": 13,
+                            "children": {
+                                "type": "text",
+                                "raw": "paragraph",
+                                "len": 9,
+                                "value": "paragraph"
+                            },
+                            "identifier": "paragraph",
+                            "referenceType": "collapsed"
+                        },
+                        {
+                            "type": "text",
+                            "raw": ".",
+                            "len": 1,
+                            "value": "."
+                        }
+                    ]
+                },
+                {
                     "type": "code",
-                    "raw": "    This footnote has a second [paragraph][].\n\n",
-                    "len": 47,
-                    "value": "This footnote has a second [paragraph][].",
+                    "raw": "    code in footnote\n\n",
+                    "len": 22,
+                    "value": "code in footnote",
                     "lang": null
                 }
             ],
@@ -145,5 +177,5 @@
             "url": "http://example.com"
         }
     ],
-    "len": 472
+    "len": 498
 }
