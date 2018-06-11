@@ -23,6 +23,7 @@ const log = (md, json) => {
 
 describe('Integration', () => {
     check('basic.md', 'basic.json');
-    log('blockquotes.md', 'blockquotes.json');
+    check('blockquotes.md', 'blockquotes.json');
     check('footnote.md', 'footnote.json');
+    check('references.md', 'references.json');
 });
