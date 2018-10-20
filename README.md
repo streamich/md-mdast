@@ -2,7 +2,8 @@
 
 [![](https://img.shields.io/bundlephobia/minzip/md-mdast.svg)](https://bundlephobia.com/result?p=md-mdast@1.0.1)
 
-Markdown-to-[MDAST](https://github.com/syntax-tree/mdast) converter. Small and fast.
+-   Markdown to [MDAST](https://github.com/syntax-tree/mdast) converter.
+-   Small and fast.
 
 ## Installation
 
