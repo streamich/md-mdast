@@ -21,6 +21,26 @@ console.log(parser.tokenizeBlock('hello world'));
 console.log(parser.tokenizeInline('hello world'));
 ```
 
+Result:
+
+```
+{ type: 'root',
+  children:
+   { type: 'paragraph',
+     raw: 'hello world',
+     len: 11,
+     children:
+      { type: 'text',
+        raw: 'hello world',
+        len: 11,
+        value: 'hello world' } },
+  len: 11 }
+{ type: 'text',
+  raw: 'hello world',
+  len: 11,
+  value: 'hello world' }
+```
+
 ## License
 
 [Unlicense](http://unlicense.org/) &mdash; public domain.
