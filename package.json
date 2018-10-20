@@ -3,6 +3,12 @@
     "version": "1.2.0",
     "description": "Tiny but fast Markdown to AST parser",
     "main": "dist/index.js",
+    "files": [
+        "dist/",
+        "lib/"
+    ],
+    "types": "index.d.ts",
+    "typings": "index.d.ts",
     "repository": {
         "type": "git",
         "url": "https://github.com/onp4/md-mdast.git"
