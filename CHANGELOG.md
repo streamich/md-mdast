@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/streamich/md-mdast/compare/v1.0.0...v2.0.0) (2018-10-20)
+
+
+### Features
+
+* 🎸 use semantic-release plugins when publishing release ([a01dbc0](https://github.com/streamich/md-mdast/commit/a01dbc0))
+
+
+### BREAKING CHANGES
+
+* release v2
+
 <a name="1.0.0"></a>
 # 1.0.0 (2018-10-20)
 
