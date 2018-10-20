@@ -70,7 +70,7 @@ jobs:
           command: npx ci-scripts slack
       - run:
           name: Release
-          command: npx semantic-release
+          command: yarn release
 
 workflows:
   version: 2
