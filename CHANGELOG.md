@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/streamich/md-mdast/compare/v2.0.0...v2.0.1) (2019-02-23)
+
+
+### Bug Fixes
+
+* 🐛 allow fenced code block meta only on language line ([531c824](https://github.com/streamich/md-mdast/commit/531c824))
+
 # [2.0.0](https://github.com/streamich/md-mdast/compare/v1.0.0...v2.0.0) (2018-10-20)
 
 
