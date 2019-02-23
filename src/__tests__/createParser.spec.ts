@@ -4,7 +4,7 @@ import icon from '../tokenizer/icon';
 describe('createParser()', () => {
     test('returns a parser object', () => {
         const parser = createParser({
-            inline: [icon(32)],
+            inline: [icon(32) as any],
             block: [],
         });
 
@@ -14,7 +14,7 @@ describe('createParser()', () => {
 
     test('returns a single AST token', () => {
         const parser = createParser({
-            inline: [icon(32)],
+            inline: [icon(32) as any],
             block: [],
         });
 
