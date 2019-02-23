@@ -28,12 +28,12 @@
         {
             "type": "code",
             "raw":
-                "```\n$ standard-pkg --dist lib/\n  » Linting lib/...\n  ⚠️ [lib/index.js 2:0] Imported file does not exist.\n                        Missing file extension for import \"./some/import\".\n  ✘  1 issues found.\n```\n\n\n",
-            "len": 207,
+                "```\n$ standard-pkg --dist lib/\n  » Linting lib/...\n  ⚠️ [lib/index.js 2:0] Imported file does not exist.\n                        Missing file extension for import \"./some/import\".\n  ✘  1 issues found.\n```\n\n",
+            "len": 206,
             "value":
-                "  » Linting lib/...\n  ⚠️ [lib/index.js 2:0] Imported file does not exist.\n                        Missing file extension for import \"./some/import\".\n  ✘  1 issues found.",
+                "$ standard-pkg --dist lib/\n  » Linting lib/...\n  ⚠️ [lib/index.js 2:0] Imported file does not exist.\n                        Missing file extension for import \"./some/import\".\n  ✘  1 issues found.",
             "lang": "",
-            "meta": "$ standard-pkg --dist lib/"
+            "meta": ""
         },
         {
             "type": "heading",
@@ -50,12 +50,12 @@
         {
             "type": "code",
             "raw":
-                "```json\n{\n  \"scripts\": {\"build\": \"standard-pkg --src src/ --lib lib/\"},\n  \"esnext\": \"lib/index.js\"\n}\n```\n\n\n",
-            "len": 107,
+                "```json\n{\n    \"scripts\": {\"build\": \"standard-pkg --src src/ --lib lib/\"},\n    \"esnext\": \"lib/index.js\"\n}\n```\n\n",
+            "len": 110,
             "value":
-                "  \"scripts\": {\"build\": \"standard-pkg --src src/ --lib lib/\"},\n  \"esnext\": \"lib/index.js\"\n}",
+                "{\n    \"scripts\": {\"build\": \"standard-pkg --src src/ --lib lib/\"},\n    \"esnext\": \"lib/index.js\"\n}",
             "lang": "json",
-            "meta": "{"
+            "meta": ""
         },
         {
             "type": "heading",
@@ -72,8 +72,8 @@
         {
             "type": "paragraph",
             "raw":
-                "Builds to a standard language target for other tooling to consume (or to publish directly with your package). Especially useful if you're using TypeScript or experimental language features that your tooling may not support.\n\n\n",
-            "len": 226,
+                "Builds to a standard language target for other tooling to consume (or to publish directly with your package). Especially useful if you're using TypeScript or experimental language features that your tooling may not support.\n\n",
+            "len": 225,
             "children": {
                 "type": "text",
                 "raw":
@@ -112,8 +112,8 @@
         {
             "type": "list",
             "raw":
-                "1. Supports bare module specifiers: This is the npm standard, and modern tooling like bundlers support it.\n1. Supports dynamic `import()`: This is a [stage 3 proposal](https://github.com/tc39/proposal-dynamic-import) which allows dynamically importing modules.\n1. Supports `import.meta.url`: This is a [stage 3 proposal](https://github.com/tc39/proposal-import-meta) which allows modules to read their location (filepath or URL).\n",
-            "len": 430,
+                "1.  Supports bare module specifiers: This is the npm standard, and modern tooling like bundlers support it.\n1.  Supports dynamic `import()`: This is a [stage 3 proposal](https://github.com/tc39/proposal-dynamic-import) which allows dynamically importing modules.\n1.  Supports `import.meta.url`: This is a [stage 3 proposal](https://github.com/tc39/proposal-import-meta) which allows modules to read their location (filepath or URL).\n",
+            "len": 433,
             "children": {
                 "type": "listItem",
                 "loose": false,
@@ -135,8 +135,8 @@
                     {
                         "type": "list",
                         "raw":
-                            "1. Supports dynamic `import()`: This is a [stage 3 proposal](https://github.com/tc39/proposal-dynamic-import) which allows dynamically importing modules.\n1. Supports `import.meta.url`: This is a [stage 3 proposal](https://github.com/tc39/proposal-import-meta) which allows modules to read their location (filepath or URL).\n",
-                        "len": 323,
+                            "1.  Supports dynamic `import()`: This is a [stage 3 proposal](https://github.com/tc39/proposal-dynamic-import) which allows dynamically importing modules.\n1.  Supports `import.meta.url`: This is a [stage 3 proposal](https://github.com/tc39/proposal-import-meta) which allows modules to read their location (filepath or URL).\n",
+                        "len": 325,
                         "children": {
                             "type": "listItem",
                             "loose": false,
@@ -191,8 +191,8 @@
                                 {
                                     "type": "list",
                                     "raw":
-                                        "1. Supports `import.meta.url`: This is a [stage 3 proposal](https://github.com/tc39/proposal-import-meta) which allows modules to read their location (filepath or URL).\n",
-                                    "len": 169,
+                                        "1.  Supports `import.meta.url`: This is a [stage 3 proposal](https://github.com/tc39/proposal-import-meta) which allows modules to read their location (filepath or URL).\n",
+                                    "len": 170,
                                     "children": {
                                         "type": "listItem",
                                         "loose": false,
@@ -263,5 +263,5 @@
             "loose": false
         }
     ],
-    "len": 1317
+    "len": 1320
 }

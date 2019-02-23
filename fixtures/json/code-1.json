@@ -4,9 +4,9 @@
         "type": "code",
         "raw": "```\n$ git status\n  Loading...\n```\n",
         "len": 34,
-        "value": "  Loading...",
+        "value": "$ git status\n  Loading...",
         "lang": "",
-        "meta": "$ git status"
+        "meta": ""
     },
     "len": 34
 }

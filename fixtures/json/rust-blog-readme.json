@@ -46,8 +46,8 @@
         },
         {
             "type": "paragraph",
-            "raw": "It's implemented as a small static site generator, that's deployed to GitHub\nPages via Travis.",
-            "len": 94,
+            "raw": "It's implemented as a small static site generator, that's deployed to GitHub\nPages via Travis.\n",
+            "len": 95,
             "children": {
                 "type": "text",
                 "raw":
@@ -58,5 +58,5 @@
             }
         }
     ],
-    "len": 304
+    "len": 305
 }

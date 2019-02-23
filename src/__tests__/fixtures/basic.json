@@ -62,7 +62,7 @@
             "len": 35,
             "value": "npm install md-mdast",
             "lang": "shell",
-            "meta": "npm install md-mdast"
+            "meta": ""
         },
         {
             "type": "heading",
@@ -82,9 +82,9 @@
                 "```js\nconst {create} = require('md-mdast');\n\nconst parser = create();\n\nconsole.log(parser.tokenizeBlock('hello world'));\nconsole.log(parser.tokenizeInline('hello world'));\n```\n\n",
             "len": 177,
             "value":
-                "\nconst parser = create();\n\nconsole.log(parser.tokenizeBlock('hello world'));\nconsole.log(parser.tokenizeInline('hello world'));",
+                "const {create} = require('md-mdast');\n\nconst parser = create();\n\nconsole.log(parser.tokenizeBlock('hello world'));\nconsole.log(parser.tokenizeInline('hello world'));",
             "lang": "js",
-            "meta": "const {create} = require('md-mdast');"
+            "meta": ""
         },
         {
             "type": "heading",
