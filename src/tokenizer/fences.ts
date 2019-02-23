@@ -1,6 +1,6 @@
 import {TTokenizer, ICode} from '../types';
 
-const REG = /^ *(`{3,}|~{3,})([^\s]*)\s*([^\n]*)\n([\s\S]*?)\s*\1 *(?:\n+|$)/;
+const REG = /^ *(`{3,}|~{3,})([^\s]*) *([^\n]*)\n([\s\S]*?)\s*\1 *(?:\n+|$)/;
 
 // tslint:disable only-arrow-functions
 const fences: TTokenizer<ICode> = function(eat, value) {

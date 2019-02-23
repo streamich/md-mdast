@@ -1,0 +1,62 @@
+{
+    "type": "root",
+    "children": [
+        {
+            "type": "heading",
+            "raw": "# The Rust blog\n\n",
+            "len": 17,
+            "children": {
+                "type": "text",
+                "raw": "The Rust blog",
+                "len": 13,
+                "value": "The Rust blog"
+            },
+            "depth": 1
+        },
+        {
+            "type": "paragraph",
+            "raw":
+                "[![Build Status](https://travis-ci.org/rust-lang/blog.rust-lang.org.svg?branch=master)](https://travis-ci.org/rust-lang/blog.rust-lang.org)\n\n",
+            "len": 141,
+            "children": {
+                "type": "link",
+                "raw":
+                    "[![Build Status](https://travis-ci.org/rust-lang/blog.rust-lang.org.svg?branch=master)](https://travis-ci.org/rust-lang/blog.rust-lang.org)",
+                "len": 139,
+                "children": {
+                    "type": "image",
+                    "raw": "![Build Status](https://travis-ci.org/rust-lang/blog.rust-lang.org.svg?branch=master)",
+                    "len": 85,
+                    "url": "https://travis-ci.org/rust-lang/blog.rust-lang.org.svg?branch=master",
+                    "alt": "Build Status"
+                },
+                "url": "https://travis-ci.org/rust-lang/blog.rust-lang.org"
+            }
+        },
+        {
+            "type": "paragraph",
+            "raw": "This is the blog of the Rust Programming Language.\n\n",
+            "len": 52,
+            "children": {
+                "type": "text",
+                "raw": "This is the blog of the Rust Programming Language.",
+                "len": 50,
+                "value": "This is the blog of the Rust Programming Language."
+            }
+        },
+        {
+            "type": "paragraph",
+            "raw": "It's implemented as a small static site generator, that's deployed to GitHub\nPages via Travis.\n",
+            "len": 95,
+            "children": {
+                "type": "text",
+                "raw":
+                    "It's implemented as a small static site generator, that's deployed to GitHub\nPages via Travis.",
+                "len": 94,
+                "value":
+                    "It’s implemented as a small static site generator, that’s deployed to GitHub\nPages via Travis."
+            }
+        }
+    ],
+    "len": 305
+}

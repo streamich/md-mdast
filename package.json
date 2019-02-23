@@ -21,9 +21,9 @@
         "release": "semantic-release",
         "preversion": "yarn run lint && yarn run test",
         "postversion": "git push && git push --tags && npm publish",
-        "precommit": "pretty-quick --staged && yarn run lint",
+        "precommit": "pretty-quick --pattern 'src/**/*.*(ts|js)' --staged && yarn run lint",
         "prepush": "yarn run test",
-        "prettier": "prettier --write '**/*.{ts,json}'",
+        "prettier": "prettier --write 'src/**/*.{ts,json}'",
         "lint": "yarn tslint",
         "tslint": "tslint './src/**/*.{ts,tsx}' -t verbose"
     },
