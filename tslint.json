@@ -8,7 +8,8 @@
         "prefer-template": false,
         "no-any": false,
         "array-type": false,
-        "no-inferrable-types": false
+        "no-inferrable-types": false,
+        "ordered-imports": false
     },
     "linterOptions": {
         "exclude": ["coverage/", "dist/", "node_modules/"]

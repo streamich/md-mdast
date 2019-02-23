@@ -3,9 +3,9 @@ import text from '../text';
 
 const tokenizer = text();
 
-const runTokenizer = (tk, value) => {
+const runTokenizer = (tk: any, value: any) => {
     // tslint:disable no-unnecessary-callback-wrapper
-    const eat = (subvalue, type, children, overrides) => token(subvalue, type, children, overrides);
+    const eat = (subvalue: any, type: any, children: any, overrides: any) => token(subvalue, type, children, overrides);
 
     return tk.call({}, eat, value);
 };

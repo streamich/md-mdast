@@ -1,6 +1,6 @@
 import {create} from '../index';
 
-const check = (name, src, out) =>
+const check = (name: any, src: any, out: any) =>
     test(name, () => {
         const parser = create();
         const ast = parser.tokenizeInline(src);

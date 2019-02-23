@@ -169,7 +169,7 @@ describe('Block Markdown', () => {
 
         it('supports all h1-h6 heading levels', () => {
             const parser = create();
-            const result = depth => ({
+            const result = (depth: any) => ({
                 type: 'root',
                 children: {
                     type: 'heading',
