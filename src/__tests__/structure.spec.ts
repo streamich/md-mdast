@@ -39,7 +39,6 @@ describe('structure', () => {
             contents: [],
             definitions: {},
             footnotes: {},
-            footnoteOrder: [],
         });
     });
 
@@ -95,7 +94,6 @@ describe('structure', () => {
             contents: [1, 3],
             definitions: {},
             footnotes: {},
-            footnoteOrder: [],
         });
     });
 
@@ -159,7 +157,77 @@ describe('structure', () => {
                 click: 4,
             },
             footnotes: {},
-            footnoteOrder: [],
+        });
+    });
+
+    it('a footnote', () => {
+        const parser = create();
+        const mdast = parser.tokenizeBlock('Hello[^gg]\n' + '\n' + '[^gg]: world!');
+        const doc = structure(mdast!);
+
+        expect(mdast).toMatchObject({
+            type: 'root',
+            children: [
+                {
+                    type: 'paragraph',
+                    children: [
+                        {
+                            type: 'text',
+                            value: 'Hello',
+                        },
+                        {
+                            type: 'footnoteReference',
+                            value: 'gg',
+                        },
+                    ],
+                },
+                {
+                    type: 'footnoteDefinition',
+                    identifier: 'gg',
+                    children: {
+                        type: 'paragraph',
+                        children: {
+                            type: 'text',
+                        },
+                    },
+                },
+            ],
+        });
+        expect(doc).toMatchObject({
+            nodes: [
+                {
+                    type: 'root',
+                    children: [1, 4],
+                },
+                {
+                    type: 'paragraph',
+                    children: [2, 3],
+                },
+                {
+                    type: 'text',
+                    value: 'Hello',
+                },
+                {
+                    type: 'footnoteReference',
+                },
+                {
+                    type: 'footnoteDefinition',
+                    children: 5,
+                },
+                {
+                    type: 'paragraph',
+                    children: 6,
+                },
+                {
+                    type: 'text',
+                    value: 'world!',
+                },
+            ],
+            contents: [],
+            definitions: {},
+            footnotes: {
+                gg: 4,
+            },
         });
     });
 });

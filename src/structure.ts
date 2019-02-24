@@ -1,11 +1,11 @@
-import {IRoot, IFootnoteDefinition, TAnyToken} from './types';
+import {IRoot, TAnyToken} from './types';
 
 export interface DocumentDefinitions {
     [id: string]: number;
 }
 
 export interface DocumentFootnotes {
-    [id: string]: IFootnoteDefinition;
+    [id: string]: number;
 }
 
 export type TNode = (IRoot | TAnyToken) & {children?: null | number | number[]};
@@ -15,7 +15,6 @@ export interface Document {
     contents: number[];
     definitions: DocumentDefinitions;
     footnotes: DocumentFootnotes;
-    footnoteOrder: string[];
 }
 
 export type Structure = (mdast: IRoot | TAnyToken) => Document;
@@ -25,13 +24,11 @@ export const structure: Structure = mdast => {
     const contents: number[] = [];
     const definitions: DocumentDefinitions = {};
     const footnotes: DocumentFootnotes = {};
-    const footnoteOrder: string[] = [];
     const doc = {
         nodes,
         contents,
         definitions,
         footnotes,
-        footnoteOrder,
     };
 
     const traverse = (token: IRoot | TAnyToken) => {
@@ -49,6 +46,9 @@ export const structure: Structure = mdast => {
                 break;
             case 'definition':
                 definitions[node.identifier] = index;
+                break;
+            case 'footnoteDefinition':
+                footnotes[node.identifier] = index;
                 break;
         }
 
