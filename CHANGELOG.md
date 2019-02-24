@@ -1,3 +1,13 @@
+# [2.2.0](https://github.com/streamich/md-mdast/compare/v2.1.0...v2.2.0) (2019-02-24)
+
+
+### Features
+
+* 🎸 add footnote to structured document ([efd6982](https://github.com/streamich/md-mdast/commit/efd6982))
+* 🎸 don't create children for definitions in document ([3c79726](https://github.com/streamich/md-mdast/commit/3c79726))
+* 🎸 extract definitions in structured document ([7da9b48](https://github.com/streamich/md-mdast/commit/7da9b48))
+* 🎸 write first version of structured document creator ([27c76a4](https://github.com/streamich/md-mdast/commit/27c76a4))
+
 # [2.1.0](https://github.com/streamich/md-mdast/compare/v2.0.1...v2.1.0) (2019-02-24)
 
 
