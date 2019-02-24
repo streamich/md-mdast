@@ -1,3 +1,18 @@
+# [2.1.0](https://github.com/streamich/md-mdast/compare/v2.0.1...v2.1.0) (2019-02-24)
+
+
+### Bug Fixes
+
+* 🐛 correct NPM imports ([303d8cb](https://github.com/streamich/md-mdast/commit/303d8cb))
+* remove old unused commands ([5171041](https://github.com/streamich/md-mdast/commit/5171041))
+
+
+### Features
+
+* 🎸 emit source maps ([0121fd8](https://github.com/streamich/md-mdast/commit/0121fd8))
+* 🎸 upgrade dependencies ([eb9de82](https://github.com/streamich/md-mdast/commit/eb9de82))
+* 🎸 upgrade dependencies ([1b2c7a0](https://github.com/streamich/md-mdast/commit/1b2c7a0))
+
 ## [2.0.1](https://github.com/streamich/md-mdast/compare/v2.0.0...v2.0.1) (2019-02-23)
 
 
