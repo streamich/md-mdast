@@ -1,7 +1,7 @@
-import {IRoot, IDefinition, IFootnoteDefinition, TAnyToken} from './types';
+import {IRoot, IFootnoteDefinition, TAnyToken} from './types';
 
 export interface DocumentDefinitions {
-    [id: string]: IDefinition;
+    [id: string]: number;
 }
 
 export interface DocumentFootnotes {
@@ -14,7 +14,6 @@ export interface Document {
     nodes: TNode[];
     contents: number[];
     definitions: DocumentDefinitions;
-    definitionOrder: string[];
     footnotes: DocumentFootnotes;
     footnoteOrder: string[];
 }
@@ -25,14 +24,12 @@ export const structure: Structure = mdast => {
     const nodes: TNode[] = [];
     const contents: number[] = [];
     const definitions: DocumentDefinitions = {};
-    const definitionOrder: string[] = [];
     const footnotes: DocumentFootnotes = {};
     const footnoteOrder: string[] = [];
     const doc = {
         nodes,
         contents,
         definitions,
-        definitionOrder,
         footnotes,
         footnoteOrder,
     };
@@ -49,6 +46,9 @@ export const structure: Structure = mdast => {
         switch (node.type) {
             case 'heading':
                 contents.push(index);
+                break;
+            case 'definition':
+                definitions[node.identifier] = index;
                 break;
         }
 

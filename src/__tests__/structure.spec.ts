@@ -38,7 +38,6 @@ describe('structure', () => {
             ],
             contents: [],
             definitions: {},
-            definitionOrder: [],
             footnotes: {},
             footnoteOrder: [],
         });
@@ -95,7 +94,70 @@ describe('structure', () => {
             ],
             contents: [1, 3],
             definitions: {},
-            definitionOrder: [],
+            footnotes: {},
+            footnoteOrder: [],
+        });
+    });
+
+    it('structure link definitions', () => {
+        const parser = create();
+        const mdast = parser.tokenizeBlock('[Click me][click]\n' + '\n' + '[click]: https://github.com/');
+        const doc = structure(mdast!);
+
+        expect(mdast).toMatchObject({
+            type: 'root',
+            children: [
+                {
+                    type: 'paragraph',
+                    children: {
+                        type: 'linkReference',
+                        children: {
+                            type: 'text',
+                            value: 'Click me',
+                        },
+                        identifier: 'click',
+                        referenceType: 'full',
+                    },
+                },
+                {
+                    type: 'definition',
+                    identifier: 'click',
+                    title: null,
+                    url: 'https://github.com/',
+                },
+            ],
+        });
+        expect(doc).toMatchObject({
+            nodes: [
+                {
+                    type: 'root',
+                    children: [1, 4],
+                },
+                {
+                    type: 'paragraph',
+                    children: 2,
+                },
+                {
+                    type: 'linkReference',
+                    children: 3,
+                    identifier: 'click',
+                    referenceType: 'full',
+                },
+                {
+                    type: 'text',
+                    value: 'Click me',
+                },
+                {
+                    type: 'definition',
+                    identifier: 'click',
+                    title: null,
+                    url: 'https://github.com/',
+                },
+            ],
+            contents: [],
+            definitions: {
+                click: 4,
+            },
             footnotes: {},
             footnoteOrder: [],
         });
