@@ -9,7 +9,8 @@
         "no-any": false,
         "array-type": false,
         "no-inferrable-types": false,
-        "ordered-imports": false
+        "ordered-imports": false,
+        "no-non-null-assertion": false
     },
     "linterOptions": {
         "exclude": ["coverage/", "dist/", "node_modules/"]

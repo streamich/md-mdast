@@ -1,0 +1,60 @@
+{
+  "type": "root",
+  "children": [
+    {
+      "type": "heading",
+      "raw": "# Hello\n\n",
+      "len": 9,
+      "children": {
+        "type": "text",
+        "raw": "Hello",
+        "len": 5,
+        "value": "Hello"
+      },
+      "depth": 1
+    },
+    {
+      "type": "paragraph",
+      "raw": "This document has footnotes[^1].\n\n",
+      "len": 34,
+      "children": [
+        {
+          "type": "text",
+          "raw": "This document has footnotes",
+          "len": 27,
+          "value": "This document has footnotes"
+        },
+        {
+          "type": "footnoteReference",
+          "raw": "[^1]",
+          "len": 4,
+          "value": "1"
+        },
+        {
+          "type": "text",
+          "raw": ".",
+          "len": 1,
+          "value": "."
+        }
+      ]
+    },
+    {
+      "type": "footnoteDefinition",
+      "raw": "[^1]: Footnotes are defined here.\n",
+      "len": 34,
+      "children": {
+        "type": "paragraph",
+        "raw": "Footnotes are defined here.\n",
+        "len": 28,
+        "children": {
+          "type": "text",
+          "raw": "Footnotes are defined here.",
+          "len": 27,
+          "value": "Footnotes are defined here."
+        }
+      },
+      "identifier": "1"
+    }
+  ],
+  "len": 77
+}

@@ -1,267 +1,246 @@
 {
-    "type": "root",
-    "children": [
-        {
-            "type": "heading",
-            "raw": "## Why?\n\n",
-            "len": 9,
-            "children": {
-                "type": "text",
-                "raw": "Why?",
-                "len": 4,
-                "value": "Why?"
-            },
-            "depth": 2
-        },
-        {
-            "type": "heading",
-            "raw": "### Lint Your Package to Strict ES2018 Spec\n\n",
-            "len": 45,
-            "children": {
-                "type": "text",
-                "raw": "Lint Your Package to Strict ES2018 Spec",
-                "len": 39,
-                "value": "Lint Your Package to Strict ES2018 Spec"
-            },
-            "depth": 3
-        },
-        {
-            "type": "code",
-            "raw":
-                "```\n$ standard-pkg --dist lib/\n  » Linting lib/...\n  ⚠️ [lib/index.js 2:0] Imported file does not exist.\n                        Missing file extension for import \"./some/import\".\n  ✘  1 issues found.\n```\n\n",
-            "len": 206,
-            "value":
-                "$ standard-pkg --dist lib/\n  » Linting lib/...\n  ⚠️ [lib/index.js 2:0] Imported file does not exist.\n                        Missing file extension for import \"./some/import\".\n  ✘  1 issues found.",
-            "lang": "",
-            "meta": ""
-        },
-        {
-            "type": "heading",
-            "raw": "### Publish Modern JavaScript With Your Package\n\n",
-            "len": 49,
-            "children": {
-                "type": "text",
-                "raw": "Publish Modern JavaScript With Your Package",
-                "len": 43,
-                "value": "Publish Modern JavaScript With Your Package"
-            },
-            "depth": 3
-        },
-        {
-            "type": "code",
-            "raw":
-                "```json\n{\n    \"scripts\": {\"build\": \"standard-pkg --src src/ --lib lib/\"},\n    \"esnext\": \"lib/index.js\"\n}\n```\n\n",
-            "len": 110,
-            "value":
-                "{\n    \"scripts\": {\"build\": \"standard-pkg --src src/ --lib lib/\"},\n    \"esnext\": \"lib/index.js\"\n}",
-            "lang": "json",
-            "meta": ""
-        },
-        {
-            "type": "heading",
-            "raw": "### Use Existing Tools with Experimental Language Features\n\n",
-            "len": 60,
-            "children": {
-                "type": "text",
-                "raw": "Use Existing Tools with Experimental Language Features",
-                "len": 54,
-                "value": "Use Existing Tools with Experimental Language Features"
-            },
-            "depth": 3
-        },
-        {
+  "type": "root",
+  "children": [
+    {
+      "type": "heading",
+      "raw": "## Why?\n\n",
+      "len": 9,
+      "children": {
+        "type": "text",
+        "raw": "Why?",
+        "len": 4,
+        "value": "Why?"
+      },
+      "depth": 2
+    },
+    {
+      "type": "heading",
+      "raw": "### Lint Your Package to Strict ES2018 Spec\n\n",
+      "len": 45,
+      "children": {
+        "type": "text",
+        "raw": "Lint Your Package to Strict ES2018 Spec",
+        "len": 39,
+        "value": "Lint Your Package to Strict ES2018 Spec"
+      },
+      "depth": 3
+    },
+    {
+      "type": "code",
+      "raw": "```\n$ standard-pkg --dist lib/\n  » Linting lib/...\n  ⚠️ [lib/index.js 2:0] Imported file does not exist.\n                        Missing file extension for import \"./some/import\".\n  ✘  1 issues found.\n```\n\n",
+      "len": 206,
+      "value": "$ standard-pkg --dist lib/\n  » Linting lib/...\n  ⚠️ [lib/index.js 2:0] Imported file does not exist.\n                        Missing file extension for import \"./some/import\".\n  ✘  1 issues found.",
+      "lang": "",
+      "meta": ""
+    },
+    {
+      "type": "heading",
+      "raw": "### Publish Modern JavaScript With Your Package\n\n",
+      "len": 49,
+      "children": {
+        "type": "text",
+        "raw": "Publish Modern JavaScript With Your Package",
+        "len": 43,
+        "value": "Publish Modern JavaScript With Your Package"
+      },
+      "depth": 3
+    },
+    {
+      "type": "code",
+      "raw": "```json\n{\n    \"scripts\": {\"build\": \"standard-pkg --src src/ --lib lib/\"},\n    \"esnext\": \"lib/index.js\"\n}\n```\n\n",
+      "len": 110,
+      "value": "{\n    \"scripts\": {\"build\": \"standard-pkg --src src/ --lib lib/\"},\n    \"esnext\": \"lib/index.js\"\n}",
+      "lang": "json",
+      "meta": ""
+    },
+    {
+      "type": "heading",
+      "raw": "### Use Existing Tools with Experimental Language Features\n\n",
+      "len": 60,
+      "children": {
+        "type": "text",
+        "raw": "Use Existing Tools with Experimental Language Features",
+        "len": 54,
+        "value": "Use Existing Tools with Experimental Language Features"
+      },
+      "depth": 3
+    },
+    {
+      "type": "paragraph",
+      "raw": "Builds to a standard language target for other tooling to consume (or to publish directly with your package). Especially useful if you're using TypeScript or experimental language features that your tooling may not support.\n\n",
+      "len": 225,
+      "children": {
+        "type": "text",
+        "raw": "Builds to a standard language target for other tooling to consume (or to publish directly with your package). Especially useful if you're using TypeScript or experimental language features that your tooling may not support.",
+        "len": 223,
+        "value": "Builds to a standard language target for other tooling to consume (or to publish directly with your package). Especially useful if you’re using TypeScript or experimental language features that your tooling may not support."
+      }
+    },
+    {
+      "type": "heading",
+      "raw": "## Exceptions\n\n",
+      "len": 15,
+      "children": {
+        "type": "text",
+        "raw": "Exceptions",
+        "len": 10,
+        "value": "Exceptions"
+      },
+      "depth": 2
+    },
+    {
+      "type": "paragraph",
+      "raw": "While we try to match the ES2018 spec as strictly as possible, the following exceptions are required to support some common usecases where no other workaround exists:\n\n",
+      "len": 168,
+      "children": {
+        "type": "text",
+        "raw": "While we try to match the ES2018 spec as strictly as possible, the following exceptions are required to support some common usecases where no other workaround exists",
+        "len": 166,
+        "value": "While we try to match the ES2018 spec as strictly as possible, the following exceptions are required to support some common usecases where no other workaround exists:"
+      }
+    },
+    {
+      "type": "list",
+      "raw": "1.  Supports bare module specifiers: This is the npm standard, and modern tooling like bundlers support it.\n1.  Supports dynamic `import()`: This is a [stage 3 proposal](https://github.com/tc39/proposal-dynamic-import) which allows dynamically importing modules.\n1.  Supports `import.meta.url`: This is a [stage 3 proposal](https://github.com/tc39/proposal-import-meta) which allows modules to read their location (filepath or URL).\n",
+      "len": 433,
+      "children": {
+        "type": "listItem",
+        "loose": false,
+        "checked": null,
+        "children": [
+          {
             "type": "paragraph",
-            "raw":
-                "Builds to a standard language target for other tooling to consume (or to publish directly with your package). Especially useful if you're using TypeScript or experimental language features that your tooling may not support.\n\n",
-            "len": 225,
+            "raw": "Supports bare module specifiers: This is the npm standard, and modern tooling like bundlers support it.\n",
+            "len": 104,
             "children": {
-                "type": "text",
-                "raw":
-                    "Builds to a standard language target for other tooling to consume (or to publish directly with your package). Especially useful if you're using TypeScript or experimental language features that your tooling may not support.",
-                "len": 223,
-                "value":
-                    "Builds to a standard language target for other tooling to consume (or to publish directly with your package). Especially useful if you’re using TypeScript or experimental language features that your tooling may not support."
+              "type": "text",
+              "raw": "Supports bare module specifiers",
+              "len": 103,
+              "value": "Supports bare module specifiers: This is the npm standard, and modern tooling like bundlers support it."
             }
-        },
-        {
-            "type": "heading",
-            "raw": "## Exceptions\n\n",
-            "len": 15,
-            "children": {
-                "type": "text",
-                "raw": "Exceptions",
-                "len": 10,
-                "value": "Exceptions"
-            },
-            "depth": 2
-        },
-        {
-            "type": "paragraph",
-            "raw":
-                "While we try to match the ES2018 spec as strictly as possible, the following exceptions are required to support some common usecases where no other workaround exists:\n\n",
-            "len": 168,
-            "children": {
-                "type": "text",
-                "raw":
-                    "While we try to match the ES2018 spec as strictly as possible, the following exceptions are required to support some common usecases where no other workaround exists",
-                "len": 166,
-                "value":
-                    "While we try to match the ES2018 spec as strictly as possible, the following exceptions are required to support some common usecases where no other workaround exists:"
-            }
-        },
-        {
+          },
+          {
             "type": "list",
-            "raw":
-                "1.  Supports bare module specifiers: This is the npm standard, and modern tooling like bundlers support it.\n1.  Supports dynamic `import()`: This is a [stage 3 proposal](https://github.com/tc39/proposal-dynamic-import) which allows dynamically importing modules.\n1.  Supports `import.meta.url`: This is a [stage 3 proposal](https://github.com/tc39/proposal-import-meta) which allows modules to read their location (filepath or URL).\n",
-            "len": 433,
+            "raw": "1.  Supports dynamic `import()`: This is a [stage 3 proposal](https://github.com/tc39/proposal-dynamic-import) which allows dynamically importing modules.\n1.  Supports `import.meta.url`: This is a [stage 3 proposal](https://github.com/tc39/proposal-import-meta) which allows modules to read their location (filepath or URL).\n",
+            "len": 325,
             "children": {
-                "type": "listItem",
-                "loose": false,
-                "checked": null,
-                "children": [
+              "type": "listItem",
+              "loose": false,
+              "checked": null,
+              "children": [
+                {
+                  "type": "paragraph",
+                  "raw": "Supports dynamic `import()`: This is a [stage 3 proposal](https://github.com/tc39/proposal-dynamic-import) which allows dynamically importing modules.\n",
+                  "len": 151,
+                  "children": [
                     {
-                        "type": "paragraph",
-                        "raw":
-                            "Supports bare module specifiers: This is the npm standard, and modern tooling like bundlers support it.\n",
-                        "len": 104,
-                        "children": {
-                            "type": "text",
-                            "raw": "Supports bare module specifiers",
-                            "len": 103,
-                            "value":
-                                "Supports bare module specifiers: This is the npm standard, and modern tooling like bundlers support it."
-                        }
+                      "type": "text",
+                      "raw": "Supports dynamic ",
+                      "len": 17,
+                      "value": "Supports dynamic "
                     },
                     {
-                        "type": "list",
-                        "raw":
-                            "1.  Supports dynamic `import()`: This is a [stage 3 proposal](https://github.com/tc39/proposal-dynamic-import) which allows dynamically importing modules.\n1.  Supports `import.meta.url`: This is a [stage 3 proposal](https://github.com/tc39/proposal-import-meta) which allows modules to read their location (filepath or URL).\n",
-                        "len": 325,
-                        "children": {
-                            "type": "listItem",
-                            "loose": false,
-                            "checked": null,
-                            "children": [
-                                {
-                                    "type": "paragraph",
-                                    "raw":
-                                        "Supports dynamic `import()`: This is a [stage 3 proposal](https://github.com/tc39/proposal-dynamic-import) which allows dynamically importing modules.\n",
-                                    "len": 151,
-                                    "children": [
-                                        {
-                                            "type": "text",
-                                            "raw": "Supports dynamic ",
-                                            "len": 17,
-                                            "value": "Supports dynamic "
-                                        },
-                                        {
-                                            "type": "inlineCode",
-                                            "raw": "`import()`",
-                                            "len": 10,
-                                            "value": "import()",
-                                            "wrap": "`"
-                                        },
-                                        {
-                                            "type": "text",
-                                            "raw": ": This is a ",
-                                            "len": 12,
-                                            "value": ": This is a "
-                                        },
-                                        {
-                                            "type": "link",
-                                            "raw":
-                                                "[stage 3 proposal](https://github.com/tc39/proposal-dynamic-import)",
-                                            "len": 67,
-                                            "children": {
-                                                "type": "text",
-                                                "raw": "stage 3 proposal",
-                                                "len": 16,
-                                                "value": "stage 3 proposal"
-                                            },
-                                            "url": "https://github.com/tc39/proposal-dynamic-import"
-                                        },
-                                        {
-                                            "type": "text",
-                                            "raw": " which allows dynamically importing modules.",
-                                            "len": 44,
-                                            "value": " which allows dynamically importing modules."
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "list",
-                                    "raw":
-                                        "1.  Supports `import.meta.url`: This is a [stage 3 proposal](https://github.com/tc39/proposal-import-meta) which allows modules to read their location (filepath or URL).\n",
-                                    "len": 170,
-                                    "children": {
-                                        "type": "listItem",
-                                        "loose": false,
-                                        "checked": null,
-                                        "children": {
-                                            "type": "paragraph",
-                                            "raw":
-                                                "Supports `import.meta.url`: This is a [stage 3 proposal](https://github.com/tc39/proposal-import-meta) which allows modules to read their location (filepath or URL).\n",
-                                            "len": 166,
-                                            "children": [
-                                                {
-                                                    "type": "text",
-                                                    "raw": "Supports ",
-                                                    "len": 9,
-                                                    "value": "Supports "
-                                                },
-                                                {
-                                                    "type": "inlineCode",
-                                                    "raw": "`import.meta.url`",
-                                                    "len": 17,
-                                                    "value": "import.meta.url",
-                                                    "wrap": "`"
-                                                },
-                                                {
-                                                    "type": "text",
-                                                    "raw": ": This is a ",
-                                                    "len": 12,
-                                                    "value": ": This is a "
-                                                },
-                                                {
-                                                    "type": "link",
-                                                    "raw":
-                                                        "[stage 3 proposal](https://github.com/tc39/proposal-import-meta)",
-                                                    "len": 64,
-                                                    "children": {
-                                                        "type": "text",
-                                                        "raw": "stage 3 proposal",
-                                                        "len": 16,
-                                                        "value": "stage 3 proposal"
-                                                    },
-                                                    "url": "https://github.com/tc39/proposal-import-meta"
-                                                },
-                                                {
-                                                    "type": "text",
-                                                    "raw":
-                                                        " which allows modules to read their location (filepath or URL).",
-                                                    "len": 63,
-                                                    "value":
-                                                        " which allows modules to read their location (filepath or URL)."
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    "ordered": true,
-                                    "start": 1,
-                                    "loose": false
-                                }
-                            ]
-                        },
-                        "ordered": true,
-                        "start": 1,
-                        "loose": false
+                      "type": "inlineCode",
+                      "raw": "`import()`",
+                      "len": 10,
+                      "value": "import()",
+                      "wrap": "`"
+                    },
+                    {
+                      "type": "text",
+                      "raw": ": This is a ",
+                      "len": 12,
+                      "value": ": This is a "
+                    },
+                    {
+                      "type": "link",
+                      "raw": "[stage 3 proposal](https://github.com/tc39/proposal-dynamic-import)",
+                      "len": 67,
+                      "children": {
+                        "type": "text",
+                        "raw": "stage 3 proposal",
+                        "len": 16,
+                        "value": "stage 3 proposal"
+                      },
+                      "url": "https://github.com/tc39/proposal-dynamic-import"
+                    },
+                    {
+                      "type": "text",
+                      "raw": " which allows dynamically importing modules.",
+                      "len": 44,
+                      "value": " which allows dynamically importing modules."
                     }
-                ]
+                  ]
+                },
+                {
+                  "type": "list",
+                  "raw": "1.  Supports `import.meta.url`: This is a [stage 3 proposal](https://github.com/tc39/proposal-import-meta) which allows modules to read their location (filepath or URL).\n",
+                  "len": 170,
+                  "children": {
+                    "type": "listItem",
+                    "loose": false,
+                    "checked": null,
+                    "children": {
+                      "type": "paragraph",
+                      "raw": "Supports `import.meta.url`: This is a [stage 3 proposal](https://github.com/tc39/proposal-import-meta) which allows modules to read their location (filepath or URL).\n",
+                      "len": 166,
+                      "children": [
+                        {
+                          "type": "text",
+                          "raw": "Supports ",
+                          "len": 9,
+                          "value": "Supports "
+                        },
+                        {
+                          "type": "inlineCode",
+                          "raw": "`import.meta.url`",
+                          "len": 17,
+                          "value": "import.meta.url",
+                          "wrap": "`"
+                        },
+                        {
+                          "type": "text",
+                          "raw": ": This is a ",
+                          "len": 12,
+                          "value": ": This is a "
+                        },
+                        {
+                          "type": "link",
+                          "raw": "[stage 3 proposal](https://github.com/tc39/proposal-import-meta)",
+                          "len": 64,
+                          "children": {
+                            "type": "text",
+                            "raw": "stage 3 proposal",
+                            "len": 16,
+                            "value": "stage 3 proposal"
+                          },
+                          "url": "https://github.com/tc39/proposal-import-meta"
+                        },
+                        {
+                          "type": "text",
+                          "raw": " which allows modules to read their location (filepath or URL).",
+                          "len": 63,
+                          "value": " which allows modules to read their location (filepath or URL)."
+                        }
+                      ]
+                    }
+                  },
+                  "ordered": true,
+                  "start": 1,
+                  "loose": false
+                }
+              ]
             },
             "ordered": true,
             "start": 1,
             "loose": false
-        }
-    ],
-    "len": 1320
+          }
+        ]
+      },
+      "ordered": true,
+      "start": 1,
+      "loose": false
+    }
+  ],
+  "len": 1320
 }
