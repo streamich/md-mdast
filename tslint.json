@@ -10,7 +10,8 @@
         "array-type": false,
         "no-inferrable-types": false,
         "ordered-imports": false,
-        "no-non-null-assertion": false
+        "no-non-null-assertion": false,
+        "newline-before-return": false
     },
     "linterOptions": {
         "exclude": ["coverage/", "dist/", "node_modules/"]

@@ -129,7 +129,7 @@ describe('structure', () => {
             nodes: [
                 {
                     type: 'root',
-                    children: [1, 4],
+                    children: 1,
                 },
                 {
                     type: 'paragraph',
@@ -197,7 +197,7 @@ describe('structure', () => {
             nodes: [
                 {
                     type: 'root',
-                    children: [1, 4],
+                    children: 1,
                 },
                 {
                     type: 'paragraph',

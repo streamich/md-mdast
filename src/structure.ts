@@ -31,28 +31,36 @@ export const structure: Structure = mdast => {
         footnotes,
     };
 
-    const traverse = (token: IRoot | TAnyToken) => {
+    const traverse = (token: IRoot | TAnyToken): number => {
         const index = nodes.length;
         const node = {...token} as TNode;
         nodes.push(node);
 
         if (token.children) {
-            node.children = token.children instanceof Array ? token.children.map(traverse) : traverse(token.children);
+            if (token.children instanceof Array) {
+                const children = token.children.map(traverse).filter(i => i > -1);
+                node.children = children.length > 1 ? children : children[0];
+            } else {
+                const childIndex = traverse(token.children);
+                if (childIndex > -1) {
+                    node.children = childIndex;
+                }
+            }
         }
 
         switch (node.type) {
             case 'heading':
                 contents.push(index);
-                break;
+                return index;
             case 'definition':
                 definitions[node.identifier] = index;
-                break;
+                return -1;
             case 'footnoteDefinition':
                 footnotes[node.identifier] = index;
-                break;
+                return -1;
+            default:
+                return index;
         }
-
-        return index;
     };
 
     if (mdast) {
