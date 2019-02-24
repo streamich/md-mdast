@@ -19,8 +19,6 @@
         "build": "tsc && browserify --node --standalone create -o dist/index.js lib/index.js",
         "test": "jest",
         "release": "semantic-release",
-        "preversion": "yarn run lint && yarn run test",
-        "postversion": "git push && git push --tags && npm publish",
         "precommit": "pretty-quick --pattern 'src/**/*.*(ts|js)' --staged && yarn run lint",
         "prepush": "yarn run test",
         "prettier": "prettier --write 'src/**/*.{ts,json}'",
