@@ -44,7 +44,7 @@ export interface IToken {
     type: TTokenType;
     len: number;
     raw?: string;
-    children?: TChildrenToken<TAnyToken>;
+    children?: TAnyToken[];
     value?: string;
 }
 
@@ -190,7 +190,7 @@ export interface ISub extends IToken {
 
 export interface IMark extends IToken {
     type: 'mark';
-    children: TChildrenToken<any>;
+    children: TChildrenInline;
 }
 
 export interface IHandle extends IToken {
@@ -279,8 +279,8 @@ export type TAnyToken = TBlockToken | TInlineToken;
 export type TNullableToken<T extends TAnyToken> = T | undefined | null;
 export type TChildrenToken<T extends TAnyToken> = TNullableToken<T> | T[];
 
-export type TChildrenBlock = TChildrenToken<TBlockToken>;
-export type TChildrenInline = TChildrenToken<TInlineToken>;
+export type TChildrenBlock = TBlockToken[];
+export type TChildrenInline = TInlineToken[];
 
 export type TEat<T extends TAnyToken> = (
     subvalue: string,
@@ -291,7 +291,7 @@ export type TEat<T extends TAnyToken> = (
 export type TTokenizer<T extends TAnyToken> = (this: IParser, eat: TEat<T>, value: string) => TNullableToken<T>;
 
 export interface IParser {
-    tokenizeInline(value: string): TChildrenToken<any>;
+    tokenizeInline(value: string): undefined | any[];
     tokenizeBlock(value: string): IRoot | undefined | null;
     tokenizeChildBlock(value: string): TChildrenBlock | TChildrenInline;
 }

@@ -8,11 +8,13 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'code',
-                    value: 'alert(123);',
-                    lang: null,
-                },
+                children: [
+                    {
+                        type: 'code',
+                        value: 'alert(123);',
+                        lang: null,
+                    },
+                ],
             });
         });
 
@@ -22,11 +24,13 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'code',
-                    value: 'alert(123);\nconsole.log(123);',
-                    lang: null,
-                },
+                children: [
+                    {
+                        type: 'code',
+                        value: 'alert(123);\nconsole.log(123);',
+                        lang: null,
+                    },
+                ],
             });
         });
     });
@@ -38,11 +42,13 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'code',
-                    value: 'alert(123);',
-                    lang: null,
-                },
+                children: [
+                    {
+                        type: 'code',
+                        value: 'alert(123);',
+                        lang: null,
+                    },
+                ],
             });
         });
     });
@@ -54,11 +60,13 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'code',
-                    value: 'alert(123);',
-                    lang: 'js',
-                },
+                children: [
+                    {
+                        type: 'code',
+                        value: 'alert(123);',
+                        lang: 'js',
+                    },
+                ],
             });
         });
 
@@ -68,12 +76,14 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'code',
-                    value: 'alert(123);',
-                    lang: 'js',
-                    meta: 'meta',
-                },
+                children: [
+                    {
+                        type: 'code',
+                        value: 'alert(123);',
+                        lang: 'js',
+                        meta: 'meta',
+                    },
+                ],
             });
         });
 
@@ -83,12 +93,14 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'code',
-                    value: 'alert(123);',
-                    lang: 'js',
-                    meta: 'meta',
-                },
+                children: [
+                    {
+                        type: 'code',
+                        value: 'alert(123);',
+                        lang: 'js',
+                        meta: 'meta',
+                    },
+                ],
             });
         });
     });
@@ -100,7 +112,7 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {type: 'math', len: 11, value: '1 + 1'},
+                children: [{type: 'math', len: 11, value: '1 + 1'}],
                 len: 11,
             });
         });
@@ -111,7 +123,7 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {type: 'math', len: 22, value: '1 + 1\nf(n) = 123'},
+                children: [{type: 'math', len: 22, value: '1 + 1\nf(n) = 123'}],
                 len: 22,
             });
         });
@@ -124,7 +136,7 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {type: 'thematicBreak', value: '---'},
+                children: [{type: 'thematicBreak', value: '---'}],
             });
         });
 
@@ -134,7 +146,7 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {type: 'thematicBreak', value: '*****'},
+                children: [{type: 'thematicBreak', value: '*****'}],
             });
         });
 
@@ -144,7 +156,7 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {type: 'thematicBreak', value: '_______'},
+                children: [{type: 'thematicBreak', value: '_______'}],
             });
         });
     });
@@ -156,14 +168,18 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'heading',
-                    depth: 1,
-                    children: {
-                        type: 'text',
-                        value: 'Title',
+                children: [
+                    {
+                        type: 'heading',
+                        depth: 1,
+                        children: [
+                            {
+                                type: 'text',
+                                value: 'Title',
+                            },
+                        ],
                     },
-                },
+                ],
             });
         });
 
@@ -171,14 +187,18 @@ describe('Block Markdown', () => {
             const parser = create();
             const result = (depth: any) => ({
                 type: 'root',
-                children: {
-                    type: 'heading',
-                    depth,
-                    children: {
-                        type: 'text',
-                        value: 'Title',
+                children: [
+                    {
+                        type: 'heading',
+                        depth,
+                        children: [
+                            {
+                                type: 'text',
+                                value: 'Title',
+                            },
+                        ],
                     },
-                },
+                ],
             });
 
             for (let i = 1; i < 7; i++) {
@@ -195,14 +215,18 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'heading',
-                    depth: 6,
-                    children: {
-                        type: 'text',
-                        value: '# Title',
+                children: [
+                    {
+                        type: 'heading',
+                        depth: 6,
+                        children: [
+                            {
+                                type: 'text',
+                                value: '# Title',
+                            },
+                        ],
                     },
-                },
+                ],
             });
         });
 
@@ -212,14 +236,18 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'heading',
-                    depth: 1,
-                    children: {
-                        type: 'text',
-                        value: 'Title',
+                children: [
+                    {
+                        type: 'heading',
+                        depth: 1,
+                        children: [
+                            {
+                                type: 'text',
+                                value: 'Title',
+                            },
+                        ],
                     },
-                },
+                ],
             });
         });
 
@@ -229,14 +257,18 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'heading',
-                    depth: 2,
-                    children: {
-                        type: 'text',
-                        value: 'Title',
+                children: [
+                    {
+                        type: 'heading',
+                        depth: 2,
+                        children: [
+                            {
+                                type: 'text',
+                                value: 'Title',
+                            },
+                        ],
                     },
-                },
+                ],
             });
         });
     });
@@ -248,16 +280,22 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'blockquote',
-                    children: {
-                        type: 'paragraph',
-                        children: {
-                            type: 'text',
-                            value: 'foobar',
-                        },
+                children: [
+                    {
+                        type: 'blockquote',
+                        children: [
+                            {
+                                type: 'paragraph',
+                                children: [
+                                    {
+                                        type: 'text',
+                                        value: 'foobar',
+                                    },
+                                ],
+                            },
+                        ],
                     },
-                },
+                ],
             });
         });
 
@@ -267,25 +305,31 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'blockquote',
-                    children: [
-                        {
-                            type: 'paragraph',
-                            children: {
-                                type: 'text',
-                                value: 'foo',
+                children: [
+                    {
+                        type: 'blockquote',
+                        children: [
+                            {
+                                type: 'paragraph',
+                                children: [
+                                    {
+                                        type: 'text',
+                                        value: 'foo',
+                                    },
+                                ],
                             },
-                        },
-                        {
-                            type: 'paragraph',
-                            children: {
-                                type: 'text',
-                                value: 'bar',
+                            {
+                                type: 'paragraph',
+                                children: [
+                                    {
+                                        type: 'text',
+                                        value: 'bar',
+                                    },
+                                ],
                             },
-                        },
-                    ],
-                },
+                        ],
+                    },
+                ],
             });
         });
 
@@ -295,19 +339,21 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'blockquote',
-                    children: [
-                        {
-                            type: 'code',
-                            value: 'git-cz',
-                        },
-                        {
-                            type: 'code',
-                            value: 'console.log(123)',
-                        },
-                    ],
-                },
+                children: [
+                    {
+                        type: 'blockquote',
+                        children: [
+                            {
+                                type: 'code',
+                                value: 'git-cz',
+                            },
+                            {
+                                type: 'code',
+                                value: 'console.log(123)',
+                            },
+                        ],
+                    },
+                ],
             });
         });
     });
@@ -319,13 +365,17 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'paragraph',
-                    children: {
-                        type: 'text',
-                        value: 'hello world',
+                children: [
+                    {
+                        type: 'paragraph',
+                        children: [
+                            {
+                                type: 'text',
+                                value: 'hello world',
+                            },
+                        ],
                     },
-                },
+                ],
             });
         });
 
@@ -335,13 +385,17 @@ describe('Block Markdown', () => {
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'paragraph',
-                    children: {
-                        type: 'text',
-                        value: 'hello world',
+                children: [
+                    {
+                        type: 'paragraph',
+                        children: [
+                            {
+                                type: 'text',
+                                value: 'hello world',
+                            },
+                        ],
                     },
-                },
+                ],
             });
         });
 
@@ -359,29 +413,35 @@ trololo`);
                     {
                         type: 'paragraph',
                         len: 7,
-                        children: {
-                            type: 'text',
-                            len: 5,
-                            value: 'hello',
-                        },
+                        children: [
+                            {
+                                type: 'text',
+                                len: 5,
+                                value: 'hello',
+                            },
+                        ],
                     },
                     {
                         type: 'paragraph',
                         len: 7,
-                        children: {
-                            type: 'text',
-                            len: 5,
-                            value: 'world',
-                        },
+                        children: [
+                            {
+                                type: 'text',
+                                len: 5,
+                                value: 'world',
+                            },
+                        ],
                     },
                     {
                         type: 'paragraph',
                         len: 7,
-                        children: {
-                            type: 'text',
-                            len: 7,
-                            value: 'trololo',
-                        },
+                        children: [
+                            {
+                                type: 'text',
+                                len: 7,
+                                value: 'trololo',
+                            },
+                        ],
                     },
                 ],
                 len: 21,
@@ -396,12 +456,14 @@ trololo`);
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'definition',
-                    identifier: 'alpha',
-                    title: null,
-                    url: 'http://example.com',
-                },
+                children: [
+                    {
+                        type: 'definition',
+                        identifier: 'alpha',
+                        title: null,
+                        url: 'http://example.com',
+                    },
+                ],
             });
         });
     });
@@ -413,17 +475,23 @@ trololo`);
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'footnoteDefinition',
-                    identifier: 'alpha',
-                    children: {
-                        type: 'paragraph',
-                        children: {
-                            type: 'text',
-                            value: 'foobar',
-                        },
+                children: [
+                    {
+                        type: 'footnoteDefinition',
+                        identifier: 'alpha',
+                        children: [
+                            {
+                                type: 'paragraph',
+                                children: [
+                                    {
+                                        type: 'text',
+                                        value: 'foobar',
+                                    },
+                                ],
+                            },
+                        ],
                     },
-                },
+                ],
             });
         });
 
@@ -433,26 +501,32 @@ trololo`);
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'footnoteDefinition',
-                    identifier: 'alpha',
-                    children: [
-                        {
-                            type: 'paragraph',
-                            children: {
-                                type: 'text',
-                                value: 'foo',
+                children: [
+                    {
+                        type: 'footnoteDefinition',
+                        identifier: 'alpha',
+                        children: [
+                            {
+                                type: 'paragraph',
+                                children: [
+                                    {
+                                        type: 'text',
+                                        value: 'foo',
+                                    },
+                                ],
                             },
-                        },
-                        {
-                            type: 'paragraph',
-                            children: {
-                                type: 'text',
-                                value: 'bar',
+                            {
+                                type: 'paragraph',
+                                children: [
+                                    {
+                                        type: 'text',
+                                        value: 'bar',
+                                    },
+                                ],
                             },
-                        },
-                    ],
-                },
+                        ],
+                    },
+                ],
             });
         });
     });
@@ -464,27 +538,35 @@ trololo`);
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'list',
-                    ordered: false,
-                    loose: false,
-                    len: 5,
-                    children: {
-                        type: 'listItem',
-                        checked: null,
+                children: [
+                    {
+                        type: 'list',
+                        ordered: false,
                         loose: false,
-                        children: {
-                            type: 'paragraph',
-                            len: 3,
-                            children: {
-                                type: 'text',
-                                len: 3,
-                                value: 'foo',
+                        len: 5,
+                        children: [
+                            {
+                                type: 'listItem',
+                                checked: null,
+                                loose: false,
+                                children: [
+                                    {
+                                        type: 'paragraph',
+                                        len: 3,
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 3,
+                                                value: 'foo',
+                                            },
+                                        ],
+                                    },
+                                ],
                             },
-                        },
+                        ],
+                        start: null,
                     },
-                    start: null,
-                },
+                ],
                 len: 5,
             });
         });
@@ -492,27 +574,35 @@ trololo`);
         it('supports all bullet markers', () => {
             const result = {
                 type: 'root',
-                children: {
-                    type: 'list',
-                    ordered: false,
-                    loose: false,
-                    len: 5,
-                    children: {
-                        type: 'listItem',
-                        checked: null,
+                children: [
+                    {
+                        type: 'list',
+                        ordered: false,
                         loose: false,
-                        children: {
-                            type: 'paragraph',
-                            len: 3,
-                            children: {
-                                type: 'text',
-                                len: 3,
-                                value: 'foo',
+                        len: 5,
+                        children: [
+                            {
+                                type: 'listItem',
+                                checked: null,
+                                loose: false,
+                                children: [
+                                    {
+                                        type: 'paragraph',
+                                        len: 3,
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 3,
+                                                value: 'foo',
+                                            },
+                                        ],
+                                    },
+                                ],
                             },
-                        },
+                        ],
+                        start: null,
                     },
-                    start: null,
-                },
+                ],
                 len: 5,
             };
 
@@ -529,27 +619,35 @@ trololo`);
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'list',
-                    ordered: true,
-                    loose: false,
-                    len: 6,
-                    children: {
-                        type: 'listItem',
-                        checked: null,
+                children: [
+                    {
+                        type: 'list',
+                        ordered: true,
                         loose: false,
-                        children: {
-                            type: 'paragraph',
-                            len: 3,
-                            children: {
-                                type: 'text',
-                                len: 3,
-                                value: 'foo',
+                        len: 6,
+                        children: [
+                            {
+                                type: 'listItem',
+                                checked: null,
+                                loose: false,
+                                children: [
+                                    {
+                                        type: 'paragraph',
+                                        len: 3,
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 3,
+                                                value: 'foo',
+                                            },
+                                        ],
+                                    },
+                                ],
                             },
-                        },
+                        ],
+                        start: 1,
                     },
-                    start: 1,
-                },
+                ],
                 len: 6,
             });
         });
@@ -560,38 +658,46 @@ trololo`);
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'list',
-                    len: 12,
-                    children: {
-                        type: 'listItem',
-                        loose: true,
-                        checked: null,
+                children: [
+                    {
+                        type: 'list',
+                        len: 12,
                         children: [
                             {
-                                type: 'paragraph',
-                                len: 5,
-                                children: {
-                                    type: 'text',
-                                    len: 3,
-                                    value: 'foo',
-                                },
-                            },
-                            {
-                                type: 'paragraph',
-                                len: 3,
-                                children: {
-                                    type: 'text',
-                                    len: 3,
-                                    value: 'bar',
-                                },
+                                type: 'listItem',
+                                loose: true,
+                                checked: null,
+                                children: [
+                                    {
+                                        type: 'paragraph',
+                                        len: 5,
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 3,
+                                                value: 'foo',
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        type: 'paragraph',
+                                        len: 3,
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 3,
+                                                value: 'bar',
+                                            },
+                                        ],
+                                    },
+                                ],
                             },
                         ],
+                        ordered: false,
+                        start: null,
+                        loose: true,
                     },
-                    ordered: false,
-                    start: null,
-                    loose: true,
-                },
+                ],
                 len: 12,
             });
         });
@@ -602,57 +708,71 @@ trololo`);
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'list',
-                    len: 17,
-                    children: [
-                        {
-                            type: 'listItem',
-                            loose: false,
-                            checked: null,
-                            children: {
-                                type: 'paragraph',
-                                len: 3,
-                                children: {
-                                    type: 'text',
-                                    len: 3,
-                                    value: 'foo',
-                                },
+                children: [
+                    {
+                        type: 'list',
+                        len: 17,
+                        children: [
+                            {
+                                type: 'listItem',
+                                loose: false,
+                                checked: null,
+                                children: [
+                                    {
+                                        type: 'paragraph',
+                                        len: 3,
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 3,
+                                                value: 'foo',
+                                            },
+                                        ],
+                                    },
+                                ],
                             },
-                        },
-                        {
-                            type: 'listItem',
-                            loose: false,
-                            checked: null,
-                            children: {
-                                type: 'paragraph',
-                                len: 3,
-                                children: {
-                                    type: 'text',
-                                    len: 3,
-                                    value: 'bar',
-                                },
+                            {
+                                type: 'listItem',
+                                loose: false,
+                                checked: null,
+                                children: [
+                                    {
+                                        type: 'paragraph',
+                                        len: 3,
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 3,
+                                                value: 'bar',
+                                            },
+                                        ],
+                                    },
+                                ],
                             },
-                        },
-                        {
-                            type: 'listItem',
-                            loose: false,
-                            checked: null,
-                            children: {
-                                type: 'paragraph',
-                                len: 3,
-                                children: {
-                                    type: 'text',
-                                    len: 3,
-                                    value: 'baz',
-                                },
+                            {
+                                type: 'listItem',
+                                loose: false,
+                                checked: null,
+                                children: [
+                                    {
+                                        type: 'paragraph',
+                                        len: 3,
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 3,
+                                                value: 'baz',
+                                            },
+                                        ],
+                                    },
+                                ],
                             },
-                        },
-                    ],
-                    ordered: false,
-                    start: null,
-                    loose: false,
-                },
+                        ],
+                        ordered: false,
+                        start: null,
+                        loose: false,
+                    },
+                ],
                 len: 17,
             });
         });
@@ -663,73 +783,89 @@ trololo`);
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'list',
-                    len: 26,
-                    children: {
-                        type: 'listItem',
-                        loose: false,
-                        checked: null,
+                children: [
+                    {
+                        type: 'list',
+                        len: 26,
                         children: [
                             {
-                                type: 'paragraph',
-                                len: 4,
-                                children: {
-                                    type: 'text',
-                                    len: 3,
-                                    value: 'foo',
-                                },
-                            },
-                            {
-                                type: 'list',
-                                len: 13,
-                                children: {
-                                    type: 'listItem',
-                                    loose: false,
-                                    checked: null,
-                                    children: [
-                                        {
-                                            type: 'paragraph',
-                                            len: 4,
-                                            children: {
+                                type: 'listItem',
+                                loose: false,
+                                checked: null,
+                                children: [
+                                    {
+                                        type: 'paragraph',
+                                        len: 4,
+                                        children: [
+                                            {
                                                 type: 'text',
                                                 len: 3,
-                                                value: 'bar',
+                                                value: 'foo',
                                             },
-                                        },
-                                        {
-                                            type: 'list',
-                                            len: 5,
-                                            children: {
+                                        ],
+                                    },
+                                    {
+                                        type: 'list',
+                                        len: 13,
+                                        children: [
+                                            {
                                                 type: 'listItem',
                                                 loose: false,
                                                 checked: null,
-                                                children: {
-                                                    type: 'paragraph',
-                                                    len: 3,
-                                                    children: {
-                                                        type: 'text',
-                                                        len: 3,
-                                                        value: 'baz',
+                                                children: [
+                                                    {
+                                                        type: 'paragraph',
+                                                        len: 4,
+                                                        children: [
+                                                            {
+                                                                type: 'text',
+                                                                len: 3,
+                                                                value: 'bar',
+                                                            },
+                                                        ],
                                                     },
-                                                },
+                                                    {
+                                                        type: 'list',
+                                                        len: 5,
+                                                        children: [
+                                                            {
+                                                                type: 'listItem',
+                                                                loose: false,
+                                                                checked: null,
+                                                                children: [
+                                                                    {
+                                                                        type: 'paragraph',
+                                                                        len: 3,
+                                                                        children: [
+                                                                            {
+                                                                                type: 'text',
+                                                                                len: 3,
+                                                                                value: 'baz',
+                                                                            },
+                                                                        ],
+                                                                    },
+                                                                ],
+                                                            },
+                                                        ],
+                                                        ordered: false,
+                                                        start: null,
+                                                        loose: false,
+                                                    },
+                                                ],
                                             },
-                                            ordered: false,
-                                            start: null,
-                                            loose: false,
-                                        },
-                                    ],
-                                },
-                                ordered: false,
-                                start: null,
-                                loose: false,
+                                        ],
+                                        ordered: false,
+                                        start: null,
+                                        loose: false,
+                                    },
+                                ],
                             },
                         ],
+                        ordered: false,
+                        start: null,
+                        loose: false,
                     },
-                    ordered: false,
-                    start: null,
-                    loose: false,
-                },
+                ],
                 len: 26,
             });
         });
@@ -746,43 +882,51 @@ trololo`);
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'table',
-                    len: 55,
-                    children: [
-                        {
-                            type: 'tableRow',
-                            children: [
-                                {
-                                    type: 'tableCell',
-                                    children: {
-                                        type: 'text',
-                                        len: 5,
-                                        value: 'Table',
+                children: [
+                    {
+                        type: 'table',
+                        len: 55,
+                        children: [
+                            {
+                                type: 'tableRow',
+                                children: [
+                                    {
+                                        type: 'tableCell',
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 5,
+                                                value: 'Table',
+                                            },
+                                        ],
                                     },
-                                },
-                            ],
-                        },
-                        {
-                            type: 'tableRow',
-                            children: [
-                                {
-                                    type: 'tableCell',
-                                    children: {
-                                        type: 'emphasis',
-                                        len: 7,
-                                        children: {
-                                            type: 'text',
-                                            len: 5,
-                                            value: 'hello',
-                                        },
+                                ],
+                            },
+                            {
+                                type: 'tableRow',
+                                children: [
+                                    {
+                                        type: 'tableCell',
+                                        children: [
+                                            {
+                                                type: 'emphasis',
+                                                len: 7,
+                                                children: [
+                                                    {
+                                                        type: 'text',
+                                                        len: 5,
+                                                        value: 'hello',
+                                                    },
+                                                ],
+                                            },
+                                        ],
                                     },
-                                },
-                            ],
-                        },
-                    ],
-                    align: [null],
-                },
+                                ],
+                            },
+                        ],
+                        align: [null],
+                    },
+                ],
                 len: 55,
             });
         });
@@ -798,100 +942,120 @@ trololo`);
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {
-                    type: 'table',
-                    len: 167,
-                    children: [
-                        {
-                            type: 'tableRow',
-                            children: [
-                                {
-                                    type: 'tableCell',
-                                    children: {
-                                        type: 'text',
-                                        len: 6,
-                                        value: 'Tables',
+                children: [
+                    {
+                        type: 'table',
+                        len: 167,
+                        children: [
+                            {
+                                type: 'tableRow',
+                                children: [
+                                    {
+                                        type: 'tableCell',
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 6,
+                                                value: 'Tables',
+                                            },
+                                        ],
                                     },
-                                },
-                                {
-                                    type: 'tableCell',
-                                    children: {
-                                        type: 'text',
-                                        len: 3,
-                                        value: 'Are',
+                                    {
+                                        type: 'tableCell',
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 3,
+                                                value: 'Are',
+                                            },
+                                        ],
                                     },
-                                },
-                                {
-                                    type: 'tableCell',
-                                    children: {
-                                        type: 'text',
-                                        len: 4,
-                                        value: 'Cool',
+                                    {
+                                        type: 'tableCell',
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 4,
+                                                value: 'Cool',
+                                            },
+                                        ],
                                     },
-                                },
-                            ],
-                        },
-                        {
-                            type: 'tableRow',
-                            children: [
-                                {
-                                    type: 'tableCell',
-                                    children: {
-                                        type: 'text',
-                                        len: 13,
-                                        value: 'zebra stripes',
+                                ],
+                            },
+                            {
+                                type: 'tableRow',
+                                children: [
+                                    {
+                                        type: 'tableCell',
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 13,
+                                                value: 'zebra stripes',
+                                            },
+                                        ],
                                     },
-                                },
-                                {
-                                    type: 'tableCell',
-                                    children: {
-                                        type: 'text',
-                                        len: 8,
-                                        value: 'are neat',
+                                    {
+                                        type: 'tableCell',
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 8,
+                                                value: 'are neat',
+                                            },
+                                        ],
                                     },
-                                },
-                                {
-                                    type: 'tableCell',
-                                    children: {
-                                        type: 'text',
-                                        len: 2,
-                                        value: '$1',
+                                    {
+                                        type: 'tableCell',
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 2,
+                                                value: '$1',
+                                            },
+                                        ],
                                     },
-                                },
-                            ],
-                        },
-                        {
-                            type: 'tableRow',
-                            children: [
-                                {
-                                    type: 'tableCell',
-                                    children: {
-                                        type: 'text',
-                                        len: 13,
-                                        value: 'zebra stripes',
+                                ],
+                            },
+                            {
+                                type: 'tableRow',
+                                children: [
+                                    {
+                                        type: 'tableCell',
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 13,
+                                                value: 'zebra stripes',
+                                            },
+                                        ],
                                     },
-                                },
-                                {
-                                    type: 'tableCell',
-                                    children: {
-                                        type: 'text',
-                                        len: 10,
-                                        value: 'are neat 2',
+                                    {
+                                        type: 'tableCell',
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 10,
+                                                value: 'are neat 2',
+                                            },
+                                        ],
                                     },
-                                },
-                                {
-                                    type: 'tableCell',
-                                    children: {
-                                        type: 'text',
-                                        len: 2,
-                                        value: '$2',
+                                    {
+                                        type: 'tableCell',
+                                        children: [
+                                            {
+                                                type: 'text',
+                                                len: 2,
+                                                value: '$2',
+                                            },
+                                        ],
                                     },
-                                },
-                            ],
-                        },
-                    ],
-                    align: [null, 'center', 'right'],
-                },
+                                ],
+                            },
+                        ],
+                        align: [null, 'center', 'right'],
+                    },
+                ],
                 len: 167,
             });
         });
@@ -904,7 +1068,7 @@ trololo`);
 
             expect(ast).toMatchObject({
                 type: 'root',
-                children: {type: 'html', len: 17, value: '<div>foobar</div>'},
+                children: [{type: 'html', len: 17, value: '<div>foobar</div>'}],
                 len: 17,
             });
         });
@@ -916,22 +1080,28 @@ trololo`);
 
         expect(ast).toMatchObject({
             type: 'root',
-            children: {
-                type: 'paragraph',
-                raw: '*asdf*',
-                len: 6,
-                children: {
-                    type: 'emphasis',
+            children: [
+                {
+                    type: 'paragraph',
                     raw: '*asdf*',
                     len: 6,
-                    children: {
-                        type: 'text',
-                        raw: 'asdf',
-                        len: 4,
-                        value: 'asdf',
-                    },
+                    children: [
+                        {
+                            type: 'emphasis',
+                            raw: '*asdf*',
+                            len: 6,
+                            children: [
+                                {
+                                    type: 'text',
+                                    raw: 'asdf',
+                                    len: 4,
+                                    value: 'asdf',
+                                },
+                            ],
+                        },
+                    ],
                 },
-            },
+            ],
             len: 6,
         });
     });

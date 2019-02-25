@@ -10,12 +10,12 @@
                     "type": "linkReference",
                     "raw": "[test1][test11]",
                     "len": 15,
-                    "children": {
+                    "children": [{
                         "type": "text",
                         "raw": "test1",
                         "len": 5,
                         "value": "test1"
-                    },
+                    }],
                     "identifier": "test11",
                     "referenceType": "full"
                 },
@@ -29,12 +29,12 @@
                     "type": "linkReference",
                     "raw": "[test2][]",
                     "len": 9,
-                    "children": {
+                    "children": [{
                         "type": "text",
                         "raw": "test2",
                         "len": 5,
                         "value": "test2"
-                    },
+                    }],
                     "identifier": "test2",
                     "referenceType": "collapsed"
                 },
@@ -48,12 +48,12 @@
                     "type": "linkReference",
                     "raw": "[test3]",
                     "len": 7,
-                    "children": {
+                    "children": [{
                         "type": "text",
                         "raw": "test3",
                         "len": 5,
                         "value": "test3"
-                    },
+                    }],
                     "identifier": "test3",
                     "referenceType": "shortcut"
                 },

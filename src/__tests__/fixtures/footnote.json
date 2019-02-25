@@ -31,17 +31,17 @@
             "type": "footnoteDefinition",
             "raw": "[^somesamplefootnote]: Here is the text of the footnote itself.\n\n",
             "len": 65,
-            "children": {
+            "children": [{
                 "type": "paragraph",
                 "raw": "Here is the text of the footnote itself.\n\n",
                 "len": 42,
-                "children": {
+                "children": [{
                     "type": "text",
                     "raw": "Here is the text of the footnote itself.",
                     "len": 40,
                     "value": "Here is the text of the footnote itself."
-                }
-            },
+                }]
+            }],
             "identifier": "somesamplefootnote"
         },
         {
@@ -60,12 +60,12 @@
                     "type": "linkReference",
                     "raw": "[paragraph][]",
                     "len": 13,
-                    "children": {
+                    "children": [{
                         "type": "text",
                         "raw": "paragraph",
                         "len": 9,
                         "value": "paragraph"
-                    },
+                    }],
                     "identifier": "paragraph",
                     "referenceType": "collapsed"
                 },
@@ -111,12 +111,12 @@
                             "type": "strong",
                             "raw": "**final**",
                             "len": 9,
-                            "children": {
+                            "children": [{
                                 "type": "text",
                                 "raw": "final",
                                 "len": 5,
                                 "value": "final"
-                            }
+                            }]
                         },
                         {
                             "type": "text",
@@ -141,12 +141,12 @@
                             "type": "linkReference",
                             "raw": "[paragraph][]",
                             "len": 13,
-                            "children": {
+                            "children": [{
                                 "type": "text",
                                 "raw": "paragraph",
                                 "len": 9,
                                 "value": "paragraph"
-                            },
+                            }],
                             "identifier": "paragraph",
                             "referenceType": "collapsed"
                         },

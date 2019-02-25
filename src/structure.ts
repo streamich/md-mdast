@@ -8,7 +8,7 @@ export interface DocumentFootnotes {
     [id: string]: number;
 }
 
-export type TNode = (IRoot | TAnyToken) & {children?: null | number | number[]};
+export type TNode = (IRoot | TAnyToken) & {children?: number[]};
 
 export interface Document {
     nodes: TNode[];
@@ -38,12 +38,11 @@ export const structure: Structure = mdast => {
 
         if (token.children) {
             if (token.children instanceof Array) {
-                const children = token.children.map(traverse).filter(i => i > -1);
-                node.children = children.length > 1 ? children : children[0];
+                node.children = (token.children as any).map(traverse).filter((i: number) => i > -1);
             } else {
                 const childIndex = traverse(token.children);
                 if (childIndex > -1) {
-                    node.children = childIndex;
+                    node.children = [childIndex] as any;
                 }
             }
         }

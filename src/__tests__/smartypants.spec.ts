@@ -5,7 +5,7 @@ const check = (name: any, src: any, out: any) =>
         const parser = create();
         const ast = parser.tokenizeInline(src);
 
-        expect(ast).toMatchObject({type: 'text', value: out});
+        expect(ast).toMatchObject([{type: 'text', value: out}]);
     });
 
 describe('smartypants', () => {

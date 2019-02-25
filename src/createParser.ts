@@ -7,13 +7,6 @@ export const token = <T extends TAnyToken>(
     children?: any,
     overrides?: Partial<TAnyToken>
 ): T => {
-    if (children instanceof Array) {
-        if (children.length === 1) {
-            // tslint:disable no-parameter-reassignment
-            children = children[0];
-        }
-    }
-
     const tok = {
         type,
         raw: value,
@@ -98,7 +91,7 @@ const createParser = ({inline, block}: IcreateParserOptions) => {
     const parser: IParser = {} as IParser;
 
     parser.tokenizeInline = (value: string) => {
-        let tokens = loop(parser, first(inline), value);
+        const tokens = loop(parser, first(inline), value);
 
         if (!tokens) {
             return;
@@ -128,9 +121,7 @@ const createParser = ({inline, block}: IcreateParserOptions) => {
             }
         }
 
-        tokens = merged;
-
-        return tokens.length === 1 ? tokens[0] : tokens;
+        return merged;
     };
 
     parser.tokenizeBlock = (value: string) => {
@@ -150,7 +141,7 @@ const createParser = ({inline, block}: IcreateParserOptions) => {
 
         return {
             type: 'root',
-            children: children.length > 1 ? children : children[0],
+            children,
             len: value.length,
         } as IRoot;
     };
@@ -168,12 +159,6 @@ const createParser = ({inline, block}: IcreateParserOptions) => {
 
         if (!children) {
             return children;
-        }
-
-        if (children instanceof Array) {
-            if (children.length === 1) {
-                return children[0];
-            }
         }
 
         return children;

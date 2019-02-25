@@ -1,5 +1,5 @@
 /* tslint:disable only-arrow-functions, no-invalid-this */
-import {TTokenizer, ILinkReference, IImageReference} from '../types';
+import {TTokenizer, ILinkReference, IImageReference, TAnyToken} from '../types';
 import {replace, label} from '../regex';
 
 const REG = replace(/^!?\[(label)\]\s*(\[([^\]]*)\])?/, {label});
@@ -13,7 +13,7 @@ const reference: TTokenizer<ILinkReference | IImageReference> = function(eat, va
         const type = isImage ? 'imageReference' : 'linkReference';
         let identifier = matches[3];
         let referenceType: 'shortcut' | 'collapsed' | 'full' = 'full';
-        let children = void 0;
+        let children: undefined | TAnyToken[] = void 0;
 
         if (!identifier) {
             identifier = matches[1];

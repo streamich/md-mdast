@@ -7,11 +7,13 @@ describe('Fenced code block', () => {
 
         expect(ast).toMatchObject({
             type: 'root',
-            children: {
-                type: 'code',
-                value: 'git status',
-                lang: '',
-            },
+            children: [
+                {
+                    type: 'code',
+                    value: 'git status',
+                    lang: '',
+                },
+            ],
         });
     });
 
@@ -21,11 +23,13 @@ describe('Fenced code block', () => {
 
         expect(ast).toMatchObject({
             type: 'root',
-            children: {
-                type: 'code',
-                value: '$ git status\n    Loading...',
-                lang: '',
-            },
+            children: [
+                {
+                    type: 'code',
+                    value: '$ git status\n    Loading...',
+                    lang: '',
+                },
+            ],
         });
     });
 
@@ -35,11 +39,13 @@ describe('Fenced code block', () => {
 
         expect(ast).toMatchObject({
             type: 'root',
-            children: {
-                type: 'code',
-                value: '$ git status\n    Loading...',
-                lang: 'js',
-            },
+            children: [
+                {
+                    type: 'code',
+                    value: '$ git status\n    Loading...',
+                    lang: 'js',
+                },
+            ],
         });
     });
 
@@ -49,12 +55,14 @@ describe('Fenced code block', () => {
 
         expect(ast).toMatchObject({
             type: 'root',
-            children: {
-                type: 'code',
-                value: '$ git status\n    Loading...',
-                lang: 'js',
-                meta: '{foo: "bar"}',
-            },
+            children: [
+                {
+                    type: 'code',
+                    value: '$ git status\n    Loading...',
+                    lang: 'js',
+                    meta: '{foo: "bar"}',
+                },
+            ],
         });
     });
 });
