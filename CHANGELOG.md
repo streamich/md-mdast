@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/streamich/md-mdast/compare/v3.0.0...v3.1.0) (2019-02-25)
+
+
+### Features
+
+* 🎸 remove raw, leave it only for tests ([b4f29cf](https://github.com/streamich/md-mdast/commit/b4f29cf))
+
 # [3.0.0](https://github.com/streamich/md-mdast/compare/v2.2.0...v3.0.0) (2019-02-25)
 
 
