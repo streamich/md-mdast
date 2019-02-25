@@ -1,5 +1,7 @@
 import {TTokenizer, TAnyToken, TTokenType, TEat, IParser, IText, TInlineToken, TBlockToken, IRoot} from './types';
 
+const isTest = process.env.NODE_ENV === 'test';
+
 // tslint:disable no-any
 export const token = <T extends TAnyToken>(
     value: string,
@@ -9,9 +11,12 @@ export const token = <T extends TAnyToken>(
 ): T => {
     const tok = {
         type,
-        raw: value,
         len: value.length,
     } as T;
+
+    if (isTest) {
+        tok.raw = value;
+    }
 
     if (children) {
         tok.children = children;

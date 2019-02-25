@@ -3,12 +3,10 @@
   "children": [
     {
       "type": "paragraph",
-      "raw": "You are thinking about select style dropdowns. There are also context menus opened from buttons. e.g. A triple dot menu. For these the menu items most definitely are focused.\n",
       "len": 175,
       "children": [
         {
           "type": "text",
-          "raw": "You are thinking about select style dropdowns. There are also context menus opened from buttons. e.g. A triple dot menu. For these the menu items most definitely are focused.",
           "len": 174,
           "value": "You are thinking about select style dropdowns. There are also context menus opened from buttons. e.g. A triple dot menu. For these the menu items most definitely are focused."
         }
