@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/streamich/md-mdast/compare/v2.2.0...v3.0.0) (2019-02-25)
+
+
+### Features
+
+* 🎸 make children prop always an array ([e100d01](https://github.com/streamich/md-mdast/commit/e100d01))
+
+
+### BREAKING CHANGES
+
+* children are now always Array
+
 # [2.2.0](https://github.com/streamich/md-mdast/compare/v2.1.0...v2.2.0) (2019-02-24)
 
 
