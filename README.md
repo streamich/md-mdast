@@ -20,7 +20,6 @@ const {create} = require('md-mdast');
 const parser = create();
 
 console.log(parser.tokenizeBlock('*hello* __world__'));
-console.log(parser.tokenizeInline('*hello* __world__'));
 ```
 
 Result:
@@ -42,16 +41,6 @@ Result:
             len: 9,
             children: [ { type: 'text', raw: 'world', len: 5, value: 'world' } ] } ] } ],
   len: 17 }
-
-[ { type: 'emphasis',
-    raw: '*hello*',
-    len: 7,
-    children: [ { type: 'text', raw: 'hello', len: 5, value: 'hello' } ] },
-  { type: 'text', raw: ' ', len: 1, value: ' ' },
-  { type: 'strong',
-    raw: '__world__',
-    len: 9,
-    children: [ { type: 'text', raw: 'world', len: 5, value: 'world' } ] } ]
 ```
 
 ## License
