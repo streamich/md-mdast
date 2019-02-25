@@ -44,8 +44,8 @@ const table: TTokenizer<ITable> = function(eat, value) {
                     ? 'center'
                     : 'left'
                 : spec[spec.length - 1] === ':'
-                    ? 'right'
-                    : null;
+                ? 'right'
+                : null;
         });
     const rows = matches[3] ? matches[3].replace(/(?: *\| *)?\n$/, '').split('\n') : [];
     const children: ITableRow[] = [];

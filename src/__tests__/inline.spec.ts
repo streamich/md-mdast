@@ -34,7 +34,7 @@ describe('Inline Markdown', () => {
             {
                 type: 'mark',
                 len: 10,
-                children: {type: 'text', len: 6, value: 'really'},
+                children: [{type: 'text', len: 6, value: 'really'}],
             },
             {type: 'text', len: 11, value: ' want this!'},
         ]);
@@ -45,22 +45,26 @@ describe('Inline Markdown', () => {
             const parser = create();
             const ast = parser.tokenizeInline('[me](http://example.com)');
 
-            expect(ast).toMatchObject({
-                type: 'link',
-                len: 24,
-                children: {type: 'text', len: 2, value: 'me'},
-                url: 'http://example.com',
-            });
+            expect(ast).toMatchObject([
+                {
+                    type: 'link',
+                    len: 24,
+                    children: [{type: 'text', len: 2, value: 'me'}],
+                    url: 'http://example.com',
+                },
+            ]);
         });
 
         test('with title', () => {
-            const result = {
-                type: 'link',
-                len: 34,
-                children: {type: 'text', len: 2, value: 'me'},
-                url: 'http://example.com',
-                title: 'foo bar',
-            };
+            const result = [
+                {
+                    type: 'link',
+                    len: 34,
+                    children: [{type: 'text', len: 2, value: 'me'}],
+                    url: 'http://example.com',
+                    title: 'foo bar',
+                },
+            ];
             const parser = create();
 
             expect(parser.tokenizeInline("[me](http://example.com 'foo bar')")).toMatchObject(result);
@@ -73,7 +77,7 @@ describe('Inline Markdown', () => {
 
             expect(ast).toMatchObject([
                 {type: 'text', len: 6, value: 'Click '},
-                {type: 'link', len: 24, children: {type: 'text', len: 2, value: 'me'}, url: 'http://example.com'},
+                {type: 'link', len: 24, children: [{type: 'text', len: 2, value: 'me'}], url: 'http://example.com'},
                 {type: 'text', len: 1, value: '!'},
             ]);
         });
@@ -96,11 +100,13 @@ describe('Inline Markdown', () => {
                         {
                             type: 'mark',
                             len: 14,
-                            children: {
-                                type: 'text',
-                                len: 10,
-                                value: 'higlighted',
-                            },
+                            children: [
+                                {
+                                    type: 'text',
+                                    len: 10,
+                                    value: 'higlighted',
+                                },
+                            ],
                         },
                         {
                             type: 'text',
@@ -129,25 +135,29 @@ describe('Inline Markdown', () => {
             const parser = create();
             const ast = parser.tokenizeInline('![me](http://example.com)');
 
-            expect(ast).toMatchObject({
-                type: 'image',
-                len: 25,
-                url: 'http://example.com',
-                alt: 'me',
-            });
+            expect(ast).toMatchObject([
+                {
+                    type: 'image',
+                    len: 25,
+                    url: 'http://example.com',
+                    alt: 'me',
+                },
+            ]);
         });
 
         test('with title', () => {
             const parser = create();
             const ast = parser.tokenizeInline('![me](http://example.com "title goes here")');
 
-            expect(ast).toMatchObject({
-                type: 'image',
-                len: 43,
-                url: 'http://example.com',
-                alt: 'me',
-                title: 'title goes here',
-            });
+            expect(ast).toMatchObject([
+                {
+                    type: 'image',
+                    len: 43,
+                    url: 'http://example.com',
+                    alt: 'me',
+                    title: 'title goes here',
+                },
+            ]);
         });
     });
 
@@ -179,13 +189,13 @@ describe('Inline Markdown', () => {
             {
                 type: 'emphasis',
                 len: 7,
-                children: {type: 'text', len: 5, value: 'world'},
+                children: [{type: 'text', len: 5, value: 'world'}],
             },
             {type: 'text', len: 2, value: '! '},
             {
                 type: 'emphasis',
                 len: 4,
-                children: {type: 'text', len: 2, value: 'OK'},
+                children: [{type: 'text', len: 2, value: 'OK'}],
             },
         ];
 
@@ -210,13 +220,13 @@ describe('Inline Markdown', () => {
             {
                 type: 'strong',
                 len: 9,
-                children: {type: 'text', len: 5, value: 'world'},
+                children: [{type: 'text', len: 5, value: 'world'}],
             },
             {type: 'text', len: 2, value: '! '},
             {
                 type: 'strong',
                 len: 6,
-                children: {type: 'text', len: 2, value: 'OK'},
+                children: [{type: 'text', len: 2, value: 'OK'}],
             },
         ];
 
@@ -242,19 +252,19 @@ describe('Inline Markdown', () => {
                 {
                     type: 'emphasis',
                     len: 5,
-                    children: {type: 'text', len: 3, value: 'em1'},
+                    children: [{type: 'text', len: 3, value: 'em1'}],
                 },
                 {type: 'text', len: 1, value: ' '},
                 {
                     type: 'strong',
                     len: 10,
-                    children: {type: 'text', len: 6, value: 'strong'},
+                    children: [{type: 'text', len: 6, value: 'strong'}],
                 },
                 {type: 'text', len: 1, value: ' '},
                 {
                     type: 'emphasis',
                     len: 5,
-                    children: {type: 'text', len: 3, value: 'em2'},
+                    children: [{type: 'text', len: 3, value: 'em2'}],
                 },
             ]);
         });
@@ -263,52 +273,60 @@ describe('Inline Markdown', () => {
             const parser = create();
             const ast = parser.tokenizeInline('*italic __bold__*');
 
-            expect(ast).toMatchObject({
-                type: 'emphasis',
-                len: 17,
-                children: [
-                    {
-                        type: 'text',
-                        len: 7,
-                        value: 'italic ',
-                    },
-                    {
-                        type: 'strong',
-                        len: 8,
-                        children: {
+            expect(ast).toMatchObject([
+                {
+                    type: 'emphasis',
+                    len: 17,
+                    children: [
+                        {
                             type: 'text',
-                            len: 4,
-                            value: 'bold',
+                            len: 7,
+                            value: 'italic ',
                         },
-                    },
-                ],
-            });
+                        {
+                            type: 'strong',
+                            len: 8,
+                            children: [
+                                {
+                                    type: 'text',
+                                    len: 4,
+                                    value: 'bold',
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ]);
         });
 
         test('italic inside bold', () => {
             const parser = create();
             const ast = parser.tokenizeInline('**bold _italic_**');
 
-            expect(ast).toMatchObject({
-                type: 'strong',
-                len: 17,
-                children: [
-                    {
-                        type: 'text',
-                        len: 5,
-                        value: 'bold ',
-                    },
-                    {
-                        type: 'emphasis',
-                        len: 8,
-                        children: {
+            expect(ast).toMatchObject([
+                {
+                    type: 'strong',
+                    len: 17,
+                    children: [
+                        {
                             type: 'text',
-                            len: 6,
-                            value: 'italic',
+                            len: 5,
+                            value: 'bold ',
                         },
-                    },
-                ],
-            });
+                        {
+                            type: 'emphasis',
+                            len: 8,
+                            children: [
+                                {
+                                    type: 'text',
+                                    len: 6,
+                                    value: 'italic',
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ]);
         });
     });
 
@@ -317,32 +335,42 @@ describe('Inline Markdown', () => {
             const parser = create();
             const ast = parser.tokenizeInline('~~123~~');
 
-            expect(ast).toMatchObject({
-                type: 'delete',
-                children: {
-                    type: 'text',
-                    value: '123',
+            expect(ast).toMatchObject([
+                {
+                    type: 'delete',
+                    children: [
+                        {
+                            type: 'text',
+                            value: '123',
+                        },
+                    ],
                 },
-            });
+            ]);
         });
 
         test('parses inline text', () => {
             const parser = create();
             const ast = parser.tokenizeInline('~~*1*~~');
 
-            expect(ast).toMatchObject({
-                type: 'delete',
-                len: 7,
-                children: {
-                    type: 'emphasis',
-                    len: 3,
-                    children: {
-                        type: 'text',
-                        len: 1,
-                        value: '1',
-                    },
+            expect(ast).toMatchObject([
+                {
+                    type: 'delete',
+                    len: 7,
+                    children: [
+                        {
+                            type: 'emphasis',
+                            len: 3,
+                            children: [
+                                {
+                                    type: 'text',
+                                    len: 1,
+                                    value: '1',
+                                },
+                            ],
+                        },
+                    ],
                 },
-            });
+            ]);
         });
     });
 
@@ -351,10 +379,12 @@ describe('Inline Markdown', () => {
             const parser = create();
             const ast = parser.tokenizeInline('$$1+1$$');
 
-            expect(ast).toMatchObject({
-                type: 'inlineMath',
-                value: '1+1',
-            });
+            expect(ast).toMatchObject([
+                {
+                    type: 'inlineMath',
+                    value: '1+1',
+                },
+            ]);
         });
 
         test('in text', () => {
@@ -372,11 +402,13 @@ describe('Inline Markdown', () => {
             const parser = create();
             const ast = parser.tokenizeInline('*$$123$$*');
 
-            expect(ast).toMatchObject({
-                type: 'emphasis',
-                len: 9,
-                children: {type: 'inlineMath', len: 7, value: '123'},
-            });
+            expect(ast).toMatchObject([
+                {
+                    type: 'emphasis',
+                    len: 9,
+                    children: [{type: 'inlineMath', len: 7, value: '123'}],
+                },
+            ]);
         });
     });
 
@@ -385,10 +417,12 @@ describe('Inline Markdown', () => {
             const parser = create();
             const ast = parser.tokenizeInline('[^1]');
 
-            expect(ast).toMatchObject({
-                type: 'footnoteReference',
-                value: '1',
-            });
+            expect(ast).toMatchObject([
+                {
+                    type: 'footnoteReference',
+                    value: '1',
+                },
+            ]);
         });
 
         test('end of sentence', () => {
@@ -407,13 +441,15 @@ describe('Inline Markdown', () => {
             const parser = create();
             const ast = parser.tokenizeInline('[1][2]');
 
-            expect(ast).toMatchObject({
-                type: 'linkReference',
-                len: 6,
-                children: {type: 'text', len: 1, value: '1'},
-                identifier: '2',
-                referenceType: 'full',
-            });
+            expect(ast).toMatchObject([
+                {
+                    type: 'linkReference',
+                    len: 6,
+                    children: [{type: 'text', len: 1, value: '1'}],
+                    identifier: '2',
+                    referenceType: 'full',
+                },
+            ]);
         });
 
         test('full and collapsed', () => {
@@ -425,7 +461,7 @@ describe('Inline Markdown', () => {
                 {
                     type: 'linkReference',
                     len: 14,
-                    children: {type: 'text', len: 4, value: 'this'},
+                    children: [{type: 'text', len: 4, value: 'this'}],
                     identifier: 'link-1',
                     referenceType: 'full',
                 },
@@ -433,7 +469,7 @@ describe('Inline Markdown', () => {
                 {
                     type: 'linkReference',
                     len: 7,
-                    children: {type: 'text', len: 3, value: 'foo'},
+                    children: [{type: 'text', len: 3, value: 'foo'}],
                     identifier: 'foo',
                     referenceType: 'collapsed',
                 },
@@ -447,10 +483,12 @@ describe('Inline Markdown', () => {
             const parser = create();
             const ast = parser.tokenizeInline('http://google.com');
 
-            expect(ast).toMatchObject({
-                type: 'inlineLink',
-                value: 'http://google.com',
-            });
+            expect(ast).toMatchObject([
+                {
+                    type: 'inlineLink',
+                    value: 'http://google.com',
+                },
+            ]);
         });
 
         test('finds link in text', () => {
@@ -470,13 +508,17 @@ describe('Inline Markdown', () => {
             const parser = create();
             const ast = parser.tokenizeInline('^foo^');
 
-            expect(ast).toMatchObject({
-                type: 'sup',
-                children: {
-                    type: 'text',
-                    value: 'foo',
+            expect(ast).toMatchObject([
+                {
+                    type: 'sup',
+                    children: [
+                        {
+                            type: 'text',
+                            value: 'foo',
+                        },
+                    ],
                 },
-            });
+            ]);
         });
 
         test('complex example', () => {
@@ -487,11 +529,13 @@ describe('Inline Markdown', () => {
                 {
                     type: 'sup',
                     len: 5,
-                    children: {
-                        type: 'text',
-                        len: 3,
-                        value: 'foo',
-                    },
+                    children: [
+                        {
+                            type: 'text',
+                            len: 3,
+                            value: 'foo',
+                        },
+                    ],
                 },
                 {
                     type: 'text',
@@ -510,11 +554,13 @@ describe('Inline Markdown', () => {
                         {
                             type: 'sup',
                             len: 5,
-                            children: {
-                                type: 'text',
-                                len: 3,
-                                value: 'bar',
-                            },
+                            children: [
+                                {
+                                    type: 'text',
+                                    len: 3,
+                                    value: 'bar',
+                                },
+                            ],
                         },
                     ],
                 },
@@ -526,11 +572,13 @@ describe('Inline Markdown', () => {
                 {
                     type: 'sup',
                     len: 7,
-                    children: {
-                        type: 'text',
-                        len: 5,
-                        value: 'world',
-                    },
+                    children: [
+                        {
+                            type: 'text',
+                            len: 5,
+                            value: 'world',
+                        },
+                    ],
                 },
             ]);
         });
@@ -541,13 +589,17 @@ describe('Inline Markdown', () => {
             const parser = create();
             const ast = parser.tokenizeInline('~foo~');
 
-            expect(ast).toMatchObject({
-                type: 'sub',
-                children: {
-                    type: 'text',
-                    value: 'foo',
+            expect(ast).toMatchObject([
+                {
+                    type: 'sub',
+                    children: [
+                        {
+                            type: 'text',
+                            value: 'foo',
+                        },
+                    ],
                 },
-            });
+            ]);
         });
 
         test('complex example', () => {
@@ -558,11 +610,13 @@ describe('Inline Markdown', () => {
                 {
                     type: 'sub',
                     len: 5,
-                    children: {
-                        type: 'text',
-                        len: 3,
-                        value: 'foo',
-                    },
+                    children: [
+                        {
+                            type: 'text',
+                            len: 3,
+                            value: 'foo',
+                        },
+                    ],
                 },
                 {
                     type: 'text',
@@ -581,11 +635,13 @@ describe('Inline Markdown', () => {
                         {
                             type: 'sub',
                             len: 5,
-                            children: {
-                                type: 'text',
-                                len: 3,
-                                value: 'bar',
-                            },
+                            children: [
+                                {
+                                    type: 'text',
+                                    len: 3,
+                                    value: 'bar',
+                                },
+                            ],
                         },
                     ],
                 },
@@ -597,11 +653,13 @@ describe('Inline Markdown', () => {
                 {
                     type: 'sub',
                     len: 7,
-                    children: {
-                        type: 'text',
-                        len: 5,
-                        value: 'world',
-                    },
+                    children: [
+                        {
+                            type: 'text',
+                            len: 5,
+                            value: 'world',
+                        },
+                    ],
                 },
             ]);
         });
@@ -611,61 +669,79 @@ describe('Inline Markdown', () => {
         test('works', () => {
             const parser = create();
 
-            expect(parser.tokenizeInline('@foo')).toMatchObject({
-                type: 'handle',
-                value: 'foo',
-                prefix: '@',
-            });
-            expect(parser.tokenizeInline('~foo')).toMatchObject({
-                type: 'handle',
-                value: 'foo',
-                prefix: '~',
-            });
-            expect(parser.tokenizeInline('#foo')).toMatchObject({
-                type: 'handle',
-                value: 'foo',
-                prefix: '#',
-            });
+            expect(parser.tokenizeInline('@foo')).toMatchObject([
+                {
+                    type: 'handle',
+                    value: 'foo',
+                    prefix: '@',
+                },
+            ]);
+            expect(parser.tokenizeInline('~foo')).toMatchObject([
+                {
+                    type: 'handle',
+                    value: 'foo',
+                    prefix: '~',
+                },
+            ]);
+            expect(parser.tokenizeInline('#foo')).toMatchObject([
+                {
+                    type: 'handle',
+                    value: 'foo',
+                    prefix: '#',
+                },
+            ]);
         });
 
         test('complex value', () => {
             const parser = create();
 
-            expect(parser.tokenizeInline('@{foo bar}')).toMatchObject({
-                type: 'handle',
-                value: 'foo bar',
-                prefix: '@',
-            });
-            expect(parser.tokenizeInline('~{foo bar}')).toMatchObject({
-                type: 'handle',
-                value: 'foo bar',
-                prefix: '~',
-            });
-            expect(parser.tokenizeInline('#{foo bar}')).toMatchObject({
-                type: 'handle',
-                value: 'foo bar',
-                prefix: '#',
-            });
+            expect(parser.tokenizeInline('@{foo bar}')).toMatchObject([
+                {
+                    type: 'handle',
+                    value: 'foo bar',
+                    prefix: '@',
+                },
+            ]);
+            expect(parser.tokenizeInline('~{foo bar}')).toMatchObject([
+                {
+                    type: 'handle',
+                    value: 'foo bar',
+                    prefix: '~',
+                },
+            ]);
+            expect(parser.tokenizeInline('#{foo bar}')).toMatchObject([
+                {
+                    type: 'handle',
+                    value: 'foo bar',
+                    prefix: '#',
+                },
+            ]);
         });
 
         test('allows = in complex value', () => {
             const parser = create();
 
-            expect(parser.tokenizeInline('@{foo=bar}')).toMatchObject({
-                type: 'handle',
-                value: 'foo=bar',
-                prefix: '@',
-            });
-            expect(parser.tokenizeInline('~{foo=bar}')).toMatchObject({
-                type: 'handle',
-                value: 'foo=bar',
-                prefix: '~',
-            });
-            expect(parser.tokenizeInline('#{foo=bar}')).toMatchObject({
-                type: 'handle',
-                value: 'foo=bar',
-                prefix: '#',
-            });
+            expect(parser.tokenizeInline('@{foo=bar}')).toMatchObject([
+                {
+                    type: 'handle',
+                    value: 'foo=bar',
+                    prefix: '@',
+                },
+            ]);
+            expect(parser.tokenizeInline('~{foo=bar}')).toMatchObject([
+                {
+                    type: 'handle',
+                    value: 'foo=bar',
+                    prefix: '~',
+                },
+            ]);
+            expect(parser.tokenizeInline('#{foo=bar}')).toMatchObject([
+                {
+                    type: 'handle',
+                    value: 'foo=bar',
+                    prefix: '#',
+                },
+            ]);
         });
 
         test('in various positions in text', () => {
@@ -680,7 +756,7 @@ describe('Inline Markdown', () => {
                 {
                     type: 'emphasis',
                     len: 6,
-                    children: {type: 'handle', len: 4, value: 'baz', prefix: '@'},
+                    children: [{type: 'handle', len: 4, value: 'baz', prefix: '@'}],
                 },
             ]);
         });
@@ -691,13 +767,17 @@ describe('Inline Markdown', () => {
             const parser = create();
             const ast = parser.tokenizeInline('++foo++');
 
-            expect(ast).toMatchObject({
-                type: 'underline',
-                children: {
-                    type: 'text',
-                    value: 'foo',
+            expect(ast).toMatchObject([
+                {
+                    type: 'underline',
+                    children: [
+                        {
+                            type: 'text',
+                            value: 'foo',
+                        },
+                    ],
                 },
-            });
+            ]);
         });
 
         test('complex example', () => {
@@ -708,11 +788,13 @@ describe('Inline Markdown', () => {
                 {
                     type: 'underline',
                     len: 7,
-                    children: {
-                        type: 'text',
-                        len: 3,
-                        value: 'foo',
-                    },
+                    children: [
+                        {
+                            type: 'text',
+                            len: 3,
+                            value: 'foo',
+                        },
+                    ],
                 },
                 {
                     type: 'text',
@@ -731,11 +813,13 @@ describe('Inline Markdown', () => {
                         {
                             type: 'underline',
                             len: 7,
-                            children: {
-                                type: 'text',
-                                len: 3,
-                                value: 'bar',
-                            },
+                            children: [
+                                {
+                                    type: 'text',
+                                    len: 3,
+                                    value: 'bar',
+                                },
+                            ],
                         },
                     ],
                 },
@@ -747,11 +831,13 @@ describe('Inline Markdown', () => {
                 {
                     type: 'underline',
                     len: 9,
-                    children: {
-                        type: 'text',
-                        len: 5,
-                        value: 'world',
-                    },
+                    children: [
+                        {
+                            type: 'text',
+                            len: 5,
+                            value: 'world',
+                        },
+                    ],
                 },
             ]);
         });
@@ -786,10 +872,12 @@ describe('Inline Markdown', () => {
             const parser = create();
             const ast = parser.tokenizeInline('\\[\\$\\@');
 
-            expect(ast).toMatchObject({
-                type: 'text',
-                value: '[$@',
-            });
+            expect(ast).toMatchObject([
+                {
+                    type: 'text',
+                    value: '[$@',
+                },
+            ]);
         });
     });
 
@@ -798,13 +886,15 @@ describe('Inline Markdown', () => {
             const parser = create();
             const ast = parser.tokenizeInline('![alt][ref]');
 
-            expect(ast).toMatchObject({
-                type: 'imageReference',
-                len: 11,
-                identifier: 'ref',
-                referenceType: 'full',
-                alt: 'alt',
-            });
+            expect(ast).toMatchObject([
+                {
+                    type: 'imageReference',
+                    len: 11,
+                    identifier: 'ref',
+                    referenceType: 'full',
+                    alt: 'alt',
+                },
+            ]);
         });
     });
 });

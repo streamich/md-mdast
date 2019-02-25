@@ -5,12 +5,14 @@
       "type": "heading",
       "raw": "# Hello\n\n",
       "len": 9,
-      "children": {
-        "type": "text",
-        "raw": "Hello",
-        "len": 5,
-        "value": "Hello"
-      },
+      "children": [
+        {
+          "type": "text",
+          "raw": "Hello",
+          "len": 5,
+          "value": "Hello"
+        }
+      ],
       "depth": 1
     },
     {
@@ -42,17 +44,21 @@
       "type": "footnoteDefinition",
       "raw": "[^1]: Footnotes are defined here.\n",
       "len": 34,
-      "children": {
-        "type": "paragraph",
-        "raw": "Footnotes are defined here.\n",
-        "len": 28,
-        "children": {
-          "type": "text",
-          "raw": "Footnotes are defined here.",
-          "len": 27,
-          "value": "Footnotes are defined here."
+      "children": [
+        {
+          "type": "paragraph",
+          "raw": "Footnotes are defined here.\n",
+          "len": 28,
+          "children": [
+            {
+              "type": "text",
+              "raw": "Footnotes are defined here.",
+              "len": 27,
+              "value": "Footnotes are defined here."
+            }
+          ]
         }
-      },
+      ],
       "identifier": "1"
     }
   ],

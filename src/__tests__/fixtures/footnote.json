@@ -3,8 +3,7 @@
     "children": [
         {
             "type": "paragraph",
-            "raw":
-                "Here is some text containing a footnote[^somesamplefootnote]. You can then continue your thought...\n\n",
+            "raw": "Here is some text containing a footnote[^somesamplefootnote]. You can then continue your thought...\n\n",
             "len": 101,
             "children": [
                 {
@@ -31,23 +30,26 @@
             "type": "footnoteDefinition",
             "raw": "[^somesamplefootnote]: Here is the text of the footnote itself.\n\n",
             "len": 65,
-            "children": {
-                "type": "paragraph",
-                "raw": "Here is the text of the footnote itself.\n\n",
-                "len": 42,
-                "children": {
-                    "type": "text",
-                    "raw": "Here is the text of the footnote itself.",
-                    "len": 40,
-                    "value": "Here is the text of the footnote itself."
+            "children": [
+                {
+                    "type": "paragraph",
+                    "raw": "Here is the text of the footnote itself.\n\n",
+                    "len": 42,
+                    "children": [
+                        {
+                            "type": "text",
+                            "raw": "Here is the text of the footnote itself.",
+                            "len": 40,
+                            "value": "Here is the text of the footnote itself."
+                        }
+                    ]
                 }
-            },
+            ],
             "identifier": "somesamplefootnote"
         },
         {
             "type": "paragraph",
-            "raw":
-                "Even go to a new [paragraph][] and the footnotes will go to the bottom of the document[^documentdetails].\n\n",
+            "raw": "Even go to a new [paragraph][] and the footnotes will go to the bottom of the document[^documentdetails].\n\n",
             "len": 107,
             "children": [
                 {
@@ -60,12 +62,14 @@
                     "type": "linkReference",
                     "raw": "[paragraph][]",
                     "len": 13,
-                    "children": {
-                        "type": "text",
-                        "raw": "paragraph",
-                        "len": 9,
-                        "value": "paragraph"
-                    },
+                    "children": [
+                        {
+                            "type": "text",
+                            "raw": "paragraph",
+                            "len": 9,
+                            "value": "paragraph"
+                        }
+                    ],
                     "identifier": "paragraph",
                     "referenceType": "collapsed"
                 },
@@ -91,14 +95,12 @@
         },
         {
             "type": "footnoteDefinition",
-            "raw":
-                "[^documentdetails]: Depending on the **final** form of your document, of course. See the documentation and experiment.\n\n    This footnote has a second [paragraph][].\n\n        code in footnote\n\n",
+            "raw": "[^documentdetails]: Depending on the **final** form of your document, of course. See the documentation and experiment.\n\n    This footnote has a second [paragraph][].\n\n        code in footnote\n\n",
             "len": 193,
             "children": [
                 {
                     "type": "paragraph",
-                    "raw":
-                        "Depending on the **final** form of your document, of course. See the documentation and experiment.\n\n",
+                    "raw": "Depending on the **final** form of your document, of course. See the documentation and experiment.\n\n",
                     "len": 100,
                     "children": [
                         {
@@ -111,12 +113,14 @@
                             "type": "strong",
                             "raw": "**final**",
                             "len": 9,
-                            "children": {
-                                "type": "text",
-                                "raw": "final",
-                                "len": 5,
-                                "value": "final"
-                            }
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "raw": "final",
+                                    "len": 5,
+                                    "value": "final"
+                                }
+                            ]
                         },
                         {
                             "type": "text",
@@ -141,12 +145,14 @@
                             "type": "linkReference",
                             "raw": "[paragraph][]",
                             "len": 13,
-                            "children": {
-                                "type": "text",
-                                "raw": "paragraph",
-                                "len": 9,
-                                "value": "paragraph"
-                            },
+                            "children": [
+                                {
+                                    "type": "text",
+                                    "raw": "paragraph",
+                                    "len": 9,
+                                    "value": "paragraph"
+                                }
+                            ],
                             "identifier": "paragraph",
                             "referenceType": "collapsed"
                         },

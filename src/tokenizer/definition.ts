@@ -1,5 +1,5 @@
 import {TTokenizer, IDefinition} from '../types';
-import {def as REG} from '../regex';;
+import {def as REG} from '../regex';
 
 // tslint:disable only-arrow-functions
 const definition: TTokenizer<IDefinition> = function(eat, value) {

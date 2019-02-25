@@ -18,7 +18,7 @@ describe('createParser()', () => {
             block: [],
         });
 
-        const ast = parser.tokenizeInline(':smile:');
+        const ast = parser.tokenizeInline(':smile:')![0];
 
         expect(typeof ast).toBe('object');
         expect(ast.type).toBe('icon');

@@ -13,23 +13,27 @@ describe('structure', () => {
 
         expect(mdast).toMatchObject({
             type: 'root',
-            children: {
-                type: 'paragraph',
-                children: {
-                    type: 'text',
-                    value: 'foo',
+            children: [
+                {
+                    type: 'paragraph',
+                    children: [
+                        {
+                            type: 'text',
+                            value: 'foo',
+                        },
+                    ],
                 },
-            },
+            ],
         });
         expect(doc).toMatchObject({
             nodes: [
                 {
                     type: 'root',
-                    children: 1,
+                    children: [1],
                 },
                 {
                     type: 'paragraph',
-                    children: 2,
+                    children: [2],
                 },
                 {
                     type: 'text',
@@ -53,18 +57,22 @@ describe('structure', () => {
                 {
                     type: 'heading',
                     depth: 1,
-                    children: {
-                        type: 'text',
-                        value: 'Title',
-                    },
+                    children: [
+                        {
+                            type: 'text',
+                            value: 'Title',
+                        },
+                    ],
                 },
                 {
                     type: 'heading',
                     depth: 2,
-                    children: {
-                        type: 'text',
-                        value: 'Subtitle',
-                    },
+                    children: [
+                        {
+                            type: 'text',
+                            value: 'Subtitle',
+                        },
+                    ],
                 },
             ],
         });
@@ -76,7 +84,7 @@ describe('structure', () => {
                 },
                 {
                     type: 'heading',
-                    children: 2,
+                    children: [2],
                 },
                 {
                     type: 'text',
@@ -84,7 +92,7 @@ describe('structure', () => {
                 },
                 {
                     type: 'heading',
-                    children: 4,
+                    children: [4],
                 },
                 {
                     type: 'text',
@@ -107,15 +115,19 @@ describe('structure', () => {
             children: [
                 {
                     type: 'paragraph',
-                    children: {
-                        type: 'linkReference',
-                        children: {
-                            type: 'text',
-                            value: 'Click me',
+                    children: [
+                        {
+                            type: 'linkReference',
+                            children: [
+                                {
+                                    type: 'text',
+                                    value: 'Click me',
+                                },
+                            ],
+                            identifier: 'click',
+                            referenceType: 'full',
                         },
-                        identifier: 'click',
-                        referenceType: 'full',
-                    },
+                    ],
                 },
                 {
                     type: 'definition',
@@ -129,15 +141,15 @@ describe('structure', () => {
             nodes: [
                 {
                     type: 'root',
-                    children: 1,
+                    children: [1],
                 },
                 {
                     type: 'paragraph',
-                    children: 2,
+                    children: [2],
                 },
                 {
                     type: 'linkReference',
-                    children: 3,
+                    children: [3],
                     identifier: 'click',
                     referenceType: 'full',
                 },
@@ -184,12 +196,16 @@ describe('structure', () => {
                 {
                     type: 'footnoteDefinition',
                     identifier: 'gg',
-                    children: {
-                        type: 'paragraph',
-                        children: {
-                            type: 'text',
+                    children: [
+                        {
+                            type: 'paragraph',
+                            children: [
+                                {
+                                    type: 'text',
+                                },
+                            ],
                         },
-                    },
+                    ],
                 },
             ],
         });
@@ -197,7 +213,7 @@ describe('structure', () => {
             nodes: [
                 {
                     type: 'root',
-                    children: 1,
+                    children: [1],
                 },
                 {
                     type: 'paragraph',
@@ -212,11 +228,11 @@ describe('structure', () => {
                 },
                 {
                     type: 'footnoteDefinition',
-                    children: 5,
+                    children: [5],
                 },
                 {
                     type: 'paragraph',
-                    children: 6,
+                    children: [6],
                 },
                 {
                     type: 'text',
