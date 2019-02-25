@@ -28,19 +28,13 @@ Result:
 { type: 'root',
   children:
    [ { type: 'paragraph',
-       raw: '*hello* __world__',
-       len: 17,
        children:
         [ { type: 'emphasis',
-            raw: '*hello*',
-            len: 7,
-            children: [ { type: 'text', raw: 'hello', len: 5, value: 'hello' } ] },
-          { type: 'text', raw: ' ', len: 1, value: ' ' },
+            children: [ { type: 'text', value: 'hello' } ] },
+          { type: 'text', value: ' ' },
           { type: 'strong',
-            raw: '__world__',
-            len: 9,
-            children: [ { type: 'text', raw: 'world', len: 5, value: 'world' } ] } ] } ],
-  len: 17 }
+            children: [ { type: 'text', value: 'world' } ] } ] } ],
+}
 ```
 
 ## License
