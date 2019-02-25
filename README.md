@@ -28,30 +28,30 @@ Result:
 ```
 { type: 'root',
   children:
-   { type: 'paragraph',
-     raw: '*hello* __world__',
-     len: 17,
-     children:
-      [ { type: 'emphasis',
-          raw: '*hello*',
-          len: 7,
-          children: { type: 'text', raw: 'hello', len: 5, value: 'hello' } },
-        { type: 'text', raw: ' ', len: 1, value: ' ' },
-        { type: 'strong',
-          raw: '__world__',
-          len: 9,
-          children: { type: 'text', raw: 'world', len: 5, value: 'world' } } ] },
+   [ { type: 'paragraph',
+       raw: '*hello* __world__',
+       len: 17,
+       children:
+        [ { type: 'emphasis',
+            raw: '*hello*',
+            len: 7,
+            children: [ { type: 'text', raw: 'hello', len: 5, value: 'hello' } ] },
+          { type: 'text', raw: ' ', len: 1, value: ' ' },
+          { type: 'strong',
+            raw: '__world__',
+            len: 9,
+            children: [ { type: 'text', raw: 'world', len: 5, value: 'world' } ] } ] } ],
   len: 17 }
 
 [ { type: 'emphasis',
     raw: '*hello*',
     len: 7,
-    children: { type: 'text', raw: 'hello', len: 5, value: 'hello' } },
+    children: [ { type: 'text', raw: 'hello', len: 5, value: 'hello' } ] },
   { type: 'text', raw: ' ', len: 1, value: ' ' },
   { type: 'strong',
     raw: '__world__',
     len: 9,
-    children: { type: 'text', raw: 'world', len: 5, value: 'world' } } ]
+    children: [ { type: 'text', raw: 'world', len: 5, value: 'world' } ] } ]
 ```
 
 ## License
