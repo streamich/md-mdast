@@ -3,7 +3,6 @@
   "children": [
     {
       "type": "code",
-      "raw": "```\n$ git status\n  Loading...\n```\n",
       "len": 34,
       "value": "$ git status\n  Loading...",
       "lang": "",
