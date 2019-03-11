@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/streamich/md-mdast/compare/v3.1.0...v3.1.1) (2019-03-11)
+
+
+### Bug Fixes
+
+* 🐛 split correctly numbered lists ([651d9a2](https://github.com/streamich/md-mdast/commit/651d9a2)), closes [#35](https://github.com/streamich/md-mdast/issues/35)
+
 # [3.1.0](https://github.com/streamich/md-mdast/compare/v3.0.0...v3.1.0) (2019-02-25)
 
 
