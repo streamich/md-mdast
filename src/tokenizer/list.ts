@@ -3,7 +3,6 @@ import {list as REG, item as REG_PARTS} from '../regex';
 
 const REG_BULLET = /^(\s*)([*+-]|\d\.)(\s{1,2}|\t)/;
 const REG_LOOSE = /\n\n(?!\s*$)/;
-
 const getParts = (subvalue: string): string[] | null => {
     const parts = subvalue.match(REG_PARTS);
 

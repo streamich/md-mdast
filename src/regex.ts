@@ -23,7 +23,7 @@ export const def = replace(/^ {0,3}\[(label)\]: *\n? *<?([^\s>]+)>?(?:(?: +\n? *
     title,
 });
 export const list = replace(/^( *)(bull) [\s\S]+?(?:hr|def|\n{2,}(?! )(?!\1bull )\n*|\s*$)/, {bull, hr, def});
-export const item = replace(/^( *)(bull) [^\n]*(?:\n(?!\1\- )[^\n]*)*/gm, {bull});
+export const item = replace(/^( *)(bull) [^\n]*(?:\n(?!\1bull )[^\n]*)*/gm, {bull});
 export const paragraph = replace(/^((?:[^\n]+(\n(?!\s{0,3}bull))?)+)\n*/, {bull});
 export const comment = /<!--(?!-?>)[\s\S]*?-->/;
 export const tag = new RegExp(
