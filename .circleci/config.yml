@@ -3,7 +3,7 @@ version: 2
 refs:
   container: &container
     docker:
-      - image: circleci/node:8.15@sha256:44bd5c0e0d9d4d8e6c0ccaa427f5f73fdb6791aa40509b14823df9f50f2fb6db
+      - image: circleci/node:8.15@sha256:ecda228a3b853cf3db6729258be9656b8d51c899fd22114bce16da926f561d71
     working_directory: ~/repo
 
 jobs:
