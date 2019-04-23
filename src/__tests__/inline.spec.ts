@@ -374,6 +374,78 @@ describe('Inline Markdown', () => {
         });
     });
 
+    describe('spoiler text', () => {
+        test('works when spoiler text is the only token', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('~~~foobar~~~');
+            expect(ast).toMatchObject([
+                {
+                    type: 'spoiler',
+                    children: [
+                        {
+                            type: 'text',
+                            value: 'foobar',
+                        },
+                    ],
+                },
+            ]);
+        });
+
+        test('works when inside other inline text', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('hello ~~~ foobar ~~~ world');
+            expect(ast).toMatchObject([
+                {type: 'text', value: 'hello '},
+                {
+                    type: 'spoiler',
+                    children: [
+                        {
+                            type: 'text',
+                            value: ' foobar ',
+                        },
+                    ],
+                },
+                {type: 'text', value: ' world'},
+            ]);
+        });
+
+        test('works when surrounded by deleted text', () => {
+            const parser = create();
+            const ast = parser.tokenizeInline('~~hello~~ ~~~ foobar ~~~ ~~world~~');
+            expect(ast).toMatchObject([
+                {
+                    type: 'delete',
+                    children: [
+                        {
+                            type: 'text',
+                            value: 'hello',
+                        },
+                    ],
+                },
+                {type: 'text', value: ' '},
+                {
+                    type: 'spoiler',
+                    children: [
+                        {
+                            type: 'text',
+                            value: ' foobar ',
+                        },
+                    ],
+                },
+                {type: 'text', value: ' '},
+                {
+                    type: 'delete',
+                    children: [
+                        {
+                            type: 'text',
+                            value: 'world',
+                        },
+                    ],
+                },
+            ]);
+        });
+    });
+
     describe('math', () => {
         test('works', () => {
             const parser = create();

@@ -8,6 +8,7 @@ import emphasis from '../tokenizer/emphasis';
 import {TTokenizer, TBlockToken, TInlineToken} from '../types';
 import strong from '../tokenizer/strong';
 import deletedText from '../tokenizer/delete';
+import spoiler from '../tokenizer/spoiler';
 import inlineMath from '../tokenizer/inlineMath';
 import footnoteReference from '../tokenizer/footnoteReference';
 import reference from '../tokenizer/reference';
@@ -52,6 +53,7 @@ const preset = {
         inlineCode(),
         strong,
         emphasis,
+        spoiler,
         deletedText(),
         inlineMath(),
         footnoteReference,
