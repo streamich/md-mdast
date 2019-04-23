@@ -1,7 +1,9 @@
 import {urlInline} from '../regex';
 import {TTokenizer, IText} from '../types';
 
-const REG = new RegExp('^[\\s\\S]+?(?=[\\<!\\[_*`:~#@\\$\\^=\\+]| {2,}\\n|(' + urlInline.source + ')|\\\\n|\\\\`|$)');
+const REG = new RegExp(
+    '^[\\s\\S]+?(?=[\\<!\\[_*`:~\\|#@\\$\\^=\\+]| {2,}\\n|(' + urlInline.source + ')|\\\\n|\\\\`|$)'
+);
 
 const text = () => {
     // tslint:disable only-arrow-functions

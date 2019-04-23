@@ -21,6 +21,7 @@ export type TTokenTypeInline =
     | 'strong'
     | 'emphasis'
     | 'delete'
+    | 'spoiler'
     | 'inlineMath'
     | 'footnoteReference'
     | 'linkReference'
@@ -154,6 +155,10 @@ export interface IDelete extends IToken {
     type: 'delete';
 }
 
+export interface ISpoiler extends IToken {
+    type: 'spoiler';
+}
+
 export interface IInlineMath extends IToken {
     type: 'inlineMath';
 }
@@ -257,6 +262,7 @@ export type TInlineToken =
     | IStrong
     | IEmphasis
     | IDelete
+    | ISpoiler
     | IInlineMath
     | IFootnoteReference
     | ILinkReference
