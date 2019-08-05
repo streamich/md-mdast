@@ -30,7 +30,7 @@
         "@semantic-release/changelog": "3.0.4",
         "@semantic-release/git": "7.0.16",
         "@semantic-release/npm": "5.1.13",
-        "@types/jest": "24.0.16",
+        "@types/jest": "24.0.17",
         "@types/node": "11.13.18",
         "browserify": "16.3.0",
         "git-cz": "1.8.4",
