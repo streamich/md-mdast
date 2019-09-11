@@ -56,8 +56,23 @@ const list: TTokenizer<IList> = function(eat, value) {
         }
 
         // Outdent
-        const outdented = sansBullet.replace(/^ {1,4}/gm, '');
+        let outdented = sansBullet.replace(/^ {1,4}/gm, '');
         // const outdented = part.replace(new RegExp('^ {1,' + space + '}', 'gm'), '')
+        let checked: null | boolean = null;
+
+        if (outdented[0] === '[' && outdented[2] === ']') {
+            switch (outdented[1]) {
+                case 'x':
+                case 'X':
+                    outdented = outdented.substr(3);
+                    checked = true;
+                    break;
+                case ' ':
+                    outdented = outdented.substr(3);
+                    checked = false;
+                    break;
+            }
+        }
 
         const partLoose = REG_LOOSE.test(sansBullet);
 
@@ -68,7 +83,7 @@ const list: TTokenizer<IList> = function(eat, value) {
         children.push({
             type: 'listItem',
             loose: partLoose,
-            checked: null,
+            checked,
             // tslint:disable-next-line no-invalid-this
             children: this.tokenizeChildBlock(outdented),
         });

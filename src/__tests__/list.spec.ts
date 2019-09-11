@@ -1,4 +1,5 @@
 import {create} from '../index';
+import {IListItem} from '../types';
 
 const tests = [
     {
@@ -828,6 +829,22 @@ describe('list', () => {
                 },
             ],
         });
+    });
+
+    test('todo list', () => {
+        const parser = create();
+        const ast = parser.tokenizeBlock(`- [x] Done
+- [ ] Todo
+- lol
+`);
+
+        const item1 = ast!.children[0].children![0];
+        const item2 = ast!.children[0].children![1];
+        const item3 = ast!.children[0].children![2];
+
+        expect((item1 as IListItem).checked).toBe(true);
+        expect((item2 as IListItem).checked).toBe(false);
+        expect((item3 as IListItem).checked).toBe(null);
     });
 
     describe('automated', () => {
