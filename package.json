@@ -1,6 +1,6 @@
 {
     "name": "md-mdast",
-    "version": "3.2.0",
+    "version": "3.3.0",
     "description": "Tiny but fast Markdown to AST parser",
     "main": "lib/index.js",
     "files": [

@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/streamich/md-mdast/compare/v3.2.0...v3.3.0) (2019-09-11)
+
+
+### Features
+
+* 🎸 add support for `checked` prop in `ListItem` ([74351a7](https://github.com/streamich/md-mdast/commit/74351a7))
+
 # [3.2.0](https://github.com/streamich/md-mdast/compare/v3.1.1...v3.2.0) (2019-04-23)
 
 
