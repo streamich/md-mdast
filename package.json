@@ -43,7 +43,7 @@
         "ts-jest": "24.1.0",
         "ts-node": "8.4.1",
         "tslint": "5.20.1",
-        "tslint-config-mailonline": "3.0.0",
+        "tslint-config-mailonline": "4.0.0",
         "typescript": "3.4.5"
     },
     "prettier": {
