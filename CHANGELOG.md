@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/streamich/md-mdast/compare/v3.3.0...v3.4.0) (2020-04-19)
+
+
+### Features
+
+* 🎸 add support for single dollar $ inline math ([149589f](https://github.com/streamich/md-mdast/commit/149589f))
+
 # [3.3.0](https://github.com/streamich/md-mdast/compare/v3.2.0...v3.3.0) (2019-09-11)
 
 
