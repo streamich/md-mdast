@@ -1,7 +1,7 @@
 /* tslint:disable only-arrow-functions */
 import {TTokenizer, IInlineMath} from '../types';
 
-const REG = /^\$\$(?=\S)([\s\S]*?\S)\$\$/;
+const REG = /^\${1,2}(?=\S)([\s\S]*?\S)\${1,2}/;
 
 const inlineMath = () => {
     const tokenizer: TTokenizer<IInlineMath> = function(eat, value) {
